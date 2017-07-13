@@ -9,7 +9,8 @@ PubBiasOptions <- R6::R6Class(
     public = list(
         initialize = function(
             yi = NULL,
-            vi = NULL, ...) {
+            vi = NULL,
+            fsntype = "Rosenthal", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -23,16 +24,27 @@ PubBiasOptions <- R6::R6Class(
             private$..vi <- jmvcore::OptionVariable$new(
                 "vi",
                 vi)
+            private$..fsntype <- jmvcore::OptionList$new(
+                "fsntype",
+                fsntype,
+                options=list(
+                    "Rosenthal",
+                    "Orwin",
+                    "Rosenberg"),
+                default="Rosenthal")
         
             self$.addOption(private$..yi)
             self$.addOption(private$..vi)
+            self$.addOption(private$..fsntype)
         }),
     active = list(
         yi = function() private$..yi$value,
-        vi = function() private$..vi$value),
+        vi = function() private$..vi$value,
+        fsntype = function() private$..fsntype$value),
     private = list(
         ..yi = NA,
-        ..vi = NA)
+        ..vi = NA,
+        ..fsntype = NA)
 )
 
 #' @import jmvcore
@@ -79,6 +91,7 @@ PubBiasBase <- R6::R6Class(
 #' @param data .
 #' @param yi .
 #' @param vi .
+#' @param fsntype .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
@@ -88,11 +101,13 @@ PubBiasBase <- R6::R6Class(
 PubBias <- function(
     data,
     yi,
-    vi) {
+    vi,
+    fsntype = "Rosenthal") {
 
     options <- PubBiasOptions$new(
         yi = yi,
-        vi = vi)
+        vi = vi,
+        fsntype = fsntype)
 
     results <- PubBiasResults$new(
         options = options)

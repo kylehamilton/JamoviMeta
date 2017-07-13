@@ -22,3 +22,8 @@ children:
             name: vi
             maxItemCount: 1
             isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: fsntype

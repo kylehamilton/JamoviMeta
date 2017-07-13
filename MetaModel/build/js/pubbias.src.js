@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"yi","title":"Effect Size","type":"Variable"},{"name":"vi","title":"Variance","type":"Variable"}];
+const options = [{"name":"data","type":"Data"},{"name":"yi","title":"Effect Size","type":"Variable"},{"name":"vi","title":"Variance","type":"Variable"},{"name":"fsntype","title":"Fail-Safe N Method","type":"List","options":[{"name":"Rosenthal","title":"Rosenthal"},{"name":"Orwin","title":"Orwin"},{"name":"Rosenberg","title":"Rosenberg"}],"default":"Rosenthal"}];
 
 const view = View.extend({
     jus: "2.0",
@@ -49,6 +49,16 @@ view.layout = ui.extend({
 							isTarget: true
 						}
 					]
+				}
+			]
+		},
+		{
+			type: DefaultControls.LayoutBox,
+			margin: "large",
+			controls: [
+				{
+					type: DefaultControls.ComboBox,
+					name: "fsntype"
 				}
 			]
 		}

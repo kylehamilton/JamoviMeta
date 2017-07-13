@@ -16,4 +16,16 @@ options:
     - name: vi
       title: Variance
       type: Variable
+      
+    - name: fsntype
+      title: Fail-Safe N Method
+      type: List
+      options:
+        - name: "Rosenthal"
+          title: Rosenthal
+        - name: "Orwin"
+          title: Orwin
+        - name: "Rosenberg"
+          title: Rosenberg
+      default: Rosenthal
 ...
