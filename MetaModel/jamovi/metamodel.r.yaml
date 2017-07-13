@@ -1,0 +1,11 @@
+---
+name:  MetaModel
+title: Meta-Analysis
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Meta-Analysis
+      type:  Preformatted
+
+...

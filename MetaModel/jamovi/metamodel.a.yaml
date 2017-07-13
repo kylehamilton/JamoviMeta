@@ -1,0 +1,46 @@
+---
+name:  MetaModel
+title: Meta-Analysis
+menuGroup: MetaModel
+version: '1.0.0'
+jas: '1.1'
+
+options:
+    - name: data
+      type: Data
+
+    - name: yi
+      title: Effect Size
+      type: Variable
+
+    - name: vi
+      title: Variance
+      type: Variable
+      
+    - name: method
+      title: Model Estimator
+      type: List
+      options:
+        - name: "DL"
+          title: DerSimonian-Laird
+        - name: "HE"
+          title: Hedges
+        - name: "HS"
+          title: Hunter-Schmidt
+        - name: "SJ"
+          title: Sidik-Jonkman
+        - name: "ML"
+          title: Maximum-Likelihood
+        - name: "REML"
+          title: Restricted Maximum-Likelihood
+        - name: "EB"
+          title: Empirical Bayes
+        - name: "PM"
+          title: Paule-Mandel
+        #- name: "GENQ"
+        #  title: Generalized Q-statistic
+        - name: "FE"
+          title: Fixed-Effect
+      default: REML
+      
+...

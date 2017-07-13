@@ -1,0 +1,19 @@
+---
+title: Meta-Analysis for JAMOVI
+name: MetaModel
+version: 0.0.1
+jms: '1.0'
+authors:
+  - W. Kyle Hamilton
+maintainer: W. Kyle Hamilton <kyle.hamilton@gmail.com>
+date: '2017-07-12'
+type: R
+description: An interface for Jamovi and the R package Metafor
+analyses:
+  - title: Meta-Analysis
+    name: MetaModel
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Meta-Analysis
+
+...

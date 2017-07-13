@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+
+export(MetaModel)
+export(MetaModelClass)
+export(MetaModelOptions)
