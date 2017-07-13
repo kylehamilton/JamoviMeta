@@ -61,7 +61,7 @@ PubBiasResults <- R6::R6Class(
             private$..text <- jmvcore::Preformatted$new(
                 options=options,
                 name="text",
-                title="Publication Bias")
+                title="Fail-Safe N Analysis")
             self$add(private$..text)}))
 
 #' @importFrom jmvcore Analysis
