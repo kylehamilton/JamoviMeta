@@ -9,4 +9,4 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 0.5.5), R6, metafor
-Built: R 3.3.1; ; 2017-07-13 07:51:54 UTC; windows
+Built: R 3.3.1; ; 2017-07-13 09:13:58 UTC; windows

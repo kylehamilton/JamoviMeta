@@ -4,8 +4,15 @@ title: Publication Bias
 jrs:   '1.1'
 
 items:
-    - name:  text
+    - name:  fsn
       title: Fail-Safe N Analysis
       type:  Preformatted
-
+      
+    - name:  rank
+      title: Rank Correlation Test for Funnel Plot Asymmetry
+      type:  Preformatted
+      
+    - name:  reg
+      title: Regression Test for Funnel Plot Asymmetry
+      type:  Preformatted
 ...

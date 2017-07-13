@@ -7,11 +7,15 @@ PubBiasClass <- R6::R6Class(
           yi <- self$options$yi
           vi <- self$options$vi
           fsntype <- self$options$fsntype
+          res <- metafor::rma(yi=yi, vi=vi, data=self$data)
+          failsafePB <- metafor::fsn(yi=yi, vi=vi, data=self$data, type=fsntype)
+          ranktestPB <- metafor::ranktest(res)
+          regtestPB <- metafor::regtest(res)
           
-          failsafe <- metafor::fsn(yi=yi, vi=vi, data=self$data, type=fsntype)
-          #print(res)
-          self$results$text$setContent(failsafe)
           
+          self$results$fsn$setContent(failsafePB)
+          self$results$rank$setContent(ranktestPB)
+          self$results$reg$setContent(regtestPB)
           #fpacor <- metafor::ranktest(yi=yi, vi=vi, data=self$data)
           #self$results$text$setContent(fpacor)
           #fpareg regtest(res)

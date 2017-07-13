@@ -52,17 +52,31 @@ PubBiasOptions <- R6::R6Class(
 PubBiasResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$..text),
+        fsn = function() private$..fsn,
+        rank = function() private$..rank,
+        reg = function() private$..reg),
     private = list(
-        ..text = NA),
+        ..fsn = NA,
+        ..rank = NA,
+        ..reg = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Publication Bias")
-            private$..text <- jmvcore::Preformatted$new(
+            private$..fsn <- jmvcore::Preformatted$new(
                 options=options,
-                name="text",
+                name="fsn",
                 title="Fail-Safe N Analysis")
-            self$add(private$..text)}))
+            private$..rank <- jmvcore::Preformatted$new(
+                options=options,
+                name="rank",
+                title="Rank Correlation Test for Funnel Plot Asymmetry")
+            private$..reg <- jmvcore::Preformatted$new(
+                options=options,
+                name="reg",
+                title="Regression Test for Funnel Plot Asymmetry")
+            self$add(private$..fsn)
+            self$add(private$..rank)
+            self$add(private$..reg)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -94,7 +108,9 @@ PubBiasBase <- R6::R6Class(
 #' @param fsntype .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #' }
 #'
 #' @export
