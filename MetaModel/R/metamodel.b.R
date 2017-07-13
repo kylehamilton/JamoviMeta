@@ -13,7 +13,7 @@ MetaModelClass <- R6::R6Class(
         res <- metafor::rma(yi=yi, vi=vi, method=method2, data=self$data)
         #print(res)
         self$results$text$setContent(res)
-        
+
         
         
         

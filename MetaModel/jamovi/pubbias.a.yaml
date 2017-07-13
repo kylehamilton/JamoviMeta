@@ -1,0 +1,19 @@
+---
+name:  PubBias
+title: Publication Bias
+menuGroup: MetaModel
+version: '1.0.0'
+jas: '1.1'
+
+options:
+    - name: data
+      type: Data
+
+    - name: yi
+      title: Effect Size
+      type: Variable
+
+    - name: vi
+      title: Variance
+      type: Variable
+...

@@ -15,5 +15,10 @@ analyses:
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: Meta-Analysis
+  - title: Publication Bias
+    name: PubBias
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Publication Bias
 
 ...
