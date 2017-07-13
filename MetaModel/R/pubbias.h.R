@@ -54,11 +54,13 @@ PubBiasResults <- R6::R6Class(
     active = list(
         fsn = function() private$..fsn,
         rank = function() private$..rank,
-        reg = function() private$..reg),
+        reg = function() private$..reg,
+        plot = function() private$..plot),
     private = list(
         ..fsn = NA,
         ..rank = NA,
-        ..reg = NA),
+        ..reg = NA,
+        ..plot = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Publication Bias")
@@ -74,9 +76,17 @@ PubBiasResults <- R6::R6Class(
                 options=options,
                 name="reg",
                 title="Regression Test for Funnel Plot Asymmetry")
+            private$..plot <- jmvcore::Image$new(
+                options=options,
+                name="plot",
+                title="Funnel Plot",
+                width=400,
+                height=300,
+                renderFun=".plot")
             self$add(private$..fsn)
             self$add(private$..rank)
-            self$add(private$..reg)}))
+            self$add(private$..reg)
+            self$add(private$..plot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -111,6 +121,7 @@ PubBiasBase <- R6::R6Class(
 #'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export

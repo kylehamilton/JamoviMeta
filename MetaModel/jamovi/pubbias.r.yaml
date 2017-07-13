@@ -15,4 +15,12 @@ items:
     - name:  reg
       title: Regression Test for Funnel Plot Asymmetry
       type:  Preformatted
+
+    - name: plot
+      title: Funnel Plot
+      type: Image
+      width:  400
+      height: 300
+      renderFun: .plot
+
 ...

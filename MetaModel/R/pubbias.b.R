@@ -22,6 +22,16 @@ PubBiasClass <- R6::R6Class(
           # `self$data` contains the data
           # `self$options` contains the options
           # `self$results` contains the results object (to populate)
-          
+          image <- self$results$plot
+          image$setState(res)
+        },
+        .plot=function(image, ...) {  # <-- the plot function
+        plotData <- image$state
+        #yi <- self$options$yi
+        #vi <- self$options$vi
+        #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
+        plot <- metafor::funnel(plotData)
+        print(plot)
+        TRUE
         })
 )
