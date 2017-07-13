@@ -1,0 +1,11 @@
+---
+name:  MetaCorr
+title: Meta-analysis of Correlation Coefficients
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Meta-analysis of Correlation Coefficients
+      type:  Preformatted
+
+...

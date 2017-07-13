@@ -8,4 +8,4 @@ Description: An interface for Jamovi and the R package Metafor
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: jmvcore (>= 0.5.5), R6, metafor
+Imports: jmvcore (>= 0.5.5), R6, metafor, gsl

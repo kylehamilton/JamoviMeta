@@ -7,3 +7,7 @@ export(MetaModelOptions)
 export(PubBias)
 export(PubBiasClass)
 export(PubBiasOptions)
+
+export(MetaCorr)
+export(MetaCorrClass)
+export(MetaCorrOptions)

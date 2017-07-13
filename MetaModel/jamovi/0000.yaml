@@ -20,5 +20,10 @@ analyses:
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: Publication Bias
+  - title: Meta-analysis of Correlation Coefficients
+    name: MetaCorr
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Meta-analysis of Correlation Coefficients
 
 ...
