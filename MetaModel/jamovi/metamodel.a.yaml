@@ -17,6 +17,10 @@ options:
       title: Variance
       type: Variable
       
+    - name: studylabels
+      title: Study Labels
+      type: Variable
+     
     - name: method
       title: Model Estimator
       type: List

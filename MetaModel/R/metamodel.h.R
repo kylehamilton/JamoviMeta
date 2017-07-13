@@ -10,6 +10,7 @@ MetaModelOptions <- R6::R6Class(
         initialize = function(
             yi = NULL,
             vi = NULL,
+            studylabels = NULL,
             method = "REML", ...) {
 
             super$initialize(
@@ -24,6 +25,9 @@ MetaModelOptions <- R6::R6Class(
             private$..vi <- jmvcore::OptionVariable$new(
                 "vi",
                 vi)
+            private$..studylabels <- jmvcore::OptionVariable$new(
+                "studylabels",
+                studylabels)
             private$..method <- jmvcore::OptionList$new(
                 "method",
                 method,
@@ -41,15 +45,18 @@ MetaModelOptions <- R6::R6Class(
         
             self$.addOption(private$..yi)
             self$.addOption(private$..vi)
+            self$.addOption(private$..studylabels)
             self$.addOption(private$..method)
         }),
     active = list(
         yi = function() private$..yi$value,
         vi = function() private$..vi$value,
+        studylabels = function() private$..studylabels$value,
         method = function() private$..method$value),
     private = list(
         ..yi = NA,
         ..vi = NA,
+        ..studylabels = NA,
         ..method = NA)
 )
 
@@ -58,9 +65,11 @@ MetaModelOptions <- R6::R6Class(
 MetaModelResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$..text),
+        text = function() private$..text,
+        plot = function() private$..plot),
     private = list(
-        ..text = NA),
+        ..text = NA,
+        ..plot = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis")
@@ -68,7 +77,15 @@ MetaModelResults <- R6::R6Class(
                 options=options,
                 name="text",
                 title="Meta-Analysis")
-            self$add(private$..text)}))
+            private$..plot <- jmvcore::Image$new(
+                options=options,
+                name="plot",
+                title="Forest Plot",
+                width=600,
+                height=450,
+                renderFun=".plot")
+            self$add(private$..text)
+            self$add(private$..plot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -97,10 +114,12 @@ MetaModelBase <- R6::R6Class(
 #' @param data .
 #' @param yi .
 #' @param vi .
+#' @param studylabels .
 #' @param method .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export
@@ -108,11 +127,13 @@ MetaModel <- function(
     data,
     yi,
     vi,
+    studylabels,
     method = "REML") {
 
     options <- MetaModelOptions$new(
         yi = yi,
         vi = vi,
+        studylabels = studylabels,
         method = method)
 
     results <- MetaModelResults$new(

@@ -80,8 +80,8 @@ PubBiasResults <- R6::R6Class(
                 options=options,
                 name="plot",
                 title="Funnel Plot",
-                width=400,
-                height=300,
+                width=600,
+                height=450,
                 renderFun=".plot")
             self$add(private$..fsn)
             self$add(private$..rank)

@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"yi","title":"Effect Size","type":"Variable"},{"name":"vi","title":"Variance","type":"Variable"},{"name":"method","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"PM","title":"Paule-Mandel"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"}];
+const options = [{"name":"data","type":"Data"},{"name":"yi","title":"Effect Size","type":"Variable"},{"name":"vi","title":"Variance","type":"Variable"},{"name":"studylabels","title":"Study Labels","type":"Variable"},{"name":"method","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"PM","title":"Paule-Mandel"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"}];
 
 const view = View.extend({
     jus: "2.0",
@@ -45,6 +45,18 @@ view.layout = ui.extend({
 						{
 							type: DefaultControls.VariablesListBox,
 							name: "vi",
+							maxItemCount: 1,
+							isTarget: true
+						}
+					]
+				},
+				{
+					type: DefaultControls.TargetLayoutBox,
+					label: "Study Labels",
+					controls: [
+						{
+							type: DefaultControls.VariablesListBox,
+							name: "studylabels",
 							maxItemCount: 1,
 							isTarget: true
 						}

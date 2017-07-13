@@ -19,8 +19,8 @@ items:
     - name: plot
       title: Funnel Plot
       type: Image
-      width:  400
-      height: 300
+      width:  600
+      height: 450
       renderFun: .plot
 
 ...
