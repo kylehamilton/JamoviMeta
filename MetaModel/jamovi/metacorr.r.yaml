@@ -7,5 +7,11 @@ items:
     - name:  text
       title: Meta-analysis of Correlation Coefficients
       type:  Preformatted
-
+      
+    - name: plot
+      title: Forest Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .plot
 ...

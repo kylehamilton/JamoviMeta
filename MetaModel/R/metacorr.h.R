@@ -70,9 +70,11 @@ MetaCorrOptions <- R6::R6Class(
 MetaCorrResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$..text),
+        text = function() private$..text,
+        plot = function() private$..plot),
     private = list(
-        ..text = NA),
+        ..text = NA,
+        ..plot = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-analysis of Correlation Coefficients")
@@ -80,7 +82,15 @@ MetaCorrResults <- R6::R6Class(
                 options=options,
                 name="text",
                 title="Meta-analysis of Correlation Coefficients")
-            self$add(private$..text)}))
+            private$..plot <- jmvcore::Image$new(
+                options=options,
+                name="plot",
+                title="Forest Plot",
+                width=600,
+                height=450,
+                renderFun=".plot")
+            self$add(private$..text)
+            self$add(private$..plot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -114,6 +124,7 @@ MetaCorrBase <- R6::R6Class(
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export
