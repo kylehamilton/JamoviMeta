@@ -12,7 +12,8 @@ MetaCorrOptions <- R6::R6Class(
             samplesize = NULL,
             methodmetacor = "REML",
             cormeasure = "ZCOR",
-            fsntype = "Rosenthal", ...) {
+            fsntype = "Rosenthal",
+            yaxis = "sei", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -56,25 +57,37 @@ MetaCorrOptions <- R6::R6Class(
                     "Orwin",
                     "Rosenberg"),
                 default="Rosenthal")
+            private$..yaxis <- jmvcore::OptionList$new(
+                "yaxis",
+                yaxis,
+                options=list(
+                    "sei",
+                    "vi",
+                    "ni",
+                    "ninv"),
+                default="sei")
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
             self$.addOption(private$..fsntype)
+            self$.addOption(private$..yaxis)
         }),
     active = list(
         rcor = function() private$..rcor$value,
         samplesize = function() private$..samplesize$value,
         methodmetacor = function() private$..methodmetacor$value,
         cormeasure = function() private$..cormeasure$value,
-        fsntype = function() private$..fsntype$value),
+        fsntype = function() private$..fsntype$value,
+        yaxis = function() private$..yaxis$value),
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
         ..methodmetacor = NA,
         ..cormeasure = NA,
-        ..fsntype = NA)
+        ..fsntype = NA,
+        ..yaxis = NA)
 )
 
 #' @import jmvcore
@@ -172,6 +185,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param methodmetacor .
 #' @param cormeasure .
 #' @param fsntype .
+#' @param yaxis .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
@@ -190,14 +204,16 @@ MetaCorr <- function(
     samplesize,
     methodmetacor = "REML",
     cormeasure = "ZCOR",
-    fsntype = "Rosenthal") {
+    fsntype = "Rosenthal",
+    yaxis = "sei") {
 
     options <- MetaCorrOptions$new(
         rcor = rcor,
         samplesize = samplesize,
         methodmetacor = methodmetacor,
         cormeasure = cormeasure,
-        fsntype = fsntype)
+        fsntype = fsntype,
+        yaxis = yaxis)
 
     results <- MetaCorrResults$new(
         options = options)

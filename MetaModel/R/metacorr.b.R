@@ -13,7 +13,7 @@ MetaCorrClass <- R6::R6Class(
           fsntype <- self$options$fsntype
           method2 <- self$options$methodmetacor
           cormeasure <- self$options$cormeasure
-          
+          #yaxis <- self$options$yaxis
           #data <- self$data
           
           data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]])
@@ -53,10 +53,11 @@ MetaCorrClass <- R6::R6Class(
         },
         .funplot=function(imageFUN, ...) {  # <-- the plot function
           plotDataFUN <- imageFUN$state
+          yaxis <- self$options$yaxis
           #yi <- self$options$yi
           #vi <- self$options$vi
           #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
-          plotFUN <- metafor::funnel(plotDataFUN)
+          plotFUN <- metafor::funnel(plotDataFUN, yaxis=yaxis)
           print(plotFUN)
           TRUE
         })

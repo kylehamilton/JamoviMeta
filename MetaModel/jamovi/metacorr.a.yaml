@@ -71,4 +71,18 @@ options:
         - name: "Rosenberg"
           title: Rosenberg
       default: Rosenthal
+      
+    - name: yaxis
+      title: Funnel Plot y-axis Options
+      type: List
+      options:
+        - name: "sei"
+          title: Standard Error
+        - name: "vi"
+          title: Sampling Variance
+        - name: "ni"
+          title: Sample Size
+        - name: "ninv"
+          title: Inverse of the Sample Size
+      default: sei
 ...
