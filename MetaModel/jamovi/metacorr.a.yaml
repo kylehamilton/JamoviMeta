@@ -16,7 +16,11 @@ options:
     - name: samplesize
       title: Sample Sizes
       type: Variable
-     
+      
+   # - name: moderatorcor
+   #   title: Moderator
+   #   type: Variable
+      
     - name: methodmetacor
       title: Model Estimator
       type: List

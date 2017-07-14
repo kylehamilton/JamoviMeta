@@ -8,6 +8,7 @@ MetaCorrClass <- R6::R6Class(
         .run = function() {
           ri <- self$options$rcor
           ni <- self$options$samplesize
+          #mods <- self$options$moderatorcor
           #slab <- self$options$studylabels
           method2 <- self$options$methodmetacor
           cormeasure <- self$options$cormeasure
