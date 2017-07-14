@@ -20,15 +20,17 @@ analyses:
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: Publication Bias
-  - title: Meta-analysis of Correlation Coefficients
+  - title: Correlation Coefficients
     name: MetaCorr
     ns: MetaModel
     menuGroup: MetaModel
-    menuTitle: Meta-analysis of Correlation Coefficients
-  - title: Meta-Analysis - Mean Differences
+    menuTitle: Correlation Coefficients
+    menuSubgroup: Meta Analysis
+  - title: Mean Differences
     name: metamdms
     ns: MetaModel
     menuGroup: MetaModel
-    menuTitle: Meta-Analysis - Mean Differences
+    menuTitle: Mean Differences
+    menuSubgroup: Meta Analysis
 
 ...

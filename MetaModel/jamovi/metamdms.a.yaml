@@ -1,7 +1,8 @@
 ---
 name:  metamdms
-title: Meta-Analysis - Mean Differences
+title: Mean Differences
 menuGroup: MetaModel
+menuSubgroup: Meta Analysis
 version: '1.0.0'
 jas: '1.1'
 

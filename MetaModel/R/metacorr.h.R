@@ -11,7 +11,8 @@ MetaCorrOptions <- R6::R6Class(
             rcor = NULL,
             samplesize = NULL,
             methodmetacor = "REML",
-            cormeasure = "ZCOR", ...) {
+            cormeasure = "ZCOR",
+            fsntype = "Rosenthal", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -47,22 +48,33 @@ MetaCorrOptions <- R6::R6Class(
                     "UCOR",
                     "ZCOR"),
                 default="ZCOR")
+            private$..fsntype <- jmvcore::OptionList$new(
+                "fsntype",
+                fsntype,
+                options=list(
+                    "Rosenthal",
+                    "Orwin",
+                    "Rosenberg"),
+                default="Rosenthal")
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
+            self$.addOption(private$..fsntype)
         }),
     active = list(
         rcor = function() private$..rcor$value,
         samplesize = function() private$..samplesize$value,
         methodmetacor = function() private$..methodmetacor$value,
-        cormeasure = function() private$..cormeasure$value),
+        cormeasure = function() private$..cormeasure$value,
+        fsntype = function() private$..fsntype$value),
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
         ..methodmetacor = NA,
-        ..cormeasure = NA)
+        ..cormeasure = NA,
+        ..fsntype = NA)
 )
 
 #' @import jmvcore
@@ -71,17 +83,27 @@ MetaCorrResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         text = function() private$..text,
-        plot = function() private$..plot),
+        plot = function() private$..plot,
+        placeholder = function() private$..placeholder,
+        fsn = function() private$..fsn,
+        rank = function() private$..rank,
+        reg = function() private$..reg,
+        funplot = function() private$..funplot),
     private = list(
         ..text = NA,
-        ..plot = NA),
+        ..plot = NA,
+        ..placeholder = NA,
+        ..fsn = NA,
+        ..rank = NA,
+        ..reg = NA,
+        ..funplot = NA),
     public=list(
         initialize=function(options) {
-            super$initialize(options=options, name="", title="Meta-analysis of Correlation Coefficients")
+            super$initialize(options=options, name="", title="Meta-Analysis")
             private$..text <- jmvcore::Preformatted$new(
                 options=options,
                 name="text",
-                title="Meta-analysis of Correlation Coefficients")
+                title="Correlation Coefficients")
             private$..plot <- jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -89,8 +111,36 @@ MetaCorrResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".plot")
+            private$..placeholder <- jmvcore::Preformatted$new(
+                options=options,
+                name="placeholder",
+                title="Publication Bias Assessment")
+            private$..fsn <- jmvcore::Preformatted$new(
+                options=options,
+                name="fsn",
+                title="Fail-Safe N Analysis")
+            private$..rank <- jmvcore::Preformatted$new(
+                options=options,
+                name="rank",
+                title="Rank Correlation Test for Funnel Plot Asymmetry")
+            private$..reg <- jmvcore::Preformatted$new(
+                options=options,
+                name="reg",
+                title="Regression Test for Funnel Plot Asymmetry")
+            private$..funplot <- jmvcore::Image$new(
+                options=options,
+                name="funplot",
+                title="Funnel Plot",
+                width=600,
+                height=450,
+                renderFun=".funplot")
             self$add(private$..text)
-            self$add(private$..plot)}))
+            self$add(private$..plot)
+            self$add(private$..placeholder)
+            self$add(private$..fsn)
+            self$add(private$..rank)
+            self$add(private$..reg)
+            self$add(private$..funplot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -113,7 +163,7 @@ MetaCorrBase <- R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Meta-analysis of Correlation Coefficients
+#' Correlation Coefficients
 #'
 #' 
 #' @param data .
@@ -121,10 +171,16 @@ MetaCorrBase <- R6::R6Class(
 #' @param samplesize .
 #' @param methodmetacor .
 #' @param cormeasure .
+#' @param fsntype .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$placeholder} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export
@@ -133,13 +189,15 @@ MetaCorr <- function(
     rcor,
     samplesize,
     methodmetacor = "REML",
-    cormeasure = "ZCOR") {
+    cormeasure = "ZCOR",
+    fsntype = "Rosenthal") {
 
     options <- MetaCorrOptions$new(
         rcor = rcor,
         samplesize = samplesize,
         methodmetacor = methodmetacor,
-        cormeasure = cormeasure)
+        cormeasure = cormeasure,
+        fsntype = fsntype)
 
     results <- MetaCorrResults$new(
         options = options)

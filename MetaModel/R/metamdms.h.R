@@ -112,22 +112,26 @@ metamdmsResults <- R6::R6Class(
     active = list(
         text = function() private$..text,
         plot = function() private$..plot,
+        placeholder = function() private$..placeholder,
         fsn = function() private$..fsn,
         rank = function() private$..rank,
-        reg = function() private$..reg),
+        reg = function() private$..reg,
+        funplot = function() private$..funplot),
     private = list(
         ..text = NA,
         ..plot = NA,
+        ..placeholder = NA,
         ..fsn = NA,
         ..rank = NA,
-        ..reg = NA),
+        ..reg = NA,
+        ..funplot = NA),
     public=list(
         initialize=function(options) {
-            super$initialize(options=options, name="", title="Meta-Analysis - Mean Differences")
+            super$initialize(options=options, name="", title="Meta-Analysis")
             private$..text <- jmvcore::Preformatted$new(
                 options=options,
                 name="text",
-                title="Meta-Analysis - Mean Differences")
+                title="Mean Differences")
             private$..plot <- jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -135,6 +139,10 @@ metamdmsResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".plot")
+            private$..placeholder <- jmvcore::Preformatted$new(
+                options=options,
+                name="placeholder",
+                title="Publication Bias Assessment")
             private$..fsn <- jmvcore::Preformatted$new(
                 options=options,
                 name="fsn",
@@ -147,11 +155,20 @@ metamdmsResults <- R6::R6Class(
                 options=options,
                 name="reg",
                 title="Regression Test for Funnel Plot Asymmetry")
+            private$..funplot <- jmvcore::Image$new(
+                options=options,
+                name="funplot",
+                title="Funnel Plot",
+                width=600,
+                height=450,
+                renderFun=".funplot")
             self$add(private$..text)
             self$add(private$..plot)
+            self$add(private$..placeholder)
             self$add(private$..fsn)
             self$add(private$..rank)
-            self$add(private$..reg)}))
+            self$add(private$..reg)
+            self$add(private$..funplot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -174,7 +191,7 @@ metamdmsBase <- R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Meta-Analysis - Mean Differences
+#' Mean Differences
 #'
 #' 
 #' @param data .
@@ -191,9 +208,11 @@ metamdmsBase <- R6::R6Class(
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$placeholder} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export

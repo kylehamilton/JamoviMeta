@@ -1,4 +1,4 @@
-title: Meta-analysis of Correlation Coefficients
+title: Correlation Coefficients
 name: MetaCorr
 jus: '2.0'
 stage: 0
@@ -32,3 +32,8 @@ children:
     children:
       - type: ComboBox
         name: cormeasure
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: ComboBox
+        name: fsntype

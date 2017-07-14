@@ -50,7 +50,9 @@ metamdmsClass <- R6::R6Class(
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
-        image$setState(res)        
+        imageFUN <- self$results$funplot
+        image$setState(res)
+        imageFUN$setState(res)
       },
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
@@ -59,6 +61,15 @@ metamdmsClass <- R6::R6Class(
         #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
         plot <- metafor::forest(plotData)
         print(plot)
+        TRUE
+      },
+      .funplot=function(imageFUN, ...) {  # <-- the plot function
+        plotDataFUN <- imageFUN$state
+        #yi <- self$options$yi
+        #vi <- self$options$vi
+        #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
+        plotFUN <- metafor::funnel(plotDataFUN)
+        print(plotFUN)
         TRUE
       })
 )
