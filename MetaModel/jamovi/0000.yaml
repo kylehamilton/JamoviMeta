@@ -10,16 +10,6 @@ date: '2017-07-12'
 type: R
 description: An interface for Jamovi and the R package Metafor
 analyses:
-  - title: Meta-Analysis
-    name: MetaModel
-    ns: MetaModel
-    menuGroup: MetaModel
-    menuTitle: Meta-Analysis
-  - title: Publication Bias
-    name: PubBias
-    ns: MetaModel
-    menuGroup: MetaModel
-    menuTitle: Publication Bias
   - title: Correlation Coefficients
     name: MetaCorr
     ns: MetaModel
