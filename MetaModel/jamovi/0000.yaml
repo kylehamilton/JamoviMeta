@@ -16,11 +16,11 @@ analyses:
     menuGroup: MetaModel
     menuTitle: Correlation Coefficients
     menuSubgroup: Meta Analysis
-  - title: Mean Differences
+  - title: 'Mean Differences (n, M, SD)'
     name: metamdms
     ns: MetaModel
     menuGroup: MetaModel
-    menuTitle: Mean Differences
+    menuTitle: 'Mean Differences (n, M, SD)'
     menuSubgroup: Meta Analysis
 
 ...

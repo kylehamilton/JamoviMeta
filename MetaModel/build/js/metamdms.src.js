@@ -16,7 +16,7 @@ const view = View.extend({
 
 view.layout = ui.extend({
 
-    label: "Mean Differences",
+    label: "Mean Differences (n, M, SD)",
     jus: "2.0",
     type: "root",
     stage: 0, //0 - release, 1 - development, 2 - proposed

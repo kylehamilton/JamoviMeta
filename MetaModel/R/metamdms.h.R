@@ -209,7 +209,7 @@ metamdmsBase <- R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Mean Differences
+#' Mean Differences (n, M, SD)
 #'
 #' 
 #' @param data .

@@ -1,6 +1,6 @@
 ---
 name:  metamdms
-title: Mean Differences
+title: Mean Differences (n, M, SD)
 menuGroup: MetaModel
 menuSubgroup: Meta Analysis
 version: '1.0.0'
