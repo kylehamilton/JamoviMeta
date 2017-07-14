@@ -12,14 +12,14 @@ children:
         label: Correlations
         children:
           - type: VariablesListBox
-            name: ri
+            name: rcor
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Sample Sizes
         children:
           - type: VariablesListBox
-            name: ni
+            name: samplesize
             maxItemCount: 1
             isTarget: true
   - type: LayoutBox

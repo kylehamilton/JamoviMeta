@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"ri","title":"Correlations","type":"Variable"},{"name":"ni","title":"Sample Sizes","type":"Variable"},{"name":"methodmetacor","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"PM","title":"Paule-Mandel"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"},{"name":"cormeasure","title":"Correlation Model Measures","type":"List","options":[{"name":"COR","title":"Raw Correlation Coefficient"},{"name":"UCOR","title":"Raw Correlation Coefficient (Bias Corrected)"},{"name":"ZCOR","title":"Fisher's r-to-z Transformed Correlation Coefficient"}],"default":"ZCOR"}];
+const options = [{"name":"data","type":"Data"},{"name":"rcor","title":"Correlations","type":"Variable"},{"name":"samplesize","title":"Sample Sizes","type":"Variable"},{"name":"methodmetacor","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"PM","title":"Paule-Mandel"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"},{"name":"cormeasure","title":"Correlation Model Measures","type":"List","options":[{"name":"COR","title":"Raw Correlation Coefficient"},{"name":"UCOR","title":"Raw Correlation Coefficient (Bias Corrected)"},{"name":"ZCOR","title":"Fisher's r-to-z Transformed Correlation Coefficient"}],"default":"ZCOR"}];
 
 const view = View.extend({
     jus: "2.0",
@@ -32,7 +32,7 @@ view.layout = ui.extend({
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,
-							name: "ri",
+							name: "rcor",
 							maxItemCount: 1,
 							isTarget: true
 						}
@@ -44,7 +44,7 @@ view.layout = ui.extend({
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,
-							name: "ni",
+							name: "samplesize",
 							maxItemCount: 1,
 							isTarget: true
 						}

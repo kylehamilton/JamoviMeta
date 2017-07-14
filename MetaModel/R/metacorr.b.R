@@ -6,16 +6,22 @@ MetaCorrClass <- R6::R6Class(
     inherit = MetaCorrBase,
     private = list(
         .run = function() {
-          ri <- self$options$ri
-          ni <- self$options$ni
+          ri <- self$options$rcor
+          ni <- self$options$samplesize
           #slab <- self$options$studylabels
           method2 <- self$options$methodmetacor
           cormeasure <- self$options$cormeasure
           
-          data <- self$data
+          #data <- self$data
+          
+          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]])
+          
           data[[ri]] <- jmvcore::toNumeric(data[[ri]])
           data[[ni]] <- jmvcore::toNumeric(data[[ni]])
           
+          #newdata <- jmvcore::select(data,c(ri,ni))
+          
+
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data)
           
           self$results$text$setContent(res)

@@ -9,11 +9,11 @@ options:
     - name: data
       type: Data
 
-    - name: ri
+    - name: rcor
       title: Correlations
       type: Variable
 
-    - name: ni
+    - name: samplesize
       title: Sample Sizes
       type: Variable
      

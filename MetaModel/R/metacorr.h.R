@@ -8,8 +8,8 @@ MetaCorrOptions <- R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            ri = NULL,
-            ni = NULL,
+            rcor = NULL,
+            samplesize = NULL,
             methodmetacor = "REML",
             cormeasure = "ZCOR", ...) {
 
@@ -19,12 +19,12 @@ MetaCorrOptions <- R6::R6Class(
                 requiresData=TRUE,
                 ...)
         
-            private$..ri <- jmvcore::OptionVariable$new(
-                "ri",
-                ri)
-            private$..ni <- jmvcore::OptionVariable$new(
-                "ni",
-                ni)
+            private$..rcor <- jmvcore::OptionVariable$new(
+                "rcor",
+                rcor)
+            private$..samplesize <- jmvcore::OptionVariable$new(
+                "samplesize",
+                samplesize)
             private$..methodmetacor <- jmvcore::OptionList$new(
                 "methodmetacor",
                 methodmetacor,
@@ -48,19 +48,19 @@ MetaCorrOptions <- R6::R6Class(
                     "ZCOR"),
                 default="ZCOR")
         
-            self$.addOption(private$..ri)
-            self$.addOption(private$..ni)
+            self$.addOption(private$..rcor)
+            self$.addOption(private$..samplesize)
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
         }),
     active = list(
-        ri = function() private$..ri$value,
-        ni = function() private$..ni$value,
+        rcor = function() private$..rcor$value,
+        samplesize = function() private$..samplesize$value,
         methodmetacor = function() private$..methodmetacor$value,
         cormeasure = function() private$..cormeasure$value),
     private = list(
-        ..ri = NA,
-        ..ni = NA,
+        ..rcor = NA,
+        ..samplesize = NA,
         ..methodmetacor = NA,
         ..cormeasure = NA)
 )
@@ -117,8 +117,8 @@ MetaCorrBase <- R6::R6Class(
 #'
 #' 
 #' @param data .
-#' @param ri .
-#' @param ni .
+#' @param rcor .
+#' @param samplesize .
 #' @param methodmetacor .
 #' @param cormeasure .
 #' @return A results object containing:
@@ -130,14 +130,14 @@ MetaCorrBase <- R6::R6Class(
 #' @export
 MetaCorr <- function(
     data,
-    ri,
-    ni,
+    rcor,
+    samplesize,
     methodmetacor = "REML",
     cormeasure = "ZCOR") {
 
     options <- MetaCorrOptions$new(
-        ri = ri,
-        ni = ni,
+        rcor = rcor,
+        samplesize = samplesize,
         methodmetacor = methodmetacor,
         cormeasure = cormeasure)
 
