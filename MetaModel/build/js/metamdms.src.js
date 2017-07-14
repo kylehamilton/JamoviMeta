@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"N1","title":"Group One Sample Size","type":"Variable"},{"name":"M1","title":"Group One Mean","type":"Variable"},{"name":"SD1","title":"Group One Stand Deviation","type":"Variable"},{"name":"N2","title":"Group Two Sample Size","type":"Variable"},{"name":"M2","title":"Group Two Mean","type":"Variable"},{"name":"SD2","title":"Group Two Stand Deviation","type":"Variable"},{"name":"methodmetamdms","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"},{"name":"mdmsmeasure","title":"Model Measures","type":"List","options":[{"name":"MD","title":"Raw Mean Difference"},{"name":"SMD","title":"Standardized Mean Difference"},{"name":"SMDH","title":"SMD with Heteroscedastic Population Variances"},{"name":"ROM","title":"Log Transformed Ratio of Means"}],"default":"SMD"},{"name":"fsntype","title":"Fail-Safe N Method","type":"List","options":[{"name":"Rosenthal","title":"Rosenthal"},{"name":"Orwin","title":"Orwin"},{"name":"Rosenberg","title":"Rosenberg"}],"default":"Rosenthal"}];
+const options = [{"name":"data","type":"Data"},{"name":"N1","title":"Group One Sample Size","type":"Variable"},{"name":"M1","title":"Group One Mean","type":"Variable"},{"name":"SD1","title":"Group One Stand Deviation","type":"Variable"},{"name":"N2","title":"Group Two Sample Size","type":"Variable"},{"name":"M2","title":"Group Two Mean","type":"Variable"},{"name":"SD2","title":"Group Two Stand Deviation","type":"Variable"},{"name":"methodmetamdms","title":"Model Estimator","type":"List","options":[{"name":"DL","title":"DerSimonian-Laird"},{"name":"HE","title":"Hedges"},{"name":"HS","title":"Hunter-Schmidt"},{"name":"SJ","title":"Sidik-Jonkman"},{"name":"ML","title":"Maximum-Likelihood"},{"name":"REML","title":"Restricted Maximum-Likelihood"},{"name":"EB","title":"Empirical Bayes"},{"name":"FE","title":"Fixed-Effect"}],"default":"REML"},{"name":"mdmsmeasure","title":"Model Measures","type":"List","options":[{"name":"MD","title":"Raw Mean Difference"},{"name":"SMD","title":"Standardized Mean Difference"},{"name":"SMDH","title":"SMD with Heteroscedastic Population Variances"},{"name":"ROM","title":"Log Transformed Ratio of Means"}],"default":"SMD"},{"name":"fsntype","title":"Fail-Safe N Method","type":"List","options":[{"name":"Rosenthal","title":"Rosenthal"},{"name":"Orwin","title":"Orwin"},{"name":"Rosenberg","title":"Rosenberg"}],"default":"Rosenthal"},{"name":"yaxis","title":"Funnel Plot y-axis Options","type":"List","options":[{"name":"sei","title":"Standard Error"},{"name":"vi","title":"Sampling Variance"},{"name":"ni","title":"Sample Size"},{"name":"ninv","title":"Inverse of the Sample Size"}],"default":"sei"}];
 
 const view = View.extend({
     jus: "2.0",
@@ -127,6 +127,16 @@ view.layout = ui.extend({
 				{
 					type: DefaultControls.ComboBox,
 					name: "fsntype"
+				}
+			]
+		},
+		{
+			type: DefaultControls.LayoutBox,
+			margin: "large",
+			controls: [
+				{
+					type: DefaultControls.ComboBox,
+					name: "yaxis"
 				}
 			]
 		}

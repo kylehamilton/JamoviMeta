@@ -16,7 +16,8 @@ metamdmsOptions <- R6::R6Class(
             SD2 = NULL,
             methodmetamdms = "REML",
             mdmsmeasure = "SMD",
-            fsntype = "Rosenthal", ...) {
+            fsntype = "Rosenthal",
+            yaxis = "sei", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -72,6 +73,15 @@ metamdmsOptions <- R6::R6Class(
                     "Orwin",
                     "Rosenberg"),
                 default="Rosenthal")
+            private$..yaxis <- jmvcore::OptionList$new(
+                "yaxis",
+                yaxis,
+                options=list(
+                    "sei",
+                    "vi",
+                    "ni",
+                    "ninv"),
+                default="sei")
         
             self$.addOption(private$..N1)
             self$.addOption(private$..M1)
@@ -82,6 +92,7 @@ metamdmsOptions <- R6::R6Class(
             self$.addOption(private$..methodmetamdms)
             self$.addOption(private$..mdmsmeasure)
             self$.addOption(private$..fsntype)
+            self$.addOption(private$..yaxis)
         }),
     active = list(
         N1 = function() private$..N1$value,
@@ -92,7 +103,8 @@ metamdmsOptions <- R6::R6Class(
         SD2 = function() private$..SD2$value,
         methodmetamdms = function() private$..methodmetamdms$value,
         mdmsmeasure = function() private$..mdmsmeasure$value,
-        fsntype = function() private$..fsntype$value),
+        fsntype = function() private$..fsntype$value,
+        yaxis = function() private$..yaxis$value),
     private = list(
         ..N1 = NA,
         ..M1 = NA,
@@ -102,7 +114,8 @@ metamdmsOptions <- R6::R6Class(
         ..SD2 = NA,
         ..methodmetamdms = NA,
         ..mdmsmeasure = NA,
-        ..fsntype = NA)
+        ..fsntype = NA,
+        ..yaxis = NA)
 )
 
 #' @import jmvcore
@@ -204,6 +217,7 @@ metamdmsBase <- R6::R6Class(
 #' @param methodmetamdms .
 #' @param mdmsmeasure .
 #' @param fsntype .
+#' @param yaxis .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
@@ -226,7 +240,8 @@ metamdms <- function(
     SD2,
     methodmetamdms = "REML",
     mdmsmeasure = "SMD",
-    fsntype = "Rosenthal") {
+    fsntype = "Rosenthal",
+    yaxis = "sei") {
 
     options <- metamdmsOptions$new(
         N1 = N1,
@@ -237,7 +252,8 @@ metamdms <- function(
         SD2 = SD2,
         methodmetamdms = methodmetamdms,
         mdmsmeasure = mdmsmeasure,
-        fsntype = fsntype)
+        fsntype = fsntype,
+        yaxis = yaxis)
 
     results <- metamdmsResults$new(
         options = options)

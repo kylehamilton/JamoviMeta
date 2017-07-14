@@ -65,10 +65,11 @@ metamdmsClass <- R6::R6Class(
       },
       .funplot=function(imageFUN, ...) {  # <-- the plot function
         plotDataFUN <- imageFUN$state
+        yaxis <- self$options$yaxis
         #yi <- self$options$yi
         #vi <- self$options$vi
         #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
-        plotFUN <- metafor::funnel(plotDataFUN)
+        plotFUN <- metafor::funnel(plotDataFUN, yaxis=yaxis)
         print(plotFUN)
         TRUE
       })
