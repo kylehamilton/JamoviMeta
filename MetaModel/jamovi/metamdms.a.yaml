@@ -95,11 +95,21 @@ options:
       options:
         - name: "sei"
           title: Standard Error
+        - name: "seinv"
+          title: Inverse of the Standard Error
         - name: "vi"
           title: Sampling Variance
+        - name: "vinv"
+          title: Inverse of the Sampling Variance
         - name: "ni"
           title: Sample Size
         - name: "ninv"
           title: Inverse of the Sample Size
+        - name: "sqrtni"
+          title: Square Root Sample Size
+        - name: "sqrtninv"
+          title: Inverse of the Square Root Sample Size
+        - name: "lni"
+          title: Log of the Sample Size
       default: sei
 ...

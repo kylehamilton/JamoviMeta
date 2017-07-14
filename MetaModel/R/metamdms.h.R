@@ -78,9 +78,14 @@ metamdmsOptions <- R6::R6Class(
                 yaxis,
                 options=list(
                     "sei",
+                    "seinv",
                     "vi",
+                    "vinv",
                     "ni",
-                    "ninv"),
+                    "ninv",
+                    "sqrtni",
+                    "sqrtninv",
+                    "lni"),
                 default="sei")
         
             self$.addOption(private$..N1)
