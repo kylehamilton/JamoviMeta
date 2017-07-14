@@ -25,5 +25,10 @@ analyses:
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: Meta-analysis of Correlation Coefficients
+  - title: Meta-Analysis - Mean Differences
+    name: metamdms
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Meta-Analysis - Mean Differences
 
 ...

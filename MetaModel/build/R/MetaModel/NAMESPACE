@@ -11,3 +11,7 @@ export(PubBiasOptions)
 export(MetaCorr)
 export(MetaCorrClass)
 export(MetaCorrOptions)
+
+export(metamdms)
+export(metamdmsClass)
+export(metamdmsOptions)

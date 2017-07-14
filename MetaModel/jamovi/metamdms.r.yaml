@@ -1,0 +1,17 @@
+---
+name:  metamdms
+title: Meta-Analysis - Mean Differences
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Meta-Analysis - Mean Differences
+      type:  Preformatted
+
+    - name: plot
+      title: Forest Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .plot
+...
