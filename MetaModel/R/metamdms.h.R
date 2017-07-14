@@ -15,7 +15,8 @@ metamdmsOptions <- R6::R6Class(
             M2 = NULL,
             SD2 = NULL,
             methodmetamdms = "REML",
-            mdmsmeasure = "SMD", ...) {
+            mdmsmeasure = "SMD",
+            fsntype = "Rosenthal", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -52,7 +53,6 @@ metamdmsOptions <- R6::R6Class(
                     "ML",
                     "REML",
                     "EB",
-                    "PM",
                     "FE"),
                 default="REML")
             private$..mdmsmeasure <- jmvcore::OptionList$new(
@@ -64,6 +64,14 @@ metamdmsOptions <- R6::R6Class(
                     "SMDH",
                     "ROM"),
                 default="SMD")
+            private$..fsntype <- jmvcore::OptionList$new(
+                "fsntype",
+                fsntype,
+                options=list(
+                    "Rosenthal",
+                    "Orwin",
+                    "Rosenberg"),
+                default="Rosenthal")
         
             self$.addOption(private$..N1)
             self$.addOption(private$..M1)
@@ -73,6 +81,7 @@ metamdmsOptions <- R6::R6Class(
             self$.addOption(private$..SD2)
             self$.addOption(private$..methodmetamdms)
             self$.addOption(private$..mdmsmeasure)
+            self$.addOption(private$..fsntype)
         }),
     active = list(
         N1 = function() private$..N1$value,
@@ -82,7 +91,8 @@ metamdmsOptions <- R6::R6Class(
         M2 = function() private$..M2$value,
         SD2 = function() private$..SD2$value,
         methodmetamdms = function() private$..methodmetamdms$value,
-        mdmsmeasure = function() private$..mdmsmeasure$value),
+        mdmsmeasure = function() private$..mdmsmeasure$value,
+        fsntype = function() private$..fsntype$value),
     private = list(
         ..N1 = NA,
         ..M1 = NA,
@@ -91,7 +101,8 @@ metamdmsOptions <- R6::R6Class(
         ..M2 = NA,
         ..SD2 = NA,
         ..methodmetamdms = NA,
-        ..mdmsmeasure = NA)
+        ..mdmsmeasure = NA,
+        ..fsntype = NA)
 )
 
 #' @import jmvcore
@@ -100,10 +111,16 @@ metamdmsResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         text = function() private$..text,
-        plot = function() private$..plot),
+        plot = function() private$..plot,
+        fsn = function() private$..fsn,
+        rank = function() private$..rank,
+        reg = function() private$..reg),
     private = list(
         ..text = NA,
-        ..plot = NA),
+        ..plot = NA,
+        ..fsn = NA,
+        ..rank = NA,
+        ..reg = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis - Mean Differences")
@@ -118,8 +135,23 @@ metamdmsResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".plot")
+            private$..fsn <- jmvcore::Preformatted$new(
+                options=options,
+                name="fsn",
+                title="Fail-Safe N Analysis")
+            private$..rank <- jmvcore::Preformatted$new(
+                options=options,
+                name="rank",
+                title="Rank Correlation Test for Funnel Plot Asymmetry")
+            private$..reg <- jmvcore::Preformatted$new(
+                options=options,
+                name="reg",
+                title="Regression Test for Funnel Plot Asymmetry")
             self$add(private$..text)
-            self$add(private$..plot)}))
+            self$add(private$..plot)
+            self$add(private$..fsn)
+            self$add(private$..rank)
+            self$add(private$..reg)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -154,10 +186,14 @@ metamdmsBase <- R6::R6Class(
 #' @param SD2 .
 #' @param methodmetamdms .
 #' @param mdmsmeasure .
+#' @param fsntype .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #' }
 #'
 #' @export
@@ -170,7 +206,8 @@ metamdms <- function(
     M2,
     SD2,
     methodmetamdms = "REML",
-    mdmsmeasure = "SMD") {
+    mdmsmeasure = "SMD",
+    fsntype = "Rosenthal") {
 
     options <- metamdmsOptions$new(
         N1 = N1,
@@ -180,7 +217,8 @@ metamdms <- function(
         M2 = M2,
         SD2 = SD2,
         methodmetamdms = methodmetamdms,
-        mdmsmeasure = mdmsmeasure)
+        mdmsmeasure = mdmsmeasure,
+        fsntype = fsntype)
 
     results <- metamdmsResults$new(
         options = options)

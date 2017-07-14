@@ -14,6 +14,7 @@ metamdmsClass <- R6::R6Class(
         sd2i <- self$options$SD2
         #mods <- self$options$moderatorcor
         #slab <- self$options$studylabels
+        fsntype <- self$options$fsntype
         method2 <- self$options$methodmetamdms
         mdmseasure <- self$options$mdmsmeasure
         
@@ -37,8 +38,14 @@ metamdmsClass <- R6::R6Class(
         
         res <- metafor::rma(n1i=n1i, n2i=n2i, m1i=m1i, m2i=m2i, sd1i=sd1i, sd2i=sd2i,
                             method=method2, measure=mdmseasure, data=data)
+        failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
+        ranktestPB <- metafor::ranktest(res)
+        regtestPB <- metafor::regtest(res)
         
         self$results$text$setContent(res)
+        self$results$fsn$setContent(failsafePB)
+        self$results$rank$setContent(ranktestPB)
+        self$results$reg$setContent(regtestPB)
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)

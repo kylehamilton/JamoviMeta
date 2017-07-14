@@ -54,8 +54,8 @@ options:
           title: Restricted Maximum-Likelihood
         - name: "EB"
           title: Empirical Bayes
-        - name: "PM"
-          title: Paule-Mandel
+        #- name: "PM"
+        #  title: Paule-Mandel
         #- name: "GENQ"
         #  title: Generalized Q-statistic
         - name: "FE"
@@ -75,4 +75,16 @@ options:
         - name: "ROM"
           title: Log Transformed Ratio of Means
       default: SMD
+      
+    - name: fsntype
+      title: Fail-Safe N Method
+      type: List
+      options:
+        - name: "Rosenthal"
+          title: Rosenthal
+        - name: "Orwin"
+          title: Orwin
+        - name: "Rosenberg"
+          title: Rosenberg
+      default: Rosenthal
 ...
