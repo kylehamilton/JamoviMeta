@@ -46,7 +46,7 @@ MetaCorrClass <- R6::R6Class(
           plotData <- image$state
           #yi <- self$options$yi
           #vi <- self$options$vi
-          #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
+          #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
           plot <- metafor::forest(plotData)
           print(plot)
           TRUE
