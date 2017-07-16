@@ -8,23 +8,24 @@ MetaCorrClass <- R6::R6Class(
         .run = function() {
           ri <- self$options$rcor
           ni <- self$options$samplesize
-          #mods <- self$options$moderatorcor
-          #slab <- self$options$studylabels
+          mods <- self$options$moderatorcor
           fsntype <- self$options$fsntype
           method2 <- self$options$methodmetacor
           cormeasure <- self$options$cormeasure
           #yaxis <- self$options$yaxis
           #data <- self$data
           
-          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]])
+          #mods = cbind(mod1, mod2, mod3)
+          
+          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]])
           
           data[[ri]] <- jmvcore::toNumeric(data[[ri]])
           data[[ni]] <- jmvcore::toNumeric(data[[ni]])
-          
+          data[[mods]] <- jmvcore::toNumeric(data[[mods]])
           #newdata <- jmvcore::select(data,c(ri,ni))
           
 
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data)
+          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data)
           
           failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
           ranktestPB <- metafor::ranktest(res)
@@ -44,6 +45,7 @@ MetaCorrClass <- R6::R6Class(
         },
         .plot=function(image, ...) {  # <-- the plot function
           plotData <- image$state
+          #StudyID <- self$options$studylabels
           #yi <- self$options$yi
           #vi <- self$options$vi
           #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
