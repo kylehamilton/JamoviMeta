@@ -35,14 +35,12 @@ MetaCorrClass <- R6::R6Class(
         }
         
         
-        
         if (self$options$includemods == TRUE) {
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
         } else {
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
 
-        
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
@@ -57,8 +55,10 @@ MetaCorrClass <- R6::R6Class(
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
         imageFUN <- self$results$funplot
+        
         image$setState(res)
         imageFUN$setState(res)
+  
       },
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
