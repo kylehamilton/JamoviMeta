@@ -22,5 +22,10 @@ analyses:
     menuGroup: MetaModel
     menuTitle: 'Mean Differences (n, M, SD)'
     menuSubgroup: Meta Analysis
+  - title: Dichotomous
+    name: MetaDichot
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Dichotomous
 
 ...

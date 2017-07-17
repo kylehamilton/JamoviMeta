@@ -10,32 +10,42 @@ options:
     - name: data
       type: Data
 
-    - name: N1
+    - name: n1i
       title: Group One Sample Size
       type: Variable
 
-    - name: M1
+    - name: m1i
       title: Group One Mean
       type: Variable
       
-    - name: SD1
+    - name: sd1i
       title: Group One Stand Deviation
       type: Variable
 
-    - name: N2
+    - name: n2i
       title: Group Two Sample Size
       type: Variable
 
-    - name: M2
+    - name: m2i
       title: Group Two Mean
       type: Variable
       
-    - name: SD2
+    - name: sd2i
       title: Group Two Stand Deviation
       type: Variable      
-   # - name: moderatorcor
-   #   title: Moderator
-   #   type: Variable
+   
+    - name: slab
+      title: Study Label
+      type: Variable
+
+    - name: moderator
+      title: Moderator
+      type: Variable
+      
+    - name: includemods
+      title: Include Moderator
+      type: Bool
+      default: FALSE      
       
     - name: methodmetamdms
       title: Model Estimator
@@ -77,6 +87,28 @@ options:
           title: Log Transformed Ratio of Means
       default: SMD
       
+    - name: level
+      type: Number
+      title: Confidence Interval Level
+      min: 50
+      max: 99.9
+      default: 95
+      
+    - name: addcred
+      title: Add Forest Plot Prediction Interval
+      type: Bool
+      default: FALSE
+      
+    - name: addfit
+      title: Add Forest Plot Summary Estimate
+      type: Bool
+      default: TRUE
+
+    - name: showweights
+      title: Show Model Fitting Weights in Forest Plot
+      type: Bool
+      default: FALSE
+
     - name: fsntype
       title: Fail-Safe N Method
       type: List
@@ -88,7 +120,7 @@ options:
         - name: "Rosenberg"
           title: Rosenberg
       default: Rosenthal
-
+      
     - name: yaxis
       title: Funnel Plot y-axis Options
       type: List
@@ -113,3 +145,4 @@ options:
           title: Log of the Sample Size
       default: sei
 ...
+

@@ -12,44 +12,63 @@ children:
         label: Group One Sample Size
         children:
           - type: VariablesListBox
-            name: N1
+            name: n1i
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Group One Mean
         children:
           - type: VariablesListBox
-            name: M1
+            name: m1i
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Group One Stand Deviation
         children:
           - type: VariablesListBox
-            name: SD1
+            name: sd1i
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Group Two Sample Size
         children:
           - type: VariablesListBox
-            name: N2
+            name: n2i
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Group Two Mean
         children:
           - type: VariablesListBox
-            name: M2
+            name: m2i
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
         label: Group Two Stand Deviation
         children:
           - type: VariablesListBox
-            name: SD2
+            name: sd2i
             maxItemCount: 1
             isTarget: true
+      - type: TargetLayoutBox
+        label: Study Label
+        children:
+          - type: VariablesListBox
+            name: slab
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
+        label: Moderator
+        children:
+          - type: VariablesListBox
+            name: moderator
+            maxItemCount: 1
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: includemods
   - type: LayoutBox
     margin: large
     children:
@@ -60,6 +79,22 @@ children:
     children:
       - type: ComboBox
         name: mdmsmeasure
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: level
+        format: number
+        inputPattern: '[0-9]+'
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: addcred
+      - type: CheckBox
+        name: addfit
+      - type: CheckBox
+        name: showweights
   - type: LayoutBox
     margin: large
     children:

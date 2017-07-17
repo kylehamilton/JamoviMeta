@@ -8,14 +8,21 @@ metamdmsOptions <- R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            N1 = NULL,
-            M1 = NULL,
-            SD1 = NULL,
-            N2 = NULL,
-            M2 = NULL,
-            SD2 = NULL,
+            n1i = NULL,
+            m1i = NULL,
+            sd1i = NULL,
+            n2i = NULL,
+            m2i = NULL,
+            sd2i = NULL,
+            slab = NULL,
+            moderator = NULL,
+            includemods = FALSE,
             methodmetamdms = "REML",
             mdmsmeasure = "SMD",
+            level = 95,
+            addcred = FALSE,
+            addfit = TRUE,
+            showweights = FALSE,
             fsntype = "Rosenthal",
             yaxis = "sei", ...) {
 
@@ -25,24 +32,34 @@ metamdmsOptions <- R6::R6Class(
                 requiresData=TRUE,
                 ...)
         
-            private$..N1 <- jmvcore::OptionVariable$new(
-                "N1",
-                N1)
-            private$..M1 <- jmvcore::OptionVariable$new(
-                "M1",
-                M1)
-            private$..SD1 <- jmvcore::OptionVariable$new(
-                "SD1",
-                SD1)
-            private$..N2 <- jmvcore::OptionVariable$new(
-                "N2",
-                N2)
-            private$..M2 <- jmvcore::OptionVariable$new(
-                "M2",
-                M2)
-            private$..SD2 <- jmvcore::OptionVariable$new(
-                "SD2",
-                SD2)
+            private$..n1i <- jmvcore::OptionVariable$new(
+                "n1i",
+                n1i)
+            private$..m1i <- jmvcore::OptionVariable$new(
+                "m1i",
+                m1i)
+            private$..sd1i <- jmvcore::OptionVariable$new(
+                "sd1i",
+                sd1i)
+            private$..n2i <- jmvcore::OptionVariable$new(
+                "n2i",
+                n2i)
+            private$..m2i <- jmvcore::OptionVariable$new(
+                "m2i",
+                m2i)
+            private$..sd2i <- jmvcore::OptionVariable$new(
+                "sd2i",
+                sd2i)
+            private$..slab <- jmvcore::OptionVariable$new(
+                "slab",
+                slab)
+            private$..moderator <- jmvcore::OptionVariable$new(
+                "moderator",
+                moderator)
+            private$..includemods <- jmvcore::OptionBool$new(
+                "includemods",
+                includemods,
+                default=FALSE)
             private$..methodmetamdms <- jmvcore::OptionList$new(
                 "methodmetamdms",
                 methodmetamdms,
@@ -65,6 +82,24 @@ metamdmsOptions <- R6::R6Class(
                     "SMDH",
                     "ROM"),
                 default="SMD")
+            private$..level <- jmvcore::OptionNumber$new(
+                "level",
+                level,
+                min=50,
+                max=99.9,
+                default=95)
+            private$..addcred <- jmvcore::OptionBool$new(
+                "addcred",
+                addcred,
+                default=FALSE)
+            private$..addfit <- jmvcore::OptionBool$new(
+                "addfit",
+                addfit,
+                default=TRUE)
+            private$..showweights <- jmvcore::OptionBool$new(
+                "showweights",
+                showweights,
+                default=FALSE)
             private$..fsntype <- jmvcore::OptionList$new(
                 "fsntype",
                 fsntype,
@@ -88,37 +123,58 @@ metamdmsOptions <- R6::R6Class(
                     "lni"),
                 default="sei")
         
-            self$.addOption(private$..N1)
-            self$.addOption(private$..M1)
-            self$.addOption(private$..SD1)
-            self$.addOption(private$..N2)
-            self$.addOption(private$..M2)
-            self$.addOption(private$..SD2)
+            self$.addOption(private$..n1i)
+            self$.addOption(private$..m1i)
+            self$.addOption(private$..sd1i)
+            self$.addOption(private$..n2i)
+            self$.addOption(private$..m2i)
+            self$.addOption(private$..sd2i)
+            self$.addOption(private$..slab)
+            self$.addOption(private$..moderator)
+            self$.addOption(private$..includemods)
             self$.addOption(private$..methodmetamdms)
             self$.addOption(private$..mdmsmeasure)
+            self$.addOption(private$..level)
+            self$.addOption(private$..addcred)
+            self$.addOption(private$..addfit)
+            self$.addOption(private$..showweights)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
         }),
     active = list(
-        N1 = function() private$..N1$value,
-        M1 = function() private$..M1$value,
-        SD1 = function() private$..SD1$value,
-        N2 = function() private$..N2$value,
-        M2 = function() private$..M2$value,
-        SD2 = function() private$..SD2$value,
+        n1i = function() private$..n1i$value,
+        m1i = function() private$..m1i$value,
+        sd1i = function() private$..sd1i$value,
+        n2i = function() private$..n2i$value,
+        m2i = function() private$..m2i$value,
+        sd2i = function() private$..sd2i$value,
+        slab = function() private$..slab$value,
+        moderator = function() private$..moderator$value,
+        includemods = function() private$..includemods$value,
         methodmetamdms = function() private$..methodmetamdms$value,
         mdmsmeasure = function() private$..mdmsmeasure$value,
+        level = function() private$..level$value,
+        addcred = function() private$..addcred$value,
+        addfit = function() private$..addfit$value,
+        showweights = function() private$..showweights$value,
         fsntype = function() private$..fsntype$value,
         yaxis = function() private$..yaxis$value),
     private = list(
-        ..N1 = NA,
-        ..M1 = NA,
-        ..SD1 = NA,
-        ..N2 = NA,
-        ..M2 = NA,
-        ..SD2 = NA,
+        ..n1i = NA,
+        ..m1i = NA,
+        ..sd1i = NA,
+        ..n2i = NA,
+        ..m2i = NA,
+        ..sd2i = NA,
+        ..slab = NA,
+        ..moderator = NA,
+        ..includemods = NA,
         ..methodmetamdms = NA,
         ..mdmsmeasure = NA,
+        ..level = NA,
+        ..addcred = NA,
+        ..addfit = NA,
+        ..showweights = NA,
         ..fsntype = NA,
         ..yaxis = NA)
 )
@@ -213,14 +269,21 @@ metamdmsBase <- R6::R6Class(
 #'
 #' 
 #' @param data .
-#' @param N1 .
-#' @param M1 .
-#' @param SD1 .
-#' @param N2 .
-#' @param M2 .
-#' @param SD2 .
+#' @param n1i .
+#' @param m1i .
+#' @param sd1i .
+#' @param n2i .
+#' @param m2i .
+#' @param sd2i .
+#' @param slab .
+#' @param moderator .
+#' @param includemods .
 #' @param methodmetamdms .
 #' @param mdmsmeasure .
+#' @param level .
+#' @param addcred .
+#' @param addfit .
+#' @param showweights .
 #' @param fsntype .
 #' @param yaxis .
 #' @return A results object containing:
@@ -237,26 +300,40 @@ metamdmsBase <- R6::R6Class(
 #' @export
 metamdms <- function(
     data,
-    N1,
-    M1,
-    SD1,
-    N2,
-    M2,
-    SD2,
+    n1i,
+    m1i,
+    sd1i,
+    n2i,
+    m2i,
+    sd2i,
+    slab,
+    moderator,
+    includemods = FALSE,
     methodmetamdms = "REML",
     mdmsmeasure = "SMD",
+    level = 95,
+    addcred = FALSE,
+    addfit = TRUE,
+    showweights = FALSE,
     fsntype = "Rosenthal",
     yaxis = "sei") {
 
     options <- metamdmsOptions$new(
-        N1 = N1,
-        M1 = M1,
-        SD1 = SD1,
-        N2 = N2,
-        M2 = M2,
-        SD2 = SD2,
+        n1i = n1i,
+        m1i = m1i,
+        sd1i = sd1i,
+        n2i = n2i,
+        m2i = m2i,
+        sd2i = sd2i,
+        slab = slab,
+        moderator = moderator,
+        includemods = includemods,
         methodmetamdms = methodmetamdms,
         mdmsmeasure = mdmsmeasure,
+        level = level,
+        addcred = addcred,
+        addfit = addfit,
+        showweights = showweights,
         fsntype = fsntype,
         yaxis = yaxis)
 

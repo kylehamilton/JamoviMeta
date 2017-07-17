@@ -7,3 +7,7 @@ export(MetaCorrOptions)
 export(metamdms)
 export(metamdmsClass)
 export(metamdmsOptions)
+
+export(MetaDichot)
+export(MetaDichotClass)
+export(MetaDichotOptions)
