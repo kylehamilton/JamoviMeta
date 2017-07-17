@@ -12,12 +12,14 @@ MetaCorrClass <- R6::R6Class(
           fsntype <- self$options$fsntype
           method2 <- self$options$methodmetacor
           cormeasure <- self$options$cormeasure
+          slab <- self$options$slab
           #yaxis <- self$options$yaxis
           #data <- self$data
           
           #mods = cbind(mod1, mod2, mod3)
           
-          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]])
+          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
+          
           
           data[[ri]] <- jmvcore::toNumeric(data[[ri]])
           data[[ni]] <- jmvcore::toNumeric(data[[ni]])
@@ -25,7 +27,7 @@ MetaCorrClass <- R6::R6Class(
           #newdata <- jmvcore::select(data,c(ri,ni))
           
 
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data)
+          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab)
           
           failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
           ranktestPB <- metafor::ranktest(res)

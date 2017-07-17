@@ -10,6 +10,7 @@ MetaCorrOptions <- R6::R6Class(
         initialize = function(
             rcor = NULL,
             samplesize = NULL,
+            slab = NULL,
             moderatorcor = NULL,
             methodmetacor = "REML",
             cormeasure = "ZCOR",
@@ -28,6 +29,9 @@ MetaCorrOptions <- R6::R6Class(
             private$..samplesize <- jmvcore::OptionVariable$new(
                 "samplesize",
                 samplesize)
+            private$..slab <- jmvcore::OptionVariable$new(
+                "slab",
+                slab)
             private$..moderatorcor <- jmvcore::OptionVariable$new(
                 "moderatorcor",
                 moderatorcor)
@@ -78,6 +82,7 @@ MetaCorrOptions <- R6::R6Class(
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
+            self$.addOption(private$..slab)
             self$.addOption(private$..moderatorcor)
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
@@ -87,6 +92,7 @@ MetaCorrOptions <- R6::R6Class(
     active = list(
         rcor = function() private$..rcor$value,
         samplesize = function() private$..samplesize$value,
+        slab = function() private$..slab$value,
         moderatorcor = function() private$..moderatorcor$value,
         methodmetacor = function() private$..methodmetacor$value,
         cormeasure = function() private$..cormeasure$value,
@@ -95,6 +101,7 @@ MetaCorrOptions <- R6::R6Class(
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
+        ..slab = NA,
         ..moderatorcor = NA,
         ..methodmetacor = NA,
         ..cormeasure = NA,
@@ -194,6 +201,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param data .
 #' @param rcor .
 #' @param samplesize .
+#' @param slab .
 #' @param moderatorcor .
 #' @param methodmetacor .
 #' @param cormeasure .
@@ -215,6 +223,7 @@ MetaCorr <- function(
     data,
     rcor,
     samplesize,
+    slab,
     moderatorcor,
     methodmetacor = "REML",
     cormeasure = "ZCOR",
@@ -224,6 +233,7 @@ MetaCorr <- function(
     options <- MetaCorrOptions$new(
         rcor = rcor,
         samplesize = samplesize,
+        slab = slab,
         moderatorcor = moderatorcor,
         methodmetacor = methodmetacor,
         cormeasure = cormeasure,

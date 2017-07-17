@@ -18,6 +18,10 @@ options:
       title: Sample Sizes
       type: Variable
 
+    - name: slab
+      title: Study Label
+      type: Variable
+
     - name: moderatorcor
       title: Moderators
       type: Variable

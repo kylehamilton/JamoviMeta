@@ -23,6 +23,13 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
+        label: Study Label
+        children:
+          - type: VariablesListBox
+            name: slab
+            maxItemCount: 1
+            isTarget: true
+      - type: TargetLayoutBox
         label: Moderators
         children:
           - type: VariablesListBox
