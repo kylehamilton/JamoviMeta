@@ -77,8 +77,3 @@ children:
     children:
       - type: ComboBox
         name: yaxis
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: ComboBox
-        name: estimator

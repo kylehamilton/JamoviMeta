@@ -18,7 +18,6 @@ MetaCorrClass <- R6::R6Class(
         addfit <- self$options$addfit
         showweights <- self$options$showweights
         level <- self$options$level
-        estimator <- self$options$estimator
         #yaxis <- self$options$yaxis
         #data <- self$data
         
@@ -42,29 +41,24 @@ MetaCorrClass <- R6::R6Class(
         } else {
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
-        
 
         
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
-        trimandfillPB <- metafor::trimfill(res, estimator=estimator)
         
         self$results$text$setContent(res)
         self$results$fsn$setContent(failsafePB)
         self$results$rank$setContent(ranktestPB)
         self$results$reg$setContent(regtestPB)
-        self$results$trimandfill$setContent(trimandfillPB)
-        
+
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
         imageFUN <- self$results$funplot
-        imageTRIM <- self$results$trimplot
         image$setState(res)
         imageFUN$setState(res)
-        imageTRIM$setState(res)
       },
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
@@ -81,20 +75,9 @@ MetaCorrClass <- R6::R6Class(
         print(plot)
         TRUE
       },
-      .trimplot=function(imageTRIM, ...) {  # <-- the plot function
-        plotDataTRIM <- imageTRIM$state
-        yaxis <- self$options$yaxis
-        estimator <- self$options$estimator
-        plotTRIM <- metafor::funnel(metafor::trimfill(plotDataTRIM, estimator=estimator), yaxis=yaxis)
-        print(plotTRIM)
-        TRUE
-      },
       .funplot=function(imageFUN, ...) {  # <-- the plot function
         plotDataFUN <- imageFUN$state
         yaxis <- self$options$yaxis
-        #yi <- self$options$yi
-        #vi <- self$options$vi
-        #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
         plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
         print(plotFUN)
         TRUE

@@ -37,15 +37,4 @@ items:
       width:  600
       height: 450
       renderFun: .funplot
-
-    - name:  trimandfill
-      title: Trim and Fill Analysis
-      type:  Preformatted
-      
-    - name: trimplot
-      title: Trim and Fill Funnel Plot
-      type: Image
-      width:  600
-      height: 450
-      renderFun: .trimplot
 ...
