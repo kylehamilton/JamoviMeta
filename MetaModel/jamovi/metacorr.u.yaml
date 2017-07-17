@@ -30,7 +30,7 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Moderators
+        label: Moderator
         children:
           - type: VariablesListBox
             name: moderatorcor
@@ -54,19 +54,19 @@ children:
   - type: LayoutBox
     margin: large
     children:
+      - type: TextBox
+        name: level
+        format: number
+        inputPattern: '[0-9]+'
+  - type: LayoutBox
+    margin: large
+    children:
       - type: CheckBox
         name: addcred
       - type: CheckBox
         name: addfit
       - type: CheckBox
         name: showweights
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: level
-        format: number
-        inputPattern: '[0-9]+'
   - type: LayoutBox
     margin: large
     children:

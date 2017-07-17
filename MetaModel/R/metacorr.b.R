@@ -17,6 +17,7 @@ MetaCorrClass <- R6::R6Class(
         addcred <- self$options$addcred
         addfit <- self$options$addfit
         showweights <- self$options$showweights
+        level <- self$options$level
         #yaxis <- self$options$yaxis
         #data <- self$data
         
@@ -36,9 +37,9 @@ MetaCorrClass <- R6::R6Class(
         
         
         if (self$options$includemods == TRUE) {
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab)
+          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
         } else {
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab)
+          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
         
         

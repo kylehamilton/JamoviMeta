@@ -15,10 +15,10 @@ MetaCorrOptions <- R6::R6Class(
             includemods = FALSE,
             methodmetacor = "REML",
             cormeasure = "ZCOR",
+            level = 95,
             addcred = FALSE,
             addfit = TRUE,
             showweights = FALSE,
-            level = 95,
             fsntype = "Rosenthal",
             yaxis = "sei", ...) {
 
@@ -70,6 +70,12 @@ MetaCorrOptions <- R6::R6Class(
                     "UCOR",
                     "ZCOR"),
                 default="ZCOR")
+            private$..level <- jmvcore::OptionNumber$new(
+                "level",
+                level,
+                min=50,
+                max=99.9,
+                default=95)
             private$..addcred <- jmvcore::OptionBool$new(
                 "addcred",
                 addcred,
@@ -82,12 +88,6 @@ MetaCorrOptions <- R6::R6Class(
                 "showweights",
                 showweights,
                 default=FALSE)
-            private$..level <- jmvcore::OptionNumber$new(
-                "level",
-                level,
-                min=50,
-                max=99.9,
-                default=95)
             private$..fsntype <- jmvcore::OptionList$new(
                 "fsntype",
                 fsntype,
@@ -118,10 +118,10 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..includemods)
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
+            self$.addOption(private$..level)
             self$.addOption(private$..addcred)
             self$.addOption(private$..addfit)
             self$.addOption(private$..showweights)
-            self$.addOption(private$..level)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
         }),
@@ -133,10 +133,10 @@ MetaCorrOptions <- R6::R6Class(
         includemods = function() private$..includemods$value,
         methodmetacor = function() private$..methodmetacor$value,
         cormeasure = function() private$..cormeasure$value,
+        level = function() private$..level$value,
         addcred = function() private$..addcred$value,
         addfit = function() private$..addfit$value,
         showweights = function() private$..showweights$value,
-        level = function() private$..level$value,
         fsntype = function() private$..fsntype$value,
         yaxis = function() private$..yaxis$value),
     private = list(
@@ -147,10 +147,10 @@ MetaCorrOptions <- R6::R6Class(
         ..includemods = NA,
         ..methodmetacor = NA,
         ..cormeasure = NA,
+        ..level = NA,
         ..addcred = NA,
         ..addfit = NA,
         ..showweights = NA,
-        ..level = NA,
         ..fsntype = NA,
         ..yaxis = NA)
 )
@@ -252,10 +252,10 @@ MetaCorrBase <- R6::R6Class(
 #' @param includemods .
 #' @param methodmetacor .
 #' @param cormeasure .
+#' @param level .
 #' @param addcred .
 #' @param addfit .
 #' @param showweights .
-#' @param level .
 #' @param fsntype .
 #' @param yaxis .
 #' @return A results object containing:
@@ -279,10 +279,10 @@ MetaCorr <- function(
     includemods = FALSE,
     methodmetacor = "REML",
     cormeasure = "ZCOR",
+    level = 95,
     addcred = FALSE,
     addfit = TRUE,
     showweights = FALSE,
-    level = 95,
     fsntype = "Rosenthal",
     yaxis = "sei") {
 
@@ -294,10 +294,10 @@ MetaCorr <- function(
         includemods = includemods,
         methodmetacor = methodmetacor,
         cormeasure = cormeasure,
+        level = level,
         addcred = addcred,
         addfit = addfit,
         showweights = showweights,
-        level = level,
         fsntype = fsntype,
         yaxis = yaxis)
 
