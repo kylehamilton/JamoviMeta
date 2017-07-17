@@ -12,10 +12,12 @@ options:
 
     - name: rcor
       title: Correlations
+      permitted: [continuous]
       type: Variable
 
     - name: samplesize
       title: Sample Sizes
+      permitted: [continuous]
       type: Variable
 
     - name: slab
@@ -25,7 +27,12 @@ options:
     - name: moderatorcor
       title: Moderators
       type: Variable
-
+      
+    - name: includemods
+      title: Include Moderator
+      type: Bool
+      default: FALSE
+      
     - name: methodmetacor
       title: Model Estimator
       type: List
@@ -64,6 +71,28 @@ options:
           title: Fisher's r-to-z Transformed Correlation Coefficient
       default: ZCOR
       
+    - name: addcred
+      title: Add Forest Plot Prediction Interval
+      type: Bool
+      default: FALSE
+      
+    - name: addfit
+      title: Add Forest Plot Summary Estimate
+      type: Bool
+      default: TRUE
+
+    - name: showweights
+      title: Show Model Fitting Weights in Forest Plot
+      type: Bool
+      default: FALSE
+     
+    - name: level
+      type: Number
+      title: Forest Plot Confidence Level
+      min: 50
+      max: 99.9
+      default: 95
+
     - name: fsntype
       title: Fail-Safe N Method
       type: List
@@ -99,4 +128,5 @@ options:
         - name: "lni"
           title: Log of the Sample Size
       default: sei
+
 ...

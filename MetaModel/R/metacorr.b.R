@@ -5,64 +5,83 @@ MetaCorrClass <- R6::R6Class(
     "MetaCorrClass",
     inherit = MetaCorrBase,
     private = list(
-        .run = function() {
-          ri <- self$options$rcor
-          ni <- self$options$samplesize
-          mods <- self$options$moderatorcor
-          fsntype <- self$options$fsntype
-          method2 <- self$options$methodmetacor
-          cormeasure <- self$options$cormeasure
-          slab <- self$options$slab
-          #yaxis <- self$options$yaxis
-          #data <- self$data
-          
-          #mods = cbind(mod1, mod2, mod3)
-          
+      .run = function() {
+        ri <- self$options$rcor
+        ni <- self$options$samplesize
+        mods <- self$options$moderatorcor
+        fsntype <- self$options$fsntype
+        method2 <- self$options$methodmetacor
+        cormeasure <- self$options$cormeasure
+        slab <- self$options$slab
+        includemods <- self$options$includemods
+        addcred <- self$options$addcred
+        addfit <- self$options$addfit
+        showweights <- self$options$showweights
+        #yaxis <- self$options$yaxis
+        #data <- self$data
+        
+        #mods = cbind(mod1, mod2, mod3)
+        
+        if (self$options$includemods == TRUE) {
           data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
-          
-          
           data[[ri]] <- jmvcore::toNumeric(data[[ri]])
           data[[ni]] <- jmvcore::toNumeric(data[[ni]])
           data[[mods]] <- jmvcore::toNumeric(data[[mods]])
-          #newdata <- jmvcore::select(data,c(ri,ni))
-          
-
+        } else {
+          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], slab = self$data[[self$options$slab]])
+          data[[ri]] <- jmvcore::toNumeric(data[[ri]])
+          data[[ni]] <- jmvcore::toNumeric(data[[ni]])
+        }
+        
+        
+        
+        if (self$options$includemods == TRUE) {
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab)
-          
-          failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
-          ranktestPB <- metafor::ranktest(res)
-          regtestPB <- metafor::regtest(res)
-          
-          self$results$text$setContent(res)
-          self$results$fsn$setContent(failsafePB)
-          self$results$rank$setContent(ranktestPB)
-          self$results$reg$setContent(regtestPB)
-          # `self$data` contains the data
-          # `self$options` contains the options
-          # `self$results` contains the results object (to populate)
-          image <- self$results$plot
-          imageFUN <- self$results$funplot
-          image$setState(res)
-          imageFUN$setState(res)
-        },
-        .plot=function(image, ...) {  # <-- the plot function
-          plotData <- image$state
-          #StudyID <- self$options$studylabels
-          #yi <- self$options$yi
-          #vi <- self$options$vi
-          #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
-          plot <- metafor::forest(plotData)
-          print(plot)
-          TRUE
-        },
-        .funplot=function(imageFUN, ...) {  # <-- the plot function
-          plotDataFUN <- imageFUN$state
-          yaxis <- self$options$yaxis
-          #yi <- self$options$yi
-          #vi <- self$options$vi
-          #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
-          plotFUN <- metafor::funnel(plotDataFUN, yaxis=yaxis)
-          print(plotFUN)
-          TRUE
-        })
+        } else {
+          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab)
+        }
+        
+        
+        
+        failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
+        ranktestPB <- metafor::ranktest(res)
+        regtestPB <- metafor::regtest(res)
+        
+        self$results$text$setContent(res)
+        self$results$fsn$setContent(failsafePB)
+        self$results$rank$setContent(ranktestPB)
+        self$results$reg$setContent(regtestPB)
+        # `self$data` contains the data
+        # `self$options` contains the options
+        # `self$results` contains the results object (to populate)
+        image <- self$results$plot
+        imageFUN <- self$results$funplot
+        image$setState(res)
+        imageFUN$setState(res)
+      },
+      .plot=function(image, ...) {  # <-- the plot function
+        plotData <- image$state
+        #StudyID <- self$options$studylabels
+        #yi <- self$options$yi
+        #vi <- self$options$vi
+        #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
+        addcred <- self$options$addcred
+        addfit <- self$options$addfit
+        level <- self$options$level
+        showweights <- self$options$showweights
+        #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
+        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights)
+        print(plot)
+        TRUE
+      },
+      .funplot=function(imageFUN, ...) {  # <-- the plot function
+        plotDataFUN <- imageFUN$state
+        yaxis <- self$options$yaxis
+        #yi <- self$options$yi
+        #vi <- self$options$vi
+        #res <- metafor::rma(yi=yi, vi=vi, data=self$data) 
+        plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
+        print(plotFUN)
+        TRUE
+      })
 )
