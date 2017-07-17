@@ -18,6 +18,7 @@ MetaCorrClass <- R6::R6Class(
         addfit <- self$options$addfit
         showweights <- self$options$showweights
         level <- self$options$level
+        estimator <- self$options$estimator
         #yaxis <- self$options$yaxis
         #data <- self$data
         
@@ -42,23 +43,28 @@ MetaCorrClass <- R6::R6Class(
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
         
-        
+
         
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
+        trimandfillPB <- metafor::trimfill(res, estimator=estimator)
         
         self$results$text$setContent(res)
         self$results$fsn$setContent(failsafePB)
         self$results$rank$setContent(ranktestPB)
         self$results$reg$setContent(regtestPB)
+        self$results$trimandfill$setContent(trimandfillPB)
+        
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
         imageFUN <- self$results$funplot
+        imageTRIM <- self$results$trimplot
         image$setState(res)
         imageFUN$setState(res)
+        imageTRIM$setState(res)
       },
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
@@ -73,6 +79,14 @@ MetaCorrClass <- R6::R6Class(
         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
         plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights)
         print(plot)
+        TRUE
+      },
+      .trimplot=function(imageTRIM, ...) {  # <-- the plot function
+        plotDataTRIM <- imageTRIM$state
+        yaxis <- self$options$yaxis
+        estimator <- self$options$estimator
+        plotTRIM <- metafor::funnel(metafor::trimfill(plotDataTRIM, estimator=estimator), yaxis=yaxis)
+        print(plotTRIM)
         TRUE
       },
       .funplot=function(imageFUN, ...) {  # <-- the plot function

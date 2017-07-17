@@ -20,7 +20,8 @@ MetaCorrOptions <- R6::R6Class(
             addfit = TRUE,
             showweights = FALSE,
             fsntype = "Rosenthal",
-            yaxis = "sei", ...) {
+            yaxis = "sei",
+            estimator = "L0", ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -110,6 +111,14 @@ MetaCorrOptions <- R6::R6Class(
                     "sqrtninv",
                     "lni"),
                 default="sei")
+            private$..estimator <- jmvcore::OptionList$new(
+                "estimator",
+                estimator,
+                options=list(
+                    "L0",
+                    "R0",
+                    "Q0"),
+                default="L0")
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
@@ -124,6 +133,7 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..showweights)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
+            self$.addOption(private$..estimator)
         }),
     active = list(
         rcor = function() private$..rcor$value,
@@ -138,7 +148,8 @@ MetaCorrOptions <- R6::R6Class(
         addfit = function() private$..addfit$value,
         showweights = function() private$..showweights$value,
         fsntype = function() private$..fsntype$value,
-        yaxis = function() private$..yaxis$value),
+        yaxis = function() private$..yaxis$value,
+        estimator = function() private$..estimator$value),
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
@@ -152,7 +163,8 @@ MetaCorrOptions <- R6::R6Class(
         ..addfit = NA,
         ..showweights = NA,
         ..fsntype = NA,
-        ..yaxis = NA)
+        ..yaxis = NA,
+        ..estimator = NA)
 )
 
 #' @import jmvcore
@@ -166,7 +178,9 @@ MetaCorrResults <- R6::R6Class(
         fsn = function() private$..fsn,
         rank = function() private$..rank,
         reg = function() private$..reg,
-        funplot = function() private$..funplot),
+        funplot = function() private$..funplot,
+        trimandfill = function() private$..trimandfill,
+        trimplot = function() private$..trimplot),
     private = list(
         ..text = NA,
         ..plot = NA,
@@ -174,7 +188,9 @@ MetaCorrResults <- R6::R6Class(
         ..fsn = NA,
         ..rank = NA,
         ..reg = NA,
-        ..funplot = NA),
+        ..funplot = NA,
+        ..trimandfill = NA,
+        ..trimplot = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis")
@@ -212,13 +228,26 @@ MetaCorrResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".funplot")
+            private$..trimandfill <- jmvcore::Preformatted$new(
+                options=options,
+                name="trimandfill",
+                title="Trim and Fill Analysis")
+            private$..trimplot <- jmvcore::Image$new(
+                options=options,
+                name="trimplot",
+                title="Trim and Fill Funnel Plot",
+                width=600,
+                height=450,
+                renderFun=".trimplot")
             self$add(private$..text)
             self$add(private$..plot)
             self$add(private$..placeholder)
             self$add(private$..fsn)
             self$add(private$..rank)
             self$add(private$..reg)
-            self$add(private$..funplot)}))
+            self$add(private$..funplot)
+            self$add(private$..trimandfill)
+            self$add(private$..trimplot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -258,6 +287,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param showweights .
 #' @param fsntype .
 #' @param yaxis .
+#' @param estimator .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
@@ -267,6 +297,8 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$trimandfill} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$trimplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' @export
@@ -284,7 +316,8 @@ MetaCorr <- function(
     addfit = TRUE,
     showweights = FALSE,
     fsntype = "Rosenthal",
-    yaxis = "sei") {
+    yaxis = "sei",
+    estimator = "L0") {
 
     options <- MetaCorrOptions$new(
         rcor = rcor,
@@ -299,7 +332,8 @@ MetaCorr <- function(
         addfit = addfit,
         showweights = showweights,
         fsntype = fsntype,
-        yaxis = yaxis)
+        yaxis = yaxis,
+        estimator = estimator)
 
     results <- MetaCorrResults$new(
         options = options)

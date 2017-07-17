@@ -129,4 +129,15 @@ options:
           title: Log of the Sample Size
       default: sei
 
+    - name: estimator
+      title: Trim and Fill Estimator
+      type: List
+      options:
+        - name: "L0"
+          title: L0
+        - name: "R0"
+          title: R0
+        - name: "Q0"
+          title: Q0
+      default: L0
 ...
