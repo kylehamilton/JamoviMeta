@@ -14,7 +14,7 @@ To install this module down load the file MetaModel.jmo and select it using the 
 - [x] Basic publication bias
 - [ ] Vevea and Hedges weight function model with the weightr package
 - [ ] Add labels for plots
-- [ ] Add additional plots and tests from metaphor
+- [ ] Add additional plots and tests from metafor
 - [ ] Figure out Jamovi icon
 - [ ] Better name
 - [ ] Clean up menus
