@@ -19,7 +19,7 @@ options:
       type: Variable
       
     - name: sd1i
-      title: Group One Stand Deviation
+      title: Group One Standard Deviation
       type: Variable
 
     - name: n2i
@@ -31,7 +31,7 @@ options:
       type: Variable
       
     - name: sd2i
-      title: Group Two Stand Deviation
+      title: Group Two Standard Deviation
       type: Variable      
    
     - name: slab

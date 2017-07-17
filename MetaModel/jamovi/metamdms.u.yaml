@@ -23,7 +23,7 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Group One Stand Deviation
+        label: Group One Standard Deviation
         children:
           - type: VariablesListBox
             name: sd1i
@@ -44,7 +44,7 @@ children:
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Group Two Stand Deviation
+        label: Group Two Standard Deviation
         children:
           - type: VariablesListBox
             name: sd2i
