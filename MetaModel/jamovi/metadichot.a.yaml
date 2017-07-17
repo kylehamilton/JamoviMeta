@@ -1,7 +1,8 @@
 ---
 name:  MetaDichot
-title: Dichotomous
+title: Dichotomous Models
 menuGroup: MetaModel
+menuSubgroup: Meta Analysis
 version: '1.0.0'
 jas: '1.1'
 

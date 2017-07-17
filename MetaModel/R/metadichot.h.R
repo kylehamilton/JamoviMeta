@@ -252,7 +252,7 @@ MetaDichotBase <- R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Dichotomous
+#' Dichotomous Models
 #'
 #' 
 #' @param data .
