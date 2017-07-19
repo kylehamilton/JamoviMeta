@@ -2,7 +2,7 @@ title: Correlation Coefficients
 name: MetaCorr
 jus: '2.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -58,22 +58,37 @@ children:
         name: level
         format: number
         inputPattern: '[0-9]+'
-  - type: LayoutBox
-    margin: large
+  - type: CollapseBox
+    label: Forest Plot Options
+    collapsed: true
+    stretchFactor: 1
     children:
-      - type: CheckBox
-        name: addcred
-      - type: CheckBox
-        name: addfit
-      - type: CheckBox
-        name: showweights
-  - type: LayoutBox
-    margin: large
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: CheckBox
+            name: addcred
+          - type: CheckBox
+            name: addfit
+          - type: CheckBox
+            name: showweights
+  - type: CollapseBox
+    label: Publication Bias
+    collapsed: true
+    stretchFactor: 1
     children:
-      - type: ComboBox
-        name: fsntype
-  - type: LayoutBox
-    margin: large
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: fsntype
+  - type: CollapseBox
+    label: Funnel Plot Options
+    collapsed: true
+    stretchFactor: 1
     children:
-      - type: ComboBox
-        name: yaxis
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: yaxis

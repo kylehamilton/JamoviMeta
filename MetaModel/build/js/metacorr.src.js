@@ -119,40 +119,64 @@ view.layout = ui.extend({
 			]
 		},
 		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
+			type: DefaultControls.CollapseBox,
+			label: "Forest Plot Options",
+			collapsed: true,
+			stretchFactor: 1,
 			controls: [
 				{
-					type: DefaultControls.CheckBox,
-					name: "addcred"
-				},
-				{
-					type: DefaultControls.CheckBox,
-					name: "addfit"
-				},
-				{
-					type: DefaultControls.CheckBox,
-					name: "showweights"
+					type: DefaultControls.LayoutBox,
+					margin: "large",
+					controls: [
+						{
+							type: DefaultControls.CheckBox,
+							name: "addcred"
+						},
+						{
+							type: DefaultControls.CheckBox,
+							name: "addfit"
+						},
+						{
+							type: DefaultControls.CheckBox,
+							name: "showweights"
+						}
+					]
 				}
 			]
 		},
 		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
+			type: DefaultControls.CollapseBox,
+			label: "Publication Bias",
+			collapsed: true,
+			stretchFactor: 1,
 			controls: [
 				{
-					type: DefaultControls.ComboBox,
-					name: "fsntype"
+					type: DefaultControls.LayoutBox,
+					margin: "large",
+					controls: [
+						{
+							type: DefaultControls.ComboBox,
+							name: "fsntype"
+						}
+					]
 				}
 			]
 		},
 		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
+			type: DefaultControls.CollapseBox,
+			label: "Funnel Plot Options",
+			collapsed: true,
+			stretchFactor: 1,
 			controls: [
 				{
-					type: DefaultControls.ComboBox,
-					name: "yaxis"
+					type: DefaultControls.LayoutBox,
+					margin: "large",
+					controls: [
+						{
+							type: DefaultControls.ComboBox,
+							name: "yaxis"
+						}
+					]
 				}
 			]
 		}
