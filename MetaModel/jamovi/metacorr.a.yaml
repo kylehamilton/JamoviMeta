@@ -75,7 +75,7 @@ options:
 
     - name: level
       type: Number
-      title: Confidence interval level %
+      title: Confidence interval level
       min: 50
       max: 99.9
       default: 95
