@@ -4,9 +4,6 @@ title: Meta-Analysis
 jrs:   '1.1'
 
 items:
-    - name:  text
-      title: Correlation Coefficients
-      type:  Preformatted
 
     - name:  textRICH
       title: Random-Effects Model - Correlation Coefficients

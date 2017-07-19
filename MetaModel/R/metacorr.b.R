@@ -45,7 +45,7 @@ MetaCorrClass <- R6::R6Class(
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
         
-        self$results$text$setContent(res)
+        #self$results$text$setContent(res)
         self$results$fsn$setContent(failsafePB)
         self$results$rank$setContent(ranktestPB)
         self$results$reg$setContent(regtestPB)
@@ -116,8 +116,9 @@ MetaCorrClass <- R6::R6Class(
         level <- self$options$level
         showweights <- self$options$showweights
         xlab <- self$options$xAxisTitle
+        order <- self$options$forestOrder
         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
-        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab)
+        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab, order=order)
         print(plot)
         TRUE
       },

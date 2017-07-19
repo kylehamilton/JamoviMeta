@@ -79,6 +79,10 @@ children:
             label: X-Axis Title
             name: xAxisTitle
             format: string
+            stretchFactor: 2
+            useSingleCell: true
+          - type: ComboBox
+            name: forestOrder
             useSingleCell: true
   - type: CollapseBox
     label: Publication Bias

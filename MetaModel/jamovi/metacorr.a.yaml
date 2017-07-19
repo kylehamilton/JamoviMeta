@@ -98,6 +98,22 @@ options:
     - name: xAxisTitle
       title: x-axis Title
       type: String
+      
+    - name: forestOrder
+      title: Study Order
+      type: List
+      options:
+        - name: "obs"
+          title: Observed Effect Sizes
+        - name: "fit"
+          title: Fitted Values
+        - name: "prec"
+          title: Sampling Variances
+        - name: "resid"
+          title: Residuals
+        - name: "abs.resid"
+          title: Absolute Residuals
+      default: fit
 
     - name: fsntype
       title: Fail-Safe N Method
