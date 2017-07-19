@@ -75,6 +75,11 @@ children:
             name: addfit
           - type: CheckBox
             name: showweights
+          - type: TextBox
+            label: X-Axis Title
+            name: xAxisTitle
+            format: string
+            useSingleCell: true
   - type: CollapseBox
     label: Publication Bias
     collapsed: true
@@ -90,8 +95,8 @@ children:
     collapsed: true
     stretchFactor: 1
     children:
-    - type: LayoutBox
-      margin: large
-      children:
-        - type: ComboBox
-          name: yaxis
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: ComboBox
+            name: yaxis

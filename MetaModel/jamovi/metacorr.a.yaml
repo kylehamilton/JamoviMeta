@@ -95,6 +95,10 @@ options:
       type: Bool
       default: FALSE
 
+    - name: xAxisTitle
+      title: x-axis Title
+      type: String
+
     - name: fsntype
       title: Fail-Safe N Method
       type: List

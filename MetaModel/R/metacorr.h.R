@@ -19,6 +19,7 @@ MetaCorrOptions <- R6::R6Class(
             addcred = FALSE,
             addfit = TRUE,
             showweights = FALSE,
+            xAxisTitle = NULL,
             fsntype = "Rosenthal",
             yaxis = "sei", ...) {
 
@@ -92,6 +93,9 @@ MetaCorrOptions <- R6::R6Class(
                 "showweights",
                 showweights,
                 default=FALSE)
+            private$..xAxisTitle <- jmvcore::OptionString$new(
+                "xAxisTitle",
+                xAxisTitle)
             private$..fsntype <- jmvcore::OptionList$new(
                 "fsntype",
                 fsntype,
@@ -126,6 +130,7 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..addcred)
             self$.addOption(private$..addfit)
             self$.addOption(private$..showweights)
+            self$.addOption(private$..xAxisTitle)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
         }),
@@ -141,6 +146,7 @@ MetaCorrOptions <- R6::R6Class(
         addcred = function() private$..addcred$value,
         addfit = function() private$..addfit$value,
         showweights = function() private$..showweights$value,
+        xAxisTitle = function() private$..xAxisTitle$value,
         fsntype = function() private$..fsntype$value,
         yaxis = function() private$..yaxis$value),
     private = list(
@@ -155,6 +161,7 @@ MetaCorrOptions <- R6::R6Class(
         ..addcred = NA,
         ..addfit = NA,
         ..showweights = NA,
+        ..xAxisTitle = NA,
         ..fsntype = NA,
         ..yaxis = NA)
 )
@@ -298,6 +305,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param addcred .
 #' @param addfit .
 #' @param showweights .
+#' @param xAxisTitle .
 #' @param fsntype .
 #' @param yaxis .
 #' @return A results object containing:
@@ -334,6 +342,7 @@ MetaCorr <- function(
     addcred = FALSE,
     addfit = TRUE,
     showweights = FALSE,
+    xAxisTitle,
     fsntype = "Rosenthal",
     yaxis = "sei") {
 
@@ -349,6 +358,7 @@ MetaCorr <- function(
         addcred = addcred,
         addfit = addfit,
         showweights = showweights,
+        xAxisTitle = xAxisTitle,
         fsntype = fsntype,
         yaxis = yaxis)
 

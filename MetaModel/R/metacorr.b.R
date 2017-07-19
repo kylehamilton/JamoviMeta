@@ -109,8 +109,9 @@ MetaCorrClass <- R6::R6Class(
         addfit <- self$options$addfit
         level <- self$options$level
         showweights <- self$options$showweights
+        xlab <- self$options$xAxisTitle
         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
-        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights)
+        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab)
         print(plot)
         TRUE
       },
