@@ -62,12 +62,12 @@ children:
             useSingleCell: true
             suffix: '%'
   - type: CollapseBox
-    label: Forest Plot Options
+    label: Plots
     collapsed: true
     stretchFactor: 1
     children:
-      - type: LayoutBox
-        margin: large
+      - type: Label
+        label: Forest Plot
         children:
           - type: CheckBox
             name: addcred
@@ -84,6 +84,12 @@ children:
           - type: ComboBox
             name: forestOrder
             useSingleCell: true
+      - type: Label
+        label: Funnel Plot
+        children:
+            - type: ComboBox
+              name: yaxis
+              
   - type: CollapseBox
     label: Publication Bias
     collapsed: true
@@ -94,13 +100,3 @@ children:
         children:
           - type: ComboBox
             name: fsntype
-  - type: CollapseBox
-    label: Funnel Plot Options
-    collapsed: true
-    stretchFactor: 1
-    children:
-      - type: LayoutBox
-        margin: large
-        children:
-          - type: ComboBox
-            name: yaxis

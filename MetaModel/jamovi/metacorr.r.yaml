@@ -70,22 +70,22 @@ items:
       width:  600
       height: 450
       renderFun: .plot
-
-    - name:  placeholder
+      
+    - name: pubBias
       title: Publication Bias Assessment
-      type:  Preformatted
-      
-    - name:  fsn
-      title: Fail-Safe N Analysis
-      type:  Preformatted
-      
-    - name:  rank
-      title: Rank Correlation Test for Funnel Plot Asymmetry
-      type:  Preformatted
-      
-    - name:  reg
-      title: Regression Test for Funnel Plot Asymmetry
-      type:  Preformatted
+      type: Group
+      items:
+        - name:  fsn
+          title: Fail-Safe N Analysis
+          type:  Preformatted
+        
+        - name:  rank
+          title: Rank Correlation Test for Funnel Plot Asymmetry
+          type:  Preformatted
+        
+        - name:  reg
+          title: Regression Test for Funnel Plot Asymmetry
+          type:  Preformatted
 
     - name: funplot
       title: Funnel Plot
