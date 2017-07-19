@@ -39,7 +39,14 @@ items:
           type: number
           format: zto
         - name: tauSqComb
-          title: 'Tau Squared'
+          title: 'Tau²'
+          type: number
+          format: zto
+        - name: ISqu
+          title: 'I²'
+          type: text
+        - name: HSqu
+          title: 'H²'
           type: number
           format: zto
           

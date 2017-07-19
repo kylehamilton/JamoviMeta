@@ -72,11 +72,16 @@ MetaCorrClass <- R6::R6Class(
         
         tauOnly <- round(sqrt(res$tau2), 4)
         
+        ISquStat <- paste(round(res$I2, 2),"%",sep="")
+        HSquStat <- round(res$H2, 4)
+        
         tableTauSqaured <- self$results$tableTauSqaured
         tableTauSqaured$setRow(rowNo=1, values=list(
           tauSqComb=tauSqCombind,
-          tauSQRT=tauOnly
-          ))
+          tauSQRT=tauOnly,
+          ISqu=ISquStat,
+          HSqu=HSquStat
+          )) 
         
         #QTestStat <- round(res$QE, 4)
         #QTestStatPval <- round(res$QEp, 4)
@@ -89,6 +94,7 @@ MetaCorrClass <- R6::R6Class(
           Qall=res$QE,
           QallPval=res$QEp
         ))
+        
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)

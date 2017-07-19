@@ -218,7 +218,9 @@ MetaCorrResults <- R6::R6Class(
                 rows=1,
                 columns=list(
                     list(`name`="tauSQRT", `title`="Tau", `type`="number", `format`="zto"),
-                    list(`name`="tauSqComb", `title`="Tau Squared", `type`="number", `format`="zto")))
+                    list(`name`="tauSqComb", `title`="Tau\u00B2", `type`="number", `format`="zto"),
+                    list(`name`="ISqu", `title`="I\u00B2", `type`="text"),
+                    list(`name`="HSqu", `title`="H\u00B2", `type`="number", `format`="zto")))
             private$..tableQTest <- jmvcore::Table$new(
                 options=options,
                 name="tableQTest",
