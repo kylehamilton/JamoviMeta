@@ -41,23 +41,28 @@ children:
     children:
       - type: CheckBox
         name: includemods
-  - type: LayoutBox
-    margin: large
+  - type: CollapseBox
+    label: Model Options
+    collapsed: true
+    stretchFactor: 1
     children:
-      - type: ComboBox
-        name: methodmetacor
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: ComboBox
-        name: cormeasure
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: level
-        format: number
-        inputPattern: '[0-9]+'
+      - type: LayoutBox
+        margin: none
+        children:
+          - type: ComboBox
+            name: methodmetacor
+      - type: LayoutBox
+        margin: none
+        children:
+          - type: ComboBox
+            name: cormeasure
+      - type: LayoutBox
+        margin: none
+        children:
+          - type: TextBox
+            name: level
+            format: number
+            inputPattern: '[0-9]+'
   - type: CollapseBox
     label: Forest Plot Options
     collapsed: true
@@ -87,8 +92,8 @@ children:
     collapsed: true
     stretchFactor: 1
     children:
-      - type: LayoutBox
-        margin: large
-        children:
-          - type: ComboBox
-            name: yaxis
+    - type: LayoutBox
+      margin: large
+      children:
+        - type: ComboBox
+          name: yaxis

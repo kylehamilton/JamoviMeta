@@ -87,34 +87,42 @@ view.layout = ui.extend({
 			]
 		},
 		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
+			type: DefaultControls.CollapseBox,
+			label: "Model Options",
+			collapsed: true,
+			stretchFactor: 1,
 			controls: [
 				{
-					type: DefaultControls.ComboBox,
-					name: "methodmetacor"
-				}
-			]
-		},
-		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
-			controls: [
+					type: DefaultControls.LayoutBox,
+					margin: "none",
+					controls: [
+						{
+							type: DefaultControls.ComboBox,
+							name: "methodmetacor"
+						}
+					]
+				},
 				{
-					type: DefaultControls.ComboBox,
-					name: "cormeasure"
-				}
-			]
-		},
-		{
-			type: DefaultControls.LayoutBox,
-			margin: "large",
-			controls: [
+					type: DefaultControls.LayoutBox,
+					margin: "none",
+					controls: [
+						{
+							type: DefaultControls.ComboBox,
+							name: "cormeasure"
+						}
+					]
+				},
 				{
-					type: DefaultControls.TextBox,
-					name: "level",
-					format: FormatDef.number,
-					inputPattern: "[0-9]+"
+					type: DefaultControls.LayoutBox,
+					margin: "none",
+					controls: [
+						{
+							type: DefaultControls.TextBox,
+							name: "level",
+							format: FormatDef.number,
+							inputPattern: "[0-9]+"
+						}
+					]
 				}
 			]
 		},
