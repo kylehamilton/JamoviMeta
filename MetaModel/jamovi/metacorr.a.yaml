@@ -81,17 +81,17 @@ options:
       default: 95
       
     - name: addcred
-      title: Forest plot prediction interval
+      title: Prediction interval
       type: Bool
       default: FALSE
       
     - name: addfit
-      title: Forest plot summary estimate
+      title: Summary estimate
       type: Bool
       default: TRUE
 
     - name: showweights
-      title: Forest plot model fitting weights 
+      title: Model fitting weights 
       type: Bool
       default: FALSE
 

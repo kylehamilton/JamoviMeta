@@ -169,10 +169,7 @@ MetaCorrResults <- R6::R6Class(
         tableTauSqaured = function() private$..tableTauSqaured,
         tableQTest = function() private$..tableQTest,
         plot = function() private$..plot,
-        placeholder = function() private$..placeholder,
-        fsn = function() private$..fsn,
-        rank = function() private$..rank,
-        reg = function() private$..reg,
+        pubBias = function() private$..pubBias,
         funplot = function() private$..funplot),
     private = list(
         ..text = NA,
@@ -180,10 +177,7 @@ MetaCorrResults <- R6::R6Class(
         ..tableTauSqaured = NA,
         ..tableQTest = NA,
         ..plot = NA,
-        ..placeholder = NA,
-        ..fsn = NA,
-        ..rank = NA,
-        ..reg = NA,
+        ..pubBias = NA,
         ..funplot = NA),
     public=list(
         initialize=function(options) {
@@ -228,22 +222,34 @@ MetaCorrResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".plot")
-            private$..placeholder <- jmvcore::Preformatted$new(
-                options=options,
-                name="placeholder",
-                title="Publication Bias Assessment")
-            private$..fsn <- jmvcore::Preformatted$new(
-                options=options,
-                name="fsn",
-                title="Fail-Safe N Analysis")
-            private$..rank <- jmvcore::Preformatted$new(
-                options=options,
-                name="rank",
-                title="Rank Correlation Test for Funnel Plot Asymmetry")
-            private$..reg <- jmvcore::Preformatted$new(
-                options=options,
-                name="reg",
-                title="Regression Test for Funnel Plot Asymmetry")
+            private$..pubBias <- R6::R6Class(
+                inherit = jmvcore::Group,
+                active = list(
+                    fsn = function() private$..fsn,
+                    rank = function() private$..rank,
+                    reg = function() private$..reg),
+                private = list(
+                    ..fsn = NA,
+                    ..rank = NA,
+                    ..reg = NA),
+                public=list(
+                    initialize=function(options) {
+                        super$initialize(options=options, name="pubBias", title="Publication Bias Assessment")
+                        private$..fsn <- jmvcore::Preformatted$new(
+                            options=options,
+                            name="fsn",
+                            title="Fail-Safe N Analysis")
+                        private$..rank <- jmvcore::Preformatted$new(
+                            options=options,
+                            name="rank",
+                            title="Rank Correlation Test for Funnel Plot Asymmetry")
+                        private$..reg <- jmvcore::Preformatted$new(
+                            options=options,
+                            name="reg",
+                            title="Regression Test for Funnel Plot Asymmetry")
+                        self$add(private$..fsn)
+                        self$add(private$..rank)
+                        self$add(private$..reg)}))$new(options=options)
             private$..funplot <- jmvcore::Image$new(
                 options=options,
                 name="funplot",
@@ -256,10 +262,7 @@ MetaCorrResults <- R6::R6Class(
             self$add(private$..tableTauSqaured)
             self$add(private$..tableQTest)
             self$add(private$..plot)
-            self$add(private$..placeholder)
-            self$add(private$..fsn)
-            self$add(private$..rank)
-            self$add(private$..reg)
+            self$add(private$..pubBias)
             self$add(private$..funplot)}))
 
 #' @importFrom jmvcore Analysis
@@ -307,10 +310,9 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$tableQTest} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$placeholder} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$rank} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$rank} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'

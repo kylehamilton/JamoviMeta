@@ -46,9 +46,9 @@ MetaCorrClass <- R6::R6Class(
         regtestPB <- metafor::regtest(res)
         
         self$results$text$setContent(res)
-        self$results$fsn$setContent(failsafePB)
-        self$results$rank$setContent(ranktestPB)
-        self$results$reg$setContent(regtestPB)
+        self$results$pubBias$fsn$setContent(failsafePB)
+        self$results$pubBias$rank$setContent(ranktestPB)
+        self$results$pubBias$reg$setContent(regtestPB)
         
         CILB <- round(res$ci.lb, 3)
         CIUB <- round(res$ci.ub, 3)
