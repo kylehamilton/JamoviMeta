@@ -40,7 +40,7 @@ MetaCorrClass <- R6::R6Class(
         } else {
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
-
+        
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
@@ -49,16 +49,55 @@ MetaCorrClass <- R6::R6Class(
         self$results$fsn$setContent(failsafePB)
         self$results$rank$setContent(ranktestPB)
         self$results$reg$setContent(regtestPB)
+        
+        CILB <- round(res$ci.lb, 3)
+        CIUB <- round(res$ci.ub, 3)
+        
+        ciLBUB <- paste(CILB,"-",CIUB)
+        
+        table <- self$results$textRICH
+        table$setRow(rowNo=1, values=list(
+          Intercept="Intercept",
+          Estimate=as.numeric(res$b[,1]),
+          se=res$se,
+          p=res$pval,
+          CI=ciLBUB,
+          Z=res$zval
+        ))
 
+        tauSquared <- round(res$tau2, 4)
+        tauSquaredSE <- round(res$se.tau2, 4)
+        
+        tauSqCombind <- paste(tauSquared,"(SE=",tauSquaredSE,")")
+        
+        tauOnly <- round(sqrt(res$tau2), 4)
+        
+        tableTauSqaured <- self$results$tableTauSqaured
+        tableTauSqaured$setRow(rowNo=1, values=list(
+          tauSqComb=tauSqCombind,
+          tauSQRT=tauOnly
+          ))
+        
+        #QTestStat <- round(res$QE, 4)
+        #QTestStatPval <- round(res$QEp, 4)
+        QTestStatDF <- round(res$k - 1, 4)
+
+        
+        tableQTest <- self$results$tableQTest
+        tableQTest$setRow(rowNo=1, values=list(
+          QallDF=QTestStatDF,
+          Qall=res$QE,
+          QallPval=res$QEp
+        ))
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
         imageFUN <- self$results$funplot
-        
+
         image$setState(res)
         imageFUN$setState(res)
-  
+
       },
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state

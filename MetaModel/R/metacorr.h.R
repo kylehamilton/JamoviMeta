@@ -31,11 +31,15 @@ MetaCorrOptions <- R6::R6Class(
             private$..rcor <- jmvcore::OptionVariable$new(
                 "rcor",
                 rcor,
+                suggested=list(
+                    "continuous"),
                 permitted=list(
                     "continuous"))
             private$..samplesize <- jmvcore::OptionVariable$new(
                 "samplesize",
                 samplesize,
+                suggested=list(
+                    "continuous"),
                 permitted=list(
                     "continuous"))
             private$..slab <- jmvcore::OptionVariable$new(
@@ -161,6 +165,9 @@ MetaCorrResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
         text = function() private$..text,
+        textRICH = function() private$..textRICH,
+        tableTauSqaured = function() private$..tableTauSqaured,
+        tableQTest = function() private$..tableQTest,
         plot = function() private$..plot,
         placeholder = function() private$..placeholder,
         fsn = function() private$..fsn,
@@ -169,6 +176,9 @@ MetaCorrResults <- R6::R6Class(
         funplot = function() private$..funplot),
     private = list(
         ..text = NA,
+        ..textRICH = NA,
+        ..tableTauSqaured = NA,
+        ..tableQTest = NA,
         ..plot = NA,
         ..placeholder = NA,
         ..fsn = NA,
@@ -182,6 +192,35 @@ MetaCorrResults <- R6::R6Class(
                 options=options,
                 name="text",
                 title="Correlation Coefficients")
+            private$..textRICH <- jmvcore::Table$new(
+                options=options,
+                name="textRICH",
+                title="Random-Effects Model - Correlation Coefficients",
+                rows=1,
+                columns=list(
+                    list(`name`="Intercept", `title`="", `type`="text"),
+                    list(`name`="Estimate", `type`="number"),
+                    list(`name`="se", `type`="number"),
+                    list(`name`="Z", `type`="number"),
+                    list(`name`="p", `type`="number", `format`="zto,pvalue"),
+                    list(`name`="CI", `title`="Confidence Interval", `type`="number")))
+            private$..tableTauSqaured <- jmvcore::Table$new(
+                options=options,
+                name="tableTauSqaured",
+                title="Heterogeneity Statistics",
+                rows=1,
+                columns=list(
+                    list(`name`="tauSQRT", `title`="Tau", `type`="number", `format`="zto"),
+                    list(`name`="tauSqComb", `title`="Tau Squared", `type`="number", `format`="zto")))
+            private$..tableQTest <- jmvcore::Table$new(
+                options=options,
+                name="tableQTest",
+                title="Tests for Heterogeneity",
+                rows=1,
+                columns=list(
+                    list(`name`="QallDF", `title`="df", `type`="integer", `format`="zto"),
+                    list(`name`="Qall", `title`="Q", `type`="number", `format`="zto"),
+                    list(`name`="QallPval", `title`="p", `type`="number", `format`="zto,pvalue")))
             private$..plot <- jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -213,6 +252,9 @@ MetaCorrResults <- R6::R6Class(
                 height=450,
                 renderFun=".funplot")
             self$add(private$..text)
+            self$add(private$..textRICH)
+            self$add(private$..tableTauSqaured)
+            self$add(private$..tableQTest)
             self$add(private$..plot)
             self$add(private$..placeholder)
             self$add(private$..fsn)
@@ -261,6 +303,9 @@ MetaCorrBase <- R6::R6Class(
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$tableQTest} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$placeholder} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$fsn} \tab \tab \tab \tab \tab a preformatted \cr
@@ -268,6 +313,12 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
+#'
+#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
+#'
+#' \code{results$textRICH$asDF}
+#'
+#' \code{as.data.frame(results$textRICH)}
 #'
 #' @export
 MetaCorr <- function(

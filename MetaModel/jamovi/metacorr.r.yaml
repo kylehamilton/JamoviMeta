@@ -7,7 +7,59 @@ items:
     - name:  text
       title: Correlation Coefficients
       type:  Preformatted
-      
+
+    - name:  textRICH
+      title: Random-Effects Model - Correlation Coefficients
+      type: Table
+      rows:  1
+      columns:
+        - name: Intercept
+          title: ''
+          type: text
+        - name: Estimate
+          type: number
+        - name: se
+          type: number
+        - name: Z
+          type: number
+        - name: p
+          type: number
+          format: zto,pvalue
+        - name: CI
+          title: Confidence Interval
+          type: number
+
+    - name:  tableTauSqaured
+      title: Heterogeneity Statistics
+      type: Table
+      rows:  1
+      columns:
+        - name: tauSQRT
+          title: 'Tau'
+          type: number
+          format: zto
+        - name: tauSqComb
+          title: 'Tau Squared'
+          type: number
+          format: zto
+          
+    - name:  tableQTest
+      title: Tests for Heterogeneity
+      type: Table
+      rows:  1
+      columns:
+        - name: QallDF
+          title: 'df'
+          type: integer
+          format: zto
+        - name: Qall
+          title: 'Q'
+          type: number
+          format: zto
+        - name: QallPval
+          title: 'p'
+          type: number
+          format: zto,pvalue
     - name: plot
       title: Forest Plot
       type: Image

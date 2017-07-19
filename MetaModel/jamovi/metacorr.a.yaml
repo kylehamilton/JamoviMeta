@@ -12,11 +12,13 @@ options:
 
     - name: rcor
       title: Correlations
+      suggested: [continuous]
       permitted: [continuous]
       type: Variable
 
     - name: samplesize
       title: Sample Sizes
+      suggested: [continuous]
       permitted: [continuous]
       type: Variable
 
@@ -73,23 +75,23 @@ options:
 
     - name: level
       type: Number
-      title: Confidence Interval Level
+      title: Confidence interval level %
       min: 50
       max: 99.9
       default: 95
       
     - name: addcred
-      title: Add Forest Plot Prediction Interval
+      title: Forest plot prediction interval
       type: Bool
       default: FALSE
       
     - name: addfit
-      title: Add Forest Plot Summary Estimate
+      title: Forest plot summary estimate
       type: Bool
       default: TRUE
 
     - name: showweights
-      title: Show Model Fitting Weights in Forest Plot
+      title: Forest plot model fitting weights 
       type: Bool
       default: FALSE
 
