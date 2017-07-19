@@ -45,7 +45,7 @@ MetaCorrClass <- R6::R6Class(
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
         
-        self$results$text$setContent(res)
+        #self$results$text$setContent(res)
         self$results$pubBias$fsn$setContent(failsafePB)
         self$results$pubBias$rank$setContent(ranktestPB)
         self$results$pubBias$reg$setContent(regtestPB)
@@ -72,11 +72,16 @@ MetaCorrClass <- R6::R6Class(
         
         tauOnly <- round(sqrt(res$tau2), 4)
         
+        ISquStat <- paste(round(res$I2, 2),"%",sep="")
+        HSquStat <- round(res$H2, 4)
+        
         tableTauSqaured <- self$results$tableTauSqaured
         tableTauSqaured$setRow(rowNo=1, values=list(
           tauSqComb=tauSqCombind,
-          tauSQRT=tauOnly
-          ))
+          tauSQRT=tauOnly,
+          ISqu=ISquStat,
+          HSqu=HSquStat
+          )) 
         
         #QTestStat <- round(res$QE, 4)
         #QTestStatPval <- round(res$QEp, 4)
@@ -89,6 +94,7 @@ MetaCorrClass <- R6::R6Class(
           Qall=res$QE,
           QallPval=res$QEp
         ))
+        
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
@@ -109,8 +115,10 @@ MetaCorrClass <- R6::R6Class(
         addfit <- self$options$addfit
         level <- self$options$level
         showweights <- self$options$showweights
+        xlab <- self$options$xAxisTitle
+        order <- self$options$forestOrder
         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
-        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights)
+        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab, order=order)
         print(plot)
         TRUE
       },

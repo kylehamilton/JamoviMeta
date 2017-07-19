@@ -19,6 +19,8 @@ MetaCorrOptions <- R6::R6Class(
             addcred = FALSE,
             addfit = TRUE,
             showweights = FALSE,
+            xAxisTitle = NULL,
+            forestOrder = "fit",
             fsntype = "Rosenthal",
             yaxis = "sei", ...) {
 
@@ -92,6 +94,19 @@ MetaCorrOptions <- R6::R6Class(
                 "showweights",
                 showweights,
                 default=FALSE)
+            private$..xAxisTitle <- jmvcore::OptionString$new(
+                "xAxisTitle",
+                xAxisTitle)
+            private$..forestOrder <- jmvcore::OptionList$new(
+                "forestOrder",
+                forestOrder,
+                options=list(
+                    "obs",
+                    "fit",
+                    "prec",
+                    "resid",
+                    "abs.resid"),
+                default="fit")
             private$..fsntype <- jmvcore::OptionList$new(
                 "fsntype",
                 fsntype,
@@ -126,6 +141,8 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..addcred)
             self$.addOption(private$..addfit)
             self$.addOption(private$..showweights)
+            self$.addOption(private$..xAxisTitle)
+            self$.addOption(private$..forestOrder)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
         }),
@@ -141,6 +158,8 @@ MetaCorrOptions <- R6::R6Class(
         addcred = function() private$..addcred$value,
         addfit = function() private$..addfit$value,
         showweights = function() private$..showweights$value,
+        xAxisTitle = function() private$..xAxisTitle$value,
+        forestOrder = function() private$..forestOrder$value,
         fsntype = function() private$..fsntype$value,
         yaxis = function() private$..yaxis$value),
     private = list(
@@ -155,6 +174,8 @@ MetaCorrOptions <- R6::R6Class(
         ..addcred = NA,
         ..addfit = NA,
         ..showweights = NA,
+        ..xAxisTitle = NA,
+        ..forestOrder = NA,
         ..fsntype = NA,
         ..yaxis = NA)
 )
@@ -164,7 +185,6 @@ MetaCorrOptions <- R6::R6Class(
 MetaCorrResults <- R6::R6Class(
     inherit = jmvcore::Group,
     active = list(
-        text = function() private$..text,
         textRICH = function() private$..textRICH,
         tableTauSqaured = function() private$..tableTauSqaured,
         tableQTest = function() private$..tableQTest,
@@ -172,7 +192,6 @@ MetaCorrResults <- R6::R6Class(
         pubBias = function() private$..pubBias,
         funplot = function() private$..funplot),
     private = list(
-        ..text = NA,
         ..textRICH = NA,
         ..tableTauSqaured = NA,
         ..tableQTest = NA,
@@ -182,10 +201,6 @@ MetaCorrResults <- R6::R6Class(
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis")
-            private$..text <- jmvcore::Preformatted$new(
-                options=options,
-                name="text",
-                title="Correlation Coefficients")
             private$..textRICH <- jmvcore::Table$new(
                 options=options,
                 name="textRICH",
@@ -205,7 +220,9 @@ MetaCorrResults <- R6::R6Class(
                 rows=1,
                 columns=list(
                     list(`name`="tauSQRT", `title`="Tau", `type`="number", `format`="zto"),
-                    list(`name`="tauSqComb", `title`="Tau Squared", `type`="number", `format`="zto")))
+                    list(`name`="tauSqComb", `title`="Tau\u00B2", `type`="number", `format`="zto"),
+                    list(`name`="ISqu", `title`="I\u00B2", `type`="text"),
+                    list(`name`="HSqu", `title`="H\u00B2", `type`="number", `format`="zto")))
             private$..tableQTest <- jmvcore::Table$new(
                 options=options,
                 name="tableQTest",
@@ -257,7 +274,6 @@ MetaCorrResults <- R6::R6Class(
                 width=600,
                 height=450,
                 renderFun=".funplot")
-            self$add(private$..text)
             self$add(private$..textRICH)
             self$add(private$..tableTauSqaured)
             self$add(private$..tableQTest)
@@ -301,11 +317,12 @@ MetaCorrBase <- R6::R6Class(
 #' @param addcred .
 #' @param addfit .
 #' @param showweights .
+#' @param xAxisTitle .
+#' @param forestOrder .
 #' @param fsntype .
 #' @param yaxis .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$text} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$tableQTest} \tab \tab \tab \tab \tab a table \cr
@@ -336,6 +353,8 @@ MetaCorr <- function(
     addcred = FALSE,
     addfit = TRUE,
     showweights = FALSE,
+    xAxisTitle,
+    forestOrder = "fit",
     fsntype = "Rosenthal",
     yaxis = "sei") {
 
@@ -351,6 +370,8 @@ MetaCorr <- function(
         addcred = addcred,
         addfit = addfit,
         showweights = showweights,
+        xAxisTitle = xAxisTitle,
+        forestOrder = forestOrder,
         fsntype = fsntype,
         yaxis = yaxis)
 
