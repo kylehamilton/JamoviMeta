@@ -8,7 +8,7 @@ items:
     - name:  textRICH
       title: Random-Effects Model - Correlation Coefficients
       type: Table
-      rows:  1
+      rows:  2
       columns:
         - name: Intercept
           title: ''
@@ -22,9 +22,6 @@ items:
         - name: p
           type: number
           format: zto,pvalue
-        - name: CI
-          title: Confidence Interval
-          type: number
 
     - name:  tableTauSqaured
       title: Heterogeneity Statistics
@@ -64,6 +61,7 @@ items:
           title: 'p'
           type: number
           format: zto,pvalue
+
     - name: plot
       title: Forest Plot
       type: Image

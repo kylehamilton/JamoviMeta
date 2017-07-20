@@ -60,14 +60,20 @@ MetaCorrClass <- R6::R6Class(
         table <- self$results$textRICH
         table$setRow(rowNo=1, values=list(
           Intercept="Intercept",
-          Estimate=as.numeric(res$b[,1]),
-          se=res$se,
-          p=res$pval,
-          CI=ciLBUB,
-          Z=res$zval,
+          Estimate=as.numeric(res$b[1]),
+          se=res$se[1],
+          p=res$pval[1],
+          Z=res$zval[1],
           k=res$k
         ))
-        
+        table$setRow(rowNo=2, values=list(
+          Intercept="Moderator",
+          Estimate=as.numeric(res$b[2]),
+          se=res$se[2],
+          p=res$pval[2],
+          Z=res$zval[2],
+          k=res$k
+        ))
        
         #Data Prep: Heterogeneity Stats
         tauSquared <- round(res$tau2, 4)
@@ -134,14 +140,14 @@ MetaCorrClass <- R6::R6Class(
         yaxis <- self$options$yaxis
         yaxisInv <- self$options$yaxisInv
         if (self$options$yaxisInv == TRUE) {
-        
+
         yaxisTrans <- paste(yaxis,"nv",sep="")
         plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
-        
+
         } else {
-          
+
         plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
-        
+
         }
         print(plotFUN)
         TRUE

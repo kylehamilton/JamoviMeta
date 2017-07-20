@@ -209,14 +209,13 @@ MetaCorrResults <- R6::R6Class(
                 options=options,
                 name="textRICH",
                 title="Random-Effects Model - Correlation Coefficients",
-                rows=1,
+                rows=2,
                 columns=list(
                     list(`name`="Intercept", `title`="", `type`="text"),
                     list(`name`="Estimate", `type`="number"),
                     list(`name`="se", `type`="number"),
                     list(`name`="Z", `type`="number"),
-                    list(`name`="p", `type`="number", `format`="zto,pvalue"),
-                    list(`name`="CI", `title`="Confidence Interval", `type`="number")))
+                    list(`name`="p", `type`="number", `format`="zto,pvalue")))
             private$..tableTauSqaured <- jmvcore::Table$new(
                 options=options,
                 name="tableTauSqaured",
