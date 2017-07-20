@@ -1,0 +1,96 @@
+---
+name:  MetaCorr
+title: Meta-Analysis
+jrs:   '1.1'
+
+items:
+
+    - name:  textRICH
+      title: Random-Effects Model - Correlation Coefficients
+      type: Table
+      rows:  1
+      columns:
+        - name: Intercept
+          title: ''
+          type: text
+        - name: Estimate
+          type: number
+        - name: se
+          type: number
+        - name: Z
+          type: number
+        - name: p
+          type: number
+          format: zto,pvalue
+        - name: CI
+          title: Confidence Interval
+          type: number
+
+    - name:  tableTauSqaured
+      title: Heterogeneity Statistics
+      type: Table
+      rows:  1
+      columns:
+        - name: tauSQRT
+          title: 'Tau'
+          type: number
+          format: zto
+        - name: tauSqComb
+          title: 'Tau²'
+          type: number
+          format: zto
+        - name: ISqu
+          title: 'I²'
+          type: text
+        - name: HSqu
+          title: 'H²'
+          type: number
+          format: zto
+          
+    - name:  tableQTest
+      title: Tests for Heterogeneity
+      type: Table
+      rows:  1
+      columns:
+        - name: QallDF
+          title: 'df'
+          type: integer
+          format: zto
+        - name: Qall
+          title: 'Q'
+          type: number
+          format: zto
+        - name: QallPval
+          title: 'p'
+          type: number
+          format: zto,pvalue
+    - name: plot
+      title: Forest Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .plot
+      
+    - name: pubBias
+      title: Publication Bias Assessment
+      type: Group
+      items:
+        - name:  fsn
+          title: Fail-Safe N Analysis
+          type:  Preformatted
+        
+        - name:  rank
+          title: Rank Correlation Test for Funnel Plot Asymmetry
+          type:  Preformatted
+        
+        - name:  reg
+          title: Regression Test for Funnel Plot Asymmetry
+          type:  Preformatted
+
+    - name: funplot
+      title: Funnel Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .funplot
+...
