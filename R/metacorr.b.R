@@ -132,7 +132,17 @@ MetaCorrClass <- R6::R6Class(
       .funplot=function(imageFUN, ...) {  # <-- the plot function
         plotDataFUN <- imageFUN$state
         yaxis <- self$options$yaxis
+        yaxisInv <- self$options$yaxisInv
+        if (self$options$yaxisInv == TRUE) {
+        
+        yaxisTrans <- paste(yaxis,"nv",sep="")
+        plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
+        
+        } else {
+          
         plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
+        
+        }
         print(plotFUN)
         TRUE
       })

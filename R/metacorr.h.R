@@ -22,7 +22,8 @@ MetaCorrOptions <- R6::R6Class(
             xAxisTitle = NULL,
             forestOrder = "fit",
             fsntype = "Rosenthal",
-            yaxis = "sei", ...) {
+            yaxis = "sei",
+            yaxisInv = FALSE, ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -120,15 +121,15 @@ MetaCorrOptions <- R6::R6Class(
                 yaxis,
                 options=list(
                     "sei",
-                    "seinv",
                     "vi",
-                    "vinv",
                     "ni",
-                    "ninv",
                     "sqrtni",
-                    "sqrtninv",
                     "lni"),
                 default="sei")
+            private$..yaxisInv <- jmvcore::OptionBool$new(
+                "yaxisInv",
+                yaxisInv,
+                default=FALSE)
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
@@ -145,6 +146,7 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..forestOrder)
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
+            self$.addOption(private$..yaxisInv)
         }),
     active = list(
         rcor = function() private$..rcor$value,
@@ -161,7 +163,8 @@ MetaCorrOptions <- R6::R6Class(
         xAxisTitle = function() private$..xAxisTitle$value,
         forestOrder = function() private$..forestOrder$value,
         fsntype = function() private$..fsntype$value,
-        yaxis = function() private$..yaxis$value),
+        yaxis = function() private$..yaxis$value,
+        yaxisInv = function() private$..yaxisInv$value),
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
@@ -177,7 +180,8 @@ MetaCorrOptions <- R6::R6Class(
         ..xAxisTitle = NA,
         ..forestOrder = NA,
         ..fsntype = NA,
-        ..yaxis = NA)
+        ..yaxis = NA,
+        ..yaxisInv = NA)
 )
 
 #' @import jmvcore
@@ -321,6 +325,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param forestOrder .
 #' @param fsntype .
 #' @param yaxis .
+#' @param yaxisInv .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
@@ -356,7 +361,8 @@ MetaCorr <- function(
     xAxisTitle,
     forestOrder = "fit",
     fsntype = "Rosenthal",
-    yaxis = "sei") {
+    yaxis = "sei",
+    yaxisInv = FALSE) {
 
     options <- MetaCorrOptions$new(
         rcor = rcor,
@@ -373,7 +379,8 @@ MetaCorr <- function(
         xAxisTitle = xAxisTitle,
         forestOrder = forestOrder,
         fsntype = fsntype,
-        yaxis = yaxis)
+        yaxis = yaxis,
+        yaxisInv = yaxisInv)
 
     results <- MetaCorrResults$new(
         options = options)
