@@ -41,20 +41,22 @@ MetaCorrClass <- R6::R6Class(
           res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
         }
         
+        #Pub Bias
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
         
-        #self$results$text$setContent(res)
+        #Pub Bias Connections
         self$results$pubBias$fsn$setContent(failsafePB)
         self$results$pubBias$rank$setContent(ranktestPB)
         self$results$pubBias$reg$setContent(regtestPB)
         
+        #Data Prep: Results Table
         CILB <- round(res$ci.lb, 3)
         CIUB <- round(res$ci.ub, 3)
-        
         ciLBUB <- paste(CILB,"-",CIUB)
         
+        #Results Table
         table <- self$results$textRICH
         table$setRow(rowNo=1, values=list(
           Intercept="Intercept",
@@ -62,9 +64,12 @@ MetaCorrClass <- R6::R6Class(
           se=res$se,
           p=res$pval,
           CI=ciLBUB,
-          Z=res$zval
+          Z=res$zval,
+          k=res$k
         ))
-
+        
+       
+        #Data Prep: Heterogeneity Stats
         tauSquared <- round(res$tau2, 4)
         tauSquaredSE <- round(res$se.tau2, 4)
         
@@ -75,6 +80,7 @@ MetaCorrClass <- R6::R6Class(
         ISquStat <- paste(round(res$I2, 2),"%",sep="")
         HSquStat <- round(res$H2, 4)
         
+        #Heterogeneity Table
         tableTauSqaured <- self$results$tableTauSqaured
         tableTauSqaured$setRow(rowNo=1, values=list(
           tauSqComb=tauSqCombind,
@@ -83,11 +89,10 @@ MetaCorrClass <- R6::R6Class(
           HSqu=HSquStat
           )) 
         
-        #QTestStat <- round(res$QE, 4)
-        #QTestStatPval <- round(res$QEp, 4)
+        #Data Prep: Heterogeneity Test
         QTestStatDF <- round(res$k - 1, 4)
 
-        
+        #Heterogeneity Stats Table
         tableQTest <- self$results$tableQTest
         tableQTest$setRow(rowNo=1, values=list(
           QallDF=QTestStatDF,
@@ -105,6 +110,7 @@ MetaCorrClass <- R6::R6Class(
         imageFUN$setState(res)
 
       },
+      #Forest Plot Function
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
         #StudyID <- self$options$studylabels
@@ -122,6 +128,7 @@ MetaCorrClass <- R6::R6Class(
         print(plot)
         TRUE
       },
+      #Funnel Plot Function
       .funplot=function(imageFUN, ...) {  # <-- the plot function
         plotDataFUN <- imageFUN$state
         yaxis <- self$options$yaxis
