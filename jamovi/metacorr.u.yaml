@@ -87,8 +87,18 @@ children:
       - type: Label
         label: Funnel Plot
         children:
-            - type: ComboBox
-              name: yaxis
+          - type: LayoutBox
+            margin: none
+            style: inline
+            children:
+              - type: ComboBox
+                name: yaxis
+                label: Y-Axis
+              - type: CheckBox
+                name: yaxisInv
+                label: Inverse
+                verticalAlignment: center
+                enable: (!yaxis:lni)
               
   - type: CollapseBox
     label: Publication Bias
