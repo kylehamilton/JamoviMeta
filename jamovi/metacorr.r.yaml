@@ -102,9 +102,17 @@ items:
               type: number
               format: zto,pvalue
         
-        - name:  reg
-          title: Regression Test for Funnel Plot Asymmetry
-          type:  Preformatted
+        - name:  regRICH
+          title: "Regression Test for Funnel Plot Asymmetry"
+          type: Table
+          rows:  1
+          columns:
+            - name: Z
+              type: number
+              format: zto
+            - name: p
+              type: number
+              format: zto,pvalue
           
     - name: funplot
       title: Funnel Plot

@@ -250,11 +250,11 @@ MetaCorrResults <- R6::R6Class(
                 active = list(
                     fsn = function() private$..fsn,
                     rankRICH = function() private$..rankRICH,
-                    reg = function() private$..reg),
+                    regRICH = function() private$..regRICH),
                 private = list(
                     ..fsn = NA,
                     ..rankRICH = NA,
-                    ..reg = NA),
+                    ..regRICH = NA),
                 public=list(
                     initialize=function(options) {
                         super$initialize(options=options, name="pubBias", title="Publication Bias Assessment")
@@ -270,13 +270,17 @@ MetaCorrResults <- R6::R6Class(
                             columns=list(
                                 list(`name`="rankTau", `title`="Kendall's Tau", `type`="number", `format`="zto"),
                                 list(`name`="p", `type`="number", `format`="zto,pvalue")))
-                        private$..reg <- jmvcore::Preformatted$new(
+                        private$..regRICH <- jmvcore::Table$new(
                             options=options,
-                            name="reg",
-                            title="Regression Test for Funnel Plot Asymmetry")
+                            name="regRICH",
+                            title="Regression Test for Funnel Plot Asymmetry",
+                            rows=1,
+                            columns=list(
+                                list(`name`="Z", `type`="number", `format`="zto"),
+                                list(`name`="p", `type`="number", `format`="zto,pvalue")))
                         self$add(private$..fsn)
                         self$add(private$..rankRICH)
-                        self$add(private$..reg)}))$new(options=options)
+                        self$add(private$..regRICH)}))$new(options=options)
             private$..funplot <- jmvcore::Image$new(
                 options=options,
                 name="funplot",
@@ -340,7 +344,7 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$pubBias$rankRICH} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$pubBias$reg} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$regRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'

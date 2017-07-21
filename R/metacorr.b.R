@@ -52,11 +52,17 @@ MetaCorrClass <- R6::R6Class(
           p=ranktestPB$pval[1]
         ))
         
+        regRICH <- self$results$pubBias$regRICH
+        regRICH$setRow(rowNo=1, values=list(
+          Z=regtestPB$zval[1],
+          p=regtestPB$pval[1]
+        ))
+        
         
         #Pub Bias Connections
         self$results$pubBias$fsn$setContent(failsafePB)
         #self$results$pubBias$rank$setContent(ranktestPB)
-        self$results$pubBias$reg$setContent(regtestPB)
+        #self$results$pubBias$reg$setContent(regtestPB)
         
         #Data Prep: Results Table
         CILB <- round(res$ci.lb[1], 3)
