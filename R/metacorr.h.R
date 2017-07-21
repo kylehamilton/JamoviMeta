@@ -48,7 +48,9 @@ MetaCorrOptions <- R6::R6Class(
                     "continuous"))
             private$..slab <- jmvcore::OptionVariable$new(
                 "slab",
-                slab)
+                slab,
+                suggested=list(
+                    "nominaltext"))
             private$..moderatorcor <- jmvcore::OptionVariable$new(
                 "moderatorcor",
                 moderatorcor)
@@ -200,12 +202,16 @@ MetaCorrResults <- R6::R6Class(
         textRICH = function() private$..textRICH,
         tableTauSqaured = function() private$..tableTauSqaured,
         modelFitRICH = function() private$..modelFitRICH,
-        pubBias = function() private$..pubBias),
+        plot = function() private$..plot,
+        pubBias = function() private$..pubBias,
+        funplot = function() private$..funplot),
     private = list(
         ..textRICH = NA,
         ..tableTauSqaured = NA,
         ..modelFitRICH = NA,
-        ..pubBias = NA),
+        ..plot = NA,
+        ..pubBias = NA,
+        ..funplot = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis")
@@ -248,6 +254,13 @@ MetaCorrResults <- R6::R6Class(
                     list(`name`="AIC", `type`="number", `format`="zto"),
                     list(`name`="BIC", `type`="number", `format`="zto"),
                     list(`name`="AICc", `type`="number", `format`="zto")))
+            private$..plot <- jmvcore::Image$new(
+                options=options,
+                name="plot",
+                title="Forest Plot",
+                width=600,
+                height=450,
+                renderFun=".plot")
             private$..pubBias <- R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
@@ -284,10 +297,19 @@ MetaCorrResults <- R6::R6Class(
                         self$add(private$..fsn)
                         self$add(private$..rankRICH)
                         self$add(private$..regRICH)}))$new(options=options)
+            private$..funplot <- jmvcore::Image$new(
+                options=options,
+                name="funplot",
+                title="Funnel Plot",
+                width=600,
+                height=450,
+                renderFun=".funplot")
             self$add(private$..textRICH)
             self$add(private$..tableTauSqaured)
             self$add(private$..modelFitRICH)
-            self$add(private$..pubBias)}))
+            self$add(private$..plot)
+            self$add(private$..pubBias)
+            self$add(private$..funplot)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -336,9 +358,11 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$modelFitRICH} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$pubBias$rankRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$regRICH} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:

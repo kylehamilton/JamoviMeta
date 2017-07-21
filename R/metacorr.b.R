@@ -179,42 +179,42 @@ MetaCorrClass <- R6::R6Class(
 
         image$setState(res)
         imageFUN$setState(res)
-      }))
-#       },
-#       #Forest Plot Function
-#       .plot=function(image, ...) {  # <-- the plot function
-#         plotData <- image$state
-#         #StudyID <- self$options$studylabels
-#         #yi <- self$options$yi
-#         #vi <- self$options$vi
-#         #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
-#         addcred <- self$options$addcred
-#         addfit <- self$options$addfit
-#         level <- self$options$level
-#         showweights <- self$options$showweights
-#         xlab <- self$options$xAxisTitle
-#         order <- self$options$forestOrder
-#         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
-#         plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab, order=order)
-#         print(plot)
-#         TRUE
-#       },
-#       #Funnel Plot Function
-#       .funplot=function(imageFUN, ...) {  # <-- the plot function
-#         plotDataFUN <- imageFUN$state
-#         yaxis <- self$options$yaxis
-#         yaxisInv <- self$options$yaxisInv
-#         if (self$options$yaxisInv == TRUE) {
-#           
-#           yaxisTrans <- paste(yaxis,"nv",sep="")
-#           plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
-#           
-#         } else {
-#           
-#           plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
-#           
-#         }
-#         print(plotFUN)
-#         TRUE
-#       })
-# )
+      # }))
+       },
+      #Forest Plot Function
+      .plot=function(image, ...) {  # <-- the plot function
+        plotData <- image$state
+        #StudyID <- self$options$studylabels
+        #yi <- self$options$yi
+        #vi <- self$options$vi
+        #res <- metafor::rma(yi=yi, vi=vi, data=self$data)
+        addcred <- self$options$addcred
+        addfit <- self$options$addfit
+        level <- self$options$level
+        showweights <- self$options$showweights
+        xlab <- self$options$xAxisTitle
+        order <- self$options$forestOrder
+        #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
+        plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab, order=order)
+        print(plot)
+        TRUE
+      },
+      #Funnel Plot Function
+      .funplot=function(imageFUN, ...) {  # <-- the plot function
+        plotDataFUN <- imageFUN$state
+        yaxis <- self$options$yaxis
+        yaxisInv <- self$options$yaxisInv
+        if (self$options$yaxisInv == TRUE) {
+
+          yaxisTrans <- paste(yaxis,"nv",sep="")
+          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
+
+        } else {
+
+          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
+
+        }
+        print(plotFUN)
+        TRUE
+      })
+)

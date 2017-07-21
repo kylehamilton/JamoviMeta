@@ -24,6 +24,7 @@ options:
 
     - name: slab
       title: Study Label
+      suggested: [nominaltext]
       type: Variable
 
     - name: moderatorcor

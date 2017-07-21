@@ -93,7 +93,12 @@ items:
           type: number
           format: zto
        
-
+    - name: plot
+      title: Forest Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .plot
       
     - name: pubBias
       title: Publication Bias Assessment
@@ -128,5 +133,10 @@ items:
               type: number
               format: zto,pvalue
 
-
+    - name: funplot
+      title: Funnel Plot
+      type: Image
+      width:  600
+      height: 450
+      renderFun: .funplot
 ...

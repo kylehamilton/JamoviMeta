@@ -112,5 +112,3 @@ children:
         children:
           - type: ComboBox
             name: fsntype
-      - type: CheckBox
-        name: addfit
