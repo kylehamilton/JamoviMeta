@@ -66,6 +66,9 @@ MetaCorrClass <- R6::R6Class(
           Z=res$zval[1],
           k=res$k
         ))
+        
+        if (self$options$includemods == TRUE) {
+        
         table$setRow(rowNo=2, values=list(
           Intercept="Moderator",
           Estimate=as.numeric(res$b[2]),
@@ -74,6 +77,17 @@ MetaCorrClass <- R6::R6Class(
           Z=res$zval[2],
           k=res$k
         ))
+          
+        } else {
+        table$setRow(rowNo=2, values=list(
+          Intercept=" ",
+          Estimate=NULL,
+          se=NULL,
+          p=NULL,
+          Z=NULL,
+          k=NULL   
+        ))
+        }
        
         #Data Prep: Heterogeneity Stats
         tauSquared <- round(res$tau2, 4)
