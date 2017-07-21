@@ -54,12 +54,6 @@ items:
         - name: RSqu
           title: 'R²'
           type: text
-
-    - name:  tableQTest
-      title: Tests for Heterogeneity
-      type: Table
-      rows:  1
-      columns:
         - name: QallDF
           title: 'df'
           type: integer
@@ -73,12 +67,33 @@ items:
           type: number
           format: zto,pvalue
           
-    - name: plot
-      title: Forest Plot
-      type: Image
-      width:  600
-      height: 450
-      renderFun: .plot
+    - name:  modelFitRICH
+      title: Model Fit Statistics and Information Criteria
+      type: Table
+      rows:  2
+      columns:
+        - name: label
+          title: ''
+          type: text
+        - name: loglikelihood
+          title: log-likelihood
+          type: number
+          format: zto
+        - name: deviance
+          title: Deviance
+          type: number
+          format: zto
+        - name: AIC
+          type: number
+          format: zto
+        - name: BIC
+          type: number
+          format: zto
+        - name: AICc
+          type: number
+          format: zto
+       
+
       
     - name: pubBias
       title: Publication Bias Assessment
@@ -112,11 +127,6 @@ items:
             - name: p
               type: number
               format: zto,pvalue
-          
-    - name: funplot
-      title: Funnel Plot
-      type: Image
-      width:  600
-      height: 450
-      renderFun: .funplot
+
+
 ...

@@ -80,6 +80,11 @@ options:
       max: 99.9
       default: 95
       
+    - name: showModelFit
+      title: Display model fit
+      type: Bool
+      default: FALSE   
+      
     - name: addcred
       title: Prediction interval
       type: Bool
@@ -147,4 +152,5 @@ options:
       title: Funnel Plot y-axis Inverse
       type: Bool
       default: false
+
 ...

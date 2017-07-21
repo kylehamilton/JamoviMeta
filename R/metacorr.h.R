@@ -16,6 +16,7 @@ MetaCorrOptions <- R6::R6Class(
             methodmetacor = "REML",
             cormeasure = "ZCOR",
             level = 95,
+            showModelFit = FALSE,
             addcred = FALSE,
             addfit = TRUE,
             showweights = FALSE,
@@ -83,6 +84,10 @@ MetaCorrOptions <- R6::R6Class(
                 min=50,
                 max=99.9,
                 default=95)
+            private$..showModelFit <- jmvcore::OptionBool$new(
+                "showModelFit",
+                showModelFit,
+                default=FALSE)
             private$..addcred <- jmvcore::OptionBool$new(
                 "addcred",
                 addcred,
@@ -139,6 +144,7 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..methodmetacor)
             self$.addOption(private$..cormeasure)
             self$.addOption(private$..level)
+            self$.addOption(private$..showModelFit)
             self$.addOption(private$..addcred)
             self$.addOption(private$..addfit)
             self$.addOption(private$..showweights)
@@ -157,6 +163,7 @@ MetaCorrOptions <- R6::R6Class(
         methodmetacor = function() private$..methodmetacor$value,
         cormeasure = function() private$..cormeasure$value,
         level = function() private$..level$value,
+        showModelFit = function() private$..showModelFit$value,
         addcred = function() private$..addcred$value,
         addfit = function() private$..addfit$value,
         showweights = function() private$..showweights$value,
@@ -174,6 +181,7 @@ MetaCorrOptions <- R6::R6Class(
         ..methodmetacor = NA,
         ..cormeasure = NA,
         ..level = NA,
+        ..showModelFit = NA,
         ..addcred = NA,
         ..addfit = NA,
         ..showweights = NA,
@@ -191,24 +199,20 @@ MetaCorrResults <- R6::R6Class(
     active = list(
         textRICH = function() private$..textRICH,
         tableTauSqaured = function() private$..tableTauSqaured,
-        tableQTest = function() private$..tableQTest,
-        plot = function() private$..plot,
-        pubBias = function() private$..pubBias,
-        funplot = function() private$..funplot),
+        modelFitRICH = function() private$..modelFitRICH,
+        pubBias = function() private$..pubBias),
     private = list(
         ..textRICH = NA,
         ..tableTauSqaured = NA,
-        ..tableQTest = NA,
-        ..plot = NA,
-        ..pubBias = NA,
-        ..funplot = NA),
+        ..modelFitRICH = NA,
+        ..pubBias = NA),
     public=list(
         initialize=function(options) {
             super$initialize(options=options, name="", title="Meta-Analysis")
             private$..textRICH <- jmvcore::Table$new(
                 options=options,
                 name="textRICH",
-                title="Random-Effects Model - Correlation Coefficients",
+                title="Meta-Analytic Model - Correlation Coefficients",
                 rows=2,
                 columns=list(
                     list(`name`="Intercept", `title`="", `type`="text"),
@@ -228,23 +232,22 @@ MetaCorrResults <- R6::R6Class(
                     list(`name`="tauSqComb", `title`="Tau\u00B2", `type`="number", `format`="zto"),
                     list(`name`="ISqu", `title`="I\u00B2", `type`="text"),
                     list(`name`="HSqu", `title`="H\u00B2", `type`="number", `format`="zto"),
-                    list(`name`="RSqu", `title`="R\u00B2", `type`="text")))
-            private$..tableQTest <- jmvcore::Table$new(
-                options=options,
-                name="tableQTest",
-                title="Tests for Heterogeneity",
-                rows=1,
-                columns=list(
+                    list(`name`="RSqu", `title`="R\u00B2", `type`="text"),
                     list(`name`="QallDF", `title`="df", `type`="integer", `format`="zto"),
                     list(`name`="Qall", `title`="Q", `type`="number", `format`="zto"),
                     list(`name`="QallPval", `title`="p", `type`="number", `format`="zto,pvalue")))
-            private$..plot <- jmvcore::Image$new(
+            private$..modelFitRICH <- jmvcore::Table$new(
                 options=options,
-                name="plot",
-                title="Forest Plot",
-                width=600,
-                height=450,
-                renderFun=".plot")
+                name="modelFitRICH",
+                title="Model Fit Statistics and Information Criteria",
+                rows=2,
+                columns=list(
+                    list(`name`="label", `title`="", `type`="text"),
+                    list(`name`="loglikelihood", `title`="log-likelihood", `type`="number", `format`="zto"),
+                    list(`name`="deviance", `title`="Deviance", `type`="number", `format`="zto"),
+                    list(`name`="AIC", `type`="number", `format`="zto"),
+                    list(`name`="BIC", `type`="number", `format`="zto"),
+                    list(`name`="AICc", `type`="number", `format`="zto")))
             private$..pubBias <- R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
@@ -281,19 +284,10 @@ MetaCorrResults <- R6::R6Class(
                         self$add(private$..fsn)
                         self$add(private$..rankRICH)
                         self$add(private$..regRICH)}))$new(options=options)
-            private$..funplot <- jmvcore::Image$new(
-                options=options,
-                name="funplot",
-                title="Funnel Plot",
-                width=600,
-                height=450,
-                renderFun=".funplot")
             self$add(private$..textRICH)
             self$add(private$..tableTauSqaured)
-            self$add(private$..tableQTest)
-            self$add(private$..plot)
-            self$add(private$..pubBias)
-            self$add(private$..funplot)}))
+            self$add(private$..modelFitRICH)
+            self$add(private$..pubBias)}))
 
 #' @importFrom jmvcore Analysis
 #' @importFrom R6 R6Class
@@ -328,6 +322,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param methodmetacor .
 #' @param cormeasure .
 #' @param level .
+#' @param showModelFit .
 #' @param addcred .
 #' @param addfit .
 #' @param showweights .
@@ -340,12 +335,10 @@ MetaCorrBase <- R6::R6Class(
 #' \tabular{llllll}{
 #'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$tableQTest} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$modelFitRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$pubBias$rankRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$regRICH} \tab \tab \tab \tab \tab a table \cr
-#'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
@@ -365,6 +358,7 @@ MetaCorr <- function(
     methodmetacor = "REML",
     cormeasure = "ZCOR",
     level = 95,
+    showModelFit = FALSE,
     addcred = FALSE,
     addfit = TRUE,
     showweights = FALSE,
@@ -383,6 +377,7 @@ MetaCorr <- function(
         methodmetacor = methodmetacor,
         cormeasure = cormeasure,
         level = level,
+        showModelFit = showModelFit,
         addcred = addcred,
         addfit = addfit,
         showweights = showweights,

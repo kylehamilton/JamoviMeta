@@ -61,6 +61,9 @@ children:
             inputPattern: '[0-9]+'
             useSingleCell: true
             suffix: '%'
+          - type: CheckBox
+            name: showModelFit
+            useSingleCell: true
   - type: CollapseBox
     label: Plots
     collapsed: true
@@ -98,8 +101,7 @@ children:
                 name: yaxisInv
                 label: Inverse
                 verticalAlignment: center
-                enable: (!yaxis:lni)
-              
+                enable: '(!yaxis:lni)'
   - type: CollapseBox
     label: Publication Bias
     collapsed: true
@@ -110,3 +112,5 @@ children:
         children:
           - type: ComboBox
             name: fsntype
+      - type: CheckBox
+        name: addfit
