@@ -52,9 +52,10 @@ MetaCorrClass <- R6::R6Class(
         self$results$pubBias$reg$setContent(regtestPB)
         
         #Data Prep: Results Table
-        CILB <- round(res$ci.lb, 3)
-        CIUB <- round(res$ci.ub, 3)
+        CILB <- round(res$ci.lb[1], 3)
+        CIUB <- round(res$ci.ub[1], 3)
         ciLBUB <- paste(CILB,"-",CIUB)
+        
         
         #Results Table
         table <- self$results$textRICH
@@ -62,27 +63,39 @@ MetaCorrClass <- R6::R6Class(
           Intercept="Intercept",
           Estimate=as.numeric(res$b[1]),
           se=res$se[1],
+          CILow=res$ci.lb[1],
+          CIHigh=res$ci.ub[1],
           p=res$pval[1],
           Z=res$zval[1],
           k=res$k
         ))
         
         if (self$options$includemods == TRUE) {
-        
+          
+          modCILB <- round(res$ci.lb[2], 3)
+          modCIUB <- round(res$ci.ub[2], 3)
+          
         table$setRow(rowNo=2, values=list(
           Intercept="Moderator",
           Estimate=as.numeric(res$b[2]),
           se=res$se[2],
+          CILow=res$ci.lb[2],
+          CIHigh=res$ci.ub[2],
           p=res$pval[2],
           Z=res$zval[2],
           k=res$k
         ))
+        
+        
+        
           
         } else {
         table$setRow(rowNo=2, values=list(
           Intercept=" ",
           Estimate=NULL,
           se=NULL,
+          CILow=NULL,
+          CIHigh=NULL,
           p=NULL,
           Z=NULL,
           k=NULL   
@@ -100,13 +113,21 @@ MetaCorrClass <- R6::R6Class(
         ISquStat <- paste(round(res$I2, 2),"%",sep="")
         HSquStat <- round(res$H2, 4)
         
+        
+        if (self$options$includemods == TRUE) {
+        RSquStat <- res$R2
+        } else {
+        RSquStat <- NULL
+        }
+        
         #Heterogeneity Table
         tableTauSqaured <- self$results$tableTauSqaured
         tableTauSqaured$setRow(rowNo=1, values=list(
           tauSqComb=tauSqCombind,
           tauSQRT=tauOnly,
           ISqu=ISquStat,
-          HSqu=HSquStat
+          HSqu=HSquStat,
+          RSqu=RSquStat
           )) 
         
         #Data Prep: Heterogeneity Test

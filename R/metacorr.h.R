@@ -215,7 +215,9 @@ MetaCorrResults <- R6::R6Class(
                     list(`name`="Estimate", `type`="number"),
                     list(`name`="se", `type`="number"),
                     list(`name`="Z", `type`="number"),
-                    list(`name`="p", `type`="number", `format`="zto,pvalue")))
+                    list(`name`="p", `type`="number", `format`="zto,pvalue"),
+                    list(`name`="CILow", `title`="CI Lower Bound", `type`="number", `format`="zto"),
+                    list(`name`="CIHigh", `title`="CI Upper Bound", `type`="number", `format`="zto")))
             private$..tableTauSqaured <- jmvcore::Table$new(
                 options=options,
                 name="tableTauSqaured",
@@ -225,7 +227,8 @@ MetaCorrResults <- R6::R6Class(
                     list(`name`="tauSQRT", `title`="Tau", `type`="number", `format`="zto"),
                     list(`name`="tauSqComb", `title`="Tau\u00B2", `type`="number", `format`="zto"),
                     list(`name`="ISqu", `title`="I\u00B2", `type`="text"),
-                    list(`name`="HSqu", `title`="H\u00B2", `type`="number", `format`="zto")))
+                    list(`name`="HSqu", `title`="H\u00B2", `type`="number", `format`="zto"),
+                    list(`name`="RSqu", `title`="R\u00B2", `type`="number", `format`="zto")))
             private$..tableQTest <- jmvcore::Table$new(
                 options=options,
                 name="tableQTest",

@@ -22,7 +22,15 @@ items:
         - name: p
           type: number
           format: zto,pvalue
-
+        - name: CILow
+          title: CI Lower Bound
+          type: number
+          format: zto
+        - name: CIHigh
+          title: CI Upper Bound
+          type: number
+          format: zto
+          
     - name:  tableTauSqaured
       title: Heterogeneity Statistics
       type: Table
@@ -43,6 +51,10 @@ items:
           title: 'H²'
           type: number
           format: zto
+        - name: RSqu
+          title: 'R²'
+          type: number
+          format: zto    
           
     - name:  tableQTest
       title: Tests for Heterogeneity
