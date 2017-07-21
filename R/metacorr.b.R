@@ -125,7 +125,7 @@ MetaCorrClass <- R6::R6Class(
         
         
         if (self$options$includemods == TRUE) {
-        RSquStat <- res$R2
+        RSquStat <- paste(round(res$R2, 2),"%",sep="")
         } else {
         RSquStat <- NULL
         }

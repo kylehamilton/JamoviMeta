@@ -6,7 +6,7 @@ jrs:   '1.1'
 items:
 
     - name:  textRICH
-      title: Random-Effects Model - Correlation Coefficients
+      title: Meta-Analytic Model - Correlation Coefficients
       type: Table
       rows:  2
       columns:
@@ -53,9 +53,8 @@ items:
           format: zto
         - name: RSqu
           title: 'R²'
-          type: number
-          format: zto    
-          
+          type: text
+
     - name:  tableQTest
       title: Tests for Heterogeneity
       type: Table
