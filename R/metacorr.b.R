@@ -45,10 +45,17 @@ MetaCorrClass <- R6::R6Class(
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
+
+        rankRICH <- self$results$pubBias$rankRICH
+        rankRICH$setRow(rowNo=1, values=list(
+          rankTau=ranktestPB$tau[1],
+          p=ranktestPB$pval[1]
+        ))
+        
         
         #Pub Bias Connections
         self$results$pubBias$fsn$setContent(failsafePB)
-        self$results$pubBias$rank$setContent(ranktestPB)
+        #self$results$pubBias$rank$setContent(ranktestPB)
         self$results$pubBias$reg$setContent(regtestPB)
         
         #Data Prep: Results Table
@@ -85,9 +92,6 @@ MetaCorrClass <- R6::R6Class(
           Z=res$zval[2],
           k=res$k
         ))
-        
-        
-        
           
         } else {
         table$setRow(rowNo=2, values=list(
@@ -149,7 +153,7 @@ MetaCorrClass <- R6::R6Class(
 
         image$setState(res)
         imageFUN$setState(res)
-
+        
       },
       #Forest Plot Function
       .plot=function(image, ...) {  # <-- the plot function
@@ -175,14 +179,14 @@ MetaCorrClass <- R6::R6Class(
         yaxis <- self$options$yaxis
         yaxisInv <- self$options$yaxisInv
         if (self$options$yaxisInv == TRUE) {
-
-        yaxisTrans <- paste(yaxis,"nv",sep="")
-        plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
-
+          
+          yaxisTrans <- paste(yaxis,"nv",sep="")
+          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
+          
         } else {
-
-        plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
-
+          
+          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
+          
         }
         print(plotFUN)
         TRUE

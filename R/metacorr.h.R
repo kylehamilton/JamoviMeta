@@ -249,11 +249,11 @@ MetaCorrResults <- R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
                     fsn = function() private$..fsn,
-                    rank = function() private$..rank,
+                    rankRICH = function() private$..rankRICH,
                     reg = function() private$..reg),
                 private = list(
                     ..fsn = NA,
-                    ..rank = NA,
+                    ..rankRICH = NA,
                     ..reg = NA),
                 public=list(
                     initialize=function(options) {
@@ -262,16 +262,20 @@ MetaCorrResults <- R6::R6Class(
                             options=options,
                             name="fsn",
                             title="Fail-Safe N Analysis")
-                        private$..rank <- jmvcore::Preformatted$new(
+                        private$..rankRICH <- jmvcore::Table$new(
                             options=options,
-                            name="rank",
-                            title="Rank Correlation Test for Funnel Plot Asymmetry")
+                            name="rankRICH",
+                            title="Rank Correlation Test for Funnel Plot Asymmetry",
+                            rows=1,
+                            columns=list(
+                                list(`name`="rankTau", `title`="Kendall's Tau", `type`="number", `format`="zto"),
+                                list(`name`="p", `type`="number", `format`="zto,pvalue")))
                         private$..reg <- jmvcore::Preformatted$new(
                             options=options,
                             name="reg",
                             title="Regression Test for Funnel Plot Asymmetry")
                         self$add(private$..fsn)
-                        self$add(private$..rank)
+                        self$add(private$..rankRICH)
                         self$add(private$..reg)}))$new(options=options)
             private$..funplot <- jmvcore::Image$new(
                 options=options,
@@ -335,7 +339,7 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$tableQTest} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$pubBias$rank} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$rankRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$reg} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr
 #' }
