@@ -111,18 +111,38 @@ MetaCorrClass <- R6::R6Class(
           k=res$k
         ))
         
+        if (self$options$methodmetacor == "DL"){
+          tau2EstimatorName = "DerSimonian-Laird"
+        } else if (self$options$methodmetacor == "HE"){
+          tau2EstimatorName = "Hedges"
+        } else if (self$options$methodmetacor == "HS"){
+          tau2EstimatorName = "Hunter-Schmidt"
+        } else if (self$options$methodmetacor == "SJ"){
+          tau2EstimatorName = "Sidik-Jonkman"
+        } else if (self$options$methodmetacor == "ML"){
+          tau2EstimatorName = "Maximum-Likelihood"
+        } else if (self$options$methodmetacor == "REML"){
+          tau2EstimatorName = "Restricted Maximum-Likelihood"
+        } else if (self$options$methodmetacor == "EB"){
+          tau2EstimatorName = "Empirical Bayes"
+        } else if (self$options$methodmetacor == "PM"){
+          tau2EstimatorName = "Paule-Mandel"
+        }
           
           if (self$options$includemods == TRUE){
           titleMix <- paste("Mixed-Effects Model (k = ",res$k,")",sep="")
+          titleMixNote <- paste("tau^2 estimator: ",tau2EstimatorName, sep="")
           table$setTitle(title=titleMix)
-
+          table$setNote("mixnote",titleMixNote)
         } else if (self$options$methodmetacor == "FE"){
           titleFix <- paste("Fixed-Effects Model (k = ",res$k,")",sep="")
           table$setTitle(title=titleFix)
 
         } else {
           titleRan <- paste("Random-Effects Model (k = ",res$k,")",sep="")
+          titleRanNote <- paste("tau^2 estimator: ",tau2EstimatorName, sep="")
           table$setTitle(title=titleRan)
+          table$setNote("rannote",titleRanNote)
         }
         
         if (self$options$includemods == TRUE) {
