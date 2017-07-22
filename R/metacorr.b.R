@@ -111,6 +111,20 @@ MetaCorrClass <- R6::R6Class(
           k=res$k
         ))
         
+          
+          if (self$options$includemods == TRUE){
+          titleMix <- paste("Mixed-Effects Model (k = ",res$k,")",sep="")
+          table$setTitle(title=titleMix)
+
+        } else if (self$options$methodmetacor == "FE"){
+          titleFix <- paste("Fixed-Effects Model (k = ",res$k,")",sep="")
+          table$setTitle(title=titleFix)
+
+        } else {
+          titleRan <- paste("Random-Effects Model (k = ",res$k,")",sep="")
+          table$setTitle(title=titleRan)
+        }
+        
         if (self$options$includemods == TRUE) {
           
           modCILB <- round(res$ci.lb[2], 3)
@@ -126,7 +140,7 @@ MetaCorrClass <- R6::R6Class(
           Z=res$zval[2],
           k=res$k
         ))
-          
+         
         } else {
         table$setRow(rowNo=2, values=list(
           Intercept=" ",

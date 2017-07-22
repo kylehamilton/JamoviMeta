@@ -218,7 +218,7 @@ MetaCorrResults <- R6::R6Class(
             private$..textRICH <- jmvcore::Table$new(
                 options=options,
                 name="textRICH",
-                title="Meta-Analytic Model - Correlation Coefficients",
+                title="Random-Effects Model",
                 rows=2,
                 columns=list(
                     list(`name`="Intercept", `title`="", `type`="text"),

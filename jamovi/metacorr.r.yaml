@@ -6,8 +6,8 @@ jrs:   '1.1'
 items:
 
     - name:  textRICH
-      title: Meta-Analytic Model - Correlation Coefficients
       type: Table
+      title: "Random-Effects Model"
       rows:  2
       columns:
         - name: Intercept
@@ -92,6 +92,7 @@ items:
         - name: AICc
           type: number
           format: zto
+       
        
     - name: plot
       title: Forest Plot
