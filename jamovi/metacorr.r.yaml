@@ -93,7 +93,6 @@ items:
           type: number
           format: zto
        
-       
     - name: plot
       title: Forest Plot
       type: Image
@@ -133,7 +132,7 @@ items:
             - name: p
               type: number
               format: zto,pvalue
-
+              
     - name: funplot
       title: Funnel Plot
       type: Image
