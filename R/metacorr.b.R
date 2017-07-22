@@ -21,7 +21,6 @@ MetaCorrClass <- R6::R6Class(
         #yaxis <- self$options$yaxis
         #data <- self$data
         
-        #mods = cbind(mod1, mod2, mod3)
         
         if (self$options$includemods == TRUE) {
           data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
@@ -98,8 +97,13 @@ MetaCorrClass <- R6::R6Class(
         ciLBUB <- paste(CILB,"-",CIUB)
         
         
-        #Results Table
+       # Results Table
         table <- self$results$textRICH
+        # esDataNULL <- is.null(self$options$rcor)
+        # if (esDataNULL == TRUE){
+        #   table$setError("error")
+        # }
+        
         table$setRow(rowNo=1, values=list(
           Intercept="Intercept",
           Estimate=as.numeric(res$b[1]),
