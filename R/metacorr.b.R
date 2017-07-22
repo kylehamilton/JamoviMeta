@@ -131,6 +131,7 @@ MetaCorrClass <- R6::R6Class(
           
           if (self$options$includemods == TRUE){
           titleMix <- paste("Mixed-Effects Model (k = ",res$k,")",sep="")
+          titleMixNote <- paste("Tau\u00B2 Estimator: ",tau2EstimatorName, sep="")
           table$setTitle(title=titleMix)
           table$setNote("mixnote",titleMixNote)
         } else if (self$options$methodmetacor == "FE"){
@@ -139,6 +140,7 @@ MetaCorrClass <- R6::R6Class(
 
         } else {
           titleRan <- paste("Random-Effects Model (k = ",res$k,")",sep="")
+          titleRanNote <- paste("Tau\u00B2 Estimator: ",tau2EstimatorName, sep="")
           table$setTitle(title=titleRan)
           table$setNote("rannote",titleRanNote)
         }
