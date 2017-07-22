@@ -1,5 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 
+import(metafor)
 export(MetaCorr)
 export(MetaCorrClass)
 export(MetaCorrOptions)

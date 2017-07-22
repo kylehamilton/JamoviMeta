@@ -104,9 +104,18 @@ items:
       title: Publication Bias Assessment
       type: Group
       items:
-        - name:  fsn
-          title: Fail-Safe N Analysis
-          type:  Preformatted
+        - name:  fsnRICH
+          title: "Fail-Safe N Analysis"
+          type: Table
+          rows:  1
+          columns:
+            - name: failSafeNumber
+              title: "Fail-safe N"
+              type: integer
+              format: zto
+            - name: p
+              type: number
+              format: zto,pvalue
           
         - name:  rankRICH
           title: "Rank Correlation Test for Funnel Plot Asymmetry"
@@ -139,4 +148,5 @@ items:
       width:  600
       height: 450
       renderFun: .funplot
+
 ...

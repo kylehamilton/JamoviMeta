@@ -120,7 +120,7 @@ options:
         - name: "abs.resid"
           title: Absolute Residuals
       default: fit
-
+      
     - name: fsntype
       title: Fail-Safe N Method
       type: List

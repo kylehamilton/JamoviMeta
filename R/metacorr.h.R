@@ -264,20 +264,24 @@ MetaCorrResults <- R6::R6Class(
             private$..pubBias <- R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
-                    fsn = function() private$..fsn,
+                    fsnRICH = function() private$..fsnRICH,
                     rankRICH = function() private$..rankRICH,
                     regRICH = function() private$..regRICH),
                 private = list(
-                    ..fsn = NA,
+                    ..fsnRICH = NA,
                     ..rankRICH = NA,
                     ..regRICH = NA),
                 public=list(
                     initialize=function(options) {
                         super$initialize(options=options, name="pubBias", title="Publication Bias Assessment")
-                        private$..fsn <- jmvcore::Preformatted$new(
+                        private$..fsnRICH <- jmvcore::Table$new(
                             options=options,
-                            name="fsn",
-                            title="Fail-Safe N Analysis")
+                            name="fsnRICH",
+                            title="Fail-Safe N Analysis",
+                            rows=1,
+                            columns=list(
+                                list(`name`="failSafeNumber", `title`="Fail-safe N", `type`="integer", `format`="zto"),
+                                list(`name`="p", `type`="number", `format`="zto,pvalue")))
                         private$..rankRICH <- jmvcore::Table$new(
                             options=options,
                             name="rankRICH",
@@ -294,7 +298,7 @@ MetaCorrResults <- R6::R6Class(
                             columns=list(
                                 list(`name`="Z", `type`="number", `format`="zto"),
                                 list(`name`="p", `type`="number", `format`="zto,pvalue")))
-                        self$add(private$..fsn)
+                        self$add(private$..fsnRICH)
                         self$add(private$..rankRICH)
                         self$add(private$..regRICH)}))$new(options=options)
             private$..funplot <- jmvcore::Image$new(
@@ -359,7 +363,7 @@ MetaCorrBase <- R6::R6Class(
 #'   \code{results$tableTauSqaured} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$modelFitRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$pubBias$fsn} \tab \tab \tab \tab \tab a preformatted \cr
+#'   \code{results$pubBias$fsnRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$rankRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$pubBias$regRICH} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$funplot} \tab \tab \tab \tab \tab an image \cr

@@ -45,6 +45,18 @@ MetaCorrClass <- R6::R6Class(
         ranktestPB <- metafor::ranktest(res)
         regtestPB <- metafor::regtest(res)
 
+        
+        fsnRICH <- self$results$pubBias$fsnRICH
+
+        fsnRICH$setRow(rowNo=1, values=list(
+          failSafeNumber=failsafePB$fsnum[1],
+          p=failsafePB$pval[1]
+        ))
+        fsnTitle <- paste("Fail-Safe N Analysis (File Drawer Analysis)")
+        fsnNote <- paste("Fail-safe N Calculation Using the ",fsntype," Approach", sep="")
+        fsnRICH$setTitle(title=fsnTitle)
+        fsnRICH$setNote("fsnNoteTable",fsnNote)
+        
         rankRICH <- self$results$pubBias$rankRICH
         rankRICH$setRow(rowNo=1, values=list(
           rankTau=ranktestPB$tau[1],
@@ -87,7 +99,7 @@ MetaCorrClass <- R6::R6Class(
         }
         
         #Pub Bias Connections
-        self$results$pubBias$fsn$setContent(failsafePB)
+        #self$results$pubBias$fsn$setContent(failsafePB)
         #self$results$pubBias$rank$setContent(ranktestPB)
         #self$results$pubBias$reg$setContent(regtestPB)
         
@@ -208,15 +220,15 @@ MetaCorrClass <- R6::R6Class(
           QallPval=res$QEp
           )) 
     
-        
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
         image <- self$results$plot
         imageFUN <- self$results$funplot
-
+        
         image$setState(res)
         imageFUN$setState(res)
+  
       # }))
        },
       #Forest Plot Function
