@@ -24,7 +24,8 @@ MetaCorrOptions <- R6::R6Class(
             forestOrder = "fit",
             fsntype = "Rosenthal",
             yaxis = "sei",
-            yaxisInv = FALSE, ...) {
+            yaxisInv = FALSE,
+            enhanceFunnel = FALSE, ...) {
 
             super$initialize(
                 package='MetaModel',
@@ -137,6 +138,10 @@ MetaCorrOptions <- R6::R6Class(
                 "yaxisInv",
                 yaxisInv,
                 default=FALSE)
+            private$..enhanceFunnel <- jmvcore::OptionBool$new(
+                "enhanceFunnel",
+                enhanceFunnel,
+                default=FALSE)
         
             self$.addOption(private$..rcor)
             self$.addOption(private$..samplesize)
@@ -155,6 +160,7 @@ MetaCorrOptions <- R6::R6Class(
             self$.addOption(private$..fsntype)
             self$.addOption(private$..yaxis)
             self$.addOption(private$..yaxisInv)
+            self$.addOption(private$..enhanceFunnel)
         }),
     active = list(
         rcor = function() private$..rcor$value,
@@ -173,7 +179,8 @@ MetaCorrOptions <- R6::R6Class(
         forestOrder = function() private$..forestOrder$value,
         fsntype = function() private$..fsntype$value,
         yaxis = function() private$..yaxis$value,
-        yaxisInv = function() private$..yaxisInv$value),
+        yaxisInv = function() private$..yaxisInv$value,
+        enhanceFunnel = function() private$..enhanceFunnel$value),
     private = list(
         ..rcor = NA,
         ..samplesize = NA,
@@ -191,7 +198,8 @@ MetaCorrOptions <- R6::R6Class(
         ..forestOrder = NA,
         ..fsntype = NA,
         ..yaxis = NA,
-        ..yaxisInv = NA)
+        ..yaxisInv = NA,
+        ..enhanceFunnel = NA)
 )
 
 #' @import jmvcore
@@ -357,6 +365,7 @@ MetaCorrBase <- R6::R6Class(
 #' @param fsntype .
 #' @param yaxis .
 #' @param yaxisInv .
+#' @param enhanceFunnel .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$textRICH} \tab \tab \tab \tab \tab a table \cr
@@ -394,7 +403,8 @@ MetaCorr <- function(
     forestOrder = "fit",
     fsntype = "Rosenthal",
     yaxis = "sei",
-    yaxisInv = FALSE) {
+    yaxisInv = FALSE,
+    enhanceFunnel = FALSE) {
 
     options <- MetaCorrOptions$new(
         rcor = rcor,
@@ -413,7 +423,8 @@ MetaCorr <- function(
         forestOrder = forestOrder,
         fsntype = fsntype,
         yaxis = yaxis,
-        yaxisInv = yaxisInv)
+        yaxisInv = yaxisInv,
+        enhanceFunnel = enhanceFunnel)
 
     results <- MetaCorrResults$new(
         options = options)

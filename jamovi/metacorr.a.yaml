@@ -153,5 +153,9 @@ options:
       title: Funnel Plot y-axis Inverse
       type: Bool
       default: false
-
+      
+    - name: enhanceFunnel
+      title: Contour-Enhanced
+      type: Bool
+      default: false
 ...

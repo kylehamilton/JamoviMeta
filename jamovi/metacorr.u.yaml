@@ -102,6 +102,11 @@ children:
                 label: Inverse
                 verticalAlignment: center
                 enable: '(!yaxis:lni)'
+              - type: CheckBox
+                name: enhanceFunnel
+                label: Contour-Enhanced
+                verticalAlignment: center                
+                
   - type: CollapseBox
     label: Publication Bias
     collapsed: true

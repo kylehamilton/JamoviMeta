@@ -254,15 +254,23 @@ MetaCorrClass <- R6::R6Class(
         plotDataFUN <- imageFUN$state
         yaxis <- self$options$yaxis
         yaxisInv <- self$options$yaxisInv
+        enhancePlot <- self$options$enhanceFunnel
+        
         if (self$options$yaxisInv == TRUE) {
-
-          yaxisTrans <- paste(yaxis,"nv",sep="")
-          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
-
+          if (self$options$enhanceFunnel == TRUE) {
+            yaxisTrans <- paste(yaxis,"nv",sep="")
+            plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans,level=c(90, 95, 99), shade=c("white", "gray", "darkgray"))
+          } else {
+            yaxisTrans <- paste(yaxis,"nv",sep="")
+            plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
+          }
+          
         } else {
-
+          if (self$options$enhanceFunnel == TRUE) {
+          plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis,level=c(90, 95, 99), shade=c("white", "gray", "darkgray"))
+          } else {
           plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis)
-
+          }
         }
         print(plotFUN)
         TRUE
