@@ -148,5 +148,5 @@ items:
       width:  600
       height: 450
       renderFun: .funplot
-
+      
 ...

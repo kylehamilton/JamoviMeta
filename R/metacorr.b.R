@@ -5,6 +5,19 @@ MetaCorrClass <- R6::R6Class(
     "MetaCorrClass",
     inherit = MetaCorrBase,
     private = list(
+      # .init = function() {
+      #   
+      #     ready <- TRUE
+      #   if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE)
+      #     ready <- FALSE
+      #   
+      #   if (ready == TRUE) {
+      #     
+      #     private$.run()
+      #     
+      #   }
+      #   
+      # },
       .run = function() {
         ri <- self$options$rcor
         ni <- self$options$samplesize
@@ -20,26 +33,54 @@ MetaCorrClass <- R6::R6Class(
         level <- self$options$level
         #yaxis <- self$options$yaxis
         #data <- self$data
-        
-        
-        if (self$options$includemods == TRUE) {
-          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
-          data[[ri]] <- jmvcore::toNumeric(data[[ri]])
-          data[[ni]] <- jmvcore::toNumeric(data[[ni]])
-          data[[mods]] <- jmvcore::toNumeric(data[[mods]])
-        } else {
-          data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], slab = self$data[[self$options$slab]])
-          data[[ri]] <- jmvcore::toNumeric(data[[ri]])
-          data[[ni]] <- jmvcore::toNumeric(data[[ni]])
-        }
+        table <- self$results$textRICH
 
-        if (self$options$includemods == TRUE) {
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
-        } else {
-          res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
+        
+        ready <- TRUE
+        if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE){
+        #if (is.null(self$options$rcor) == TRUE){
+        
+          ready <- FALSE
         }
+        if (ready == TRUE) {
+          
+          if (self$options$includemods == TRUE) {
+            data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
+            data[[ri]] <- jmvcore::toNumeric(data[[ri]])
+            data[[ni]] <- jmvcore::toNumeric(data[[ni]])
+            data[[mods]] <- jmvcore::toNumeric(data[[mods]])
+          } else {
+            data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], slab = self$data[[self$options$slab]])
+            data[[ri]] <- jmvcore::toNumeric(data[[ri]])
+            data[[ni]] <- jmvcore::toNumeric(data[[ni]])
+          }
+          
+          if (self$options$includemods == TRUE) {
+            res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
+          } else {
+            res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
+          }
+          
+        #}
+
+        # if (self$options$includemods == TRUE) {
+        #   data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], mods = self$data[[self$options$moderatorcor]], slab = self$data[[self$options$slab]])
+        #   data[[ri]] <- jmvcore::toNumeric(data[[ri]])
+        #   data[[ni]] <- jmvcore::toNumeric(data[[ni]])
+        #   data[[mods]] <- jmvcore::toNumeric(data[[mods]])
+        # } else {
+        #   data <- data.frame(ri = self$data[[self$options$rcor]], ni = self$data[[self$options$samplesize]], slab = self$data[[self$options$slab]])
+        #   data[[ri]] <- jmvcore::toNumeric(data[[ri]])
+        #   data[[ni]] <- jmvcore::toNumeric(data[[ni]])
+        # }
+        # 
+        # if (self$options$includemods == TRUE) {
+        #   res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
+        # } else {
+        #   res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
+        # }
         
-        
+
         #Pub Bias
         failsafePB <- metafor::fsn(yi=res$yi, vi=res$vi, type=fsntype)
         ranktestPB <- metafor::ranktest(res)
@@ -110,7 +151,7 @@ MetaCorrClass <- R6::R6Class(
         
         
        # Results Table
-        table <- self$results$textRICH
+        #table <- self$results$textRICH
         # esDataNULL <- is.null(self$options$rcor)
         # if (esDataNULL == TRUE){
         #   table$setError("error")
@@ -220,6 +261,8 @@ MetaCorrClass <- R6::R6Class(
           QallPval=res$QEp
           )) 
     
+        
+
         # `self$data` contains the data
         # `self$options` contains the options
         # `self$results` contains the results object (to populate)
@@ -229,8 +272,8 @@ MetaCorrClass <- R6::R6Class(
         image$setState(res)
         imageFUN$setState(res)
   
-      # }))
-       },
+      # }}))
+       }},
       #Forest Plot Function
       .plot=function(image, ...) {  # <-- the plot function
         plotData <- image$state
@@ -244,10 +287,18 @@ MetaCorrClass <- R6::R6Class(
         showweights <- self$options$showweights
         xlab <- self$options$xAxisTitle
         order <- self$options$forestOrder
+        ready <- TRUE
+        if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE){
+        #if (is.null(self$options$rcor) == TRUE){
+          
+          ready <- FALSE
+        }
+        if (ready == TRUE) {
+        
         #plot <- metafor::forest(plotData$yi, plotData$vi, addcred=addcred, addfit=addfit)
         plot <- metafor::forest(plotData, addcred=addcred, addfit=addfit, level=level, showweights=showweights, xlab=xlab, order=order)
         print(plot)
-        TRUE
+        TRUE}
       },
       #Funnel Plot Function
       .funplot=function(imageFUN, ...) {  # <-- the plot function
@@ -255,7 +306,14 @@ MetaCorrClass <- R6::R6Class(
         yaxis <- self$options$yaxis
         yaxisInv <- self$options$yaxisInv
         enhancePlot <- self$options$enhanceFunnel
-        
+        ready <- TRUE
+        if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE){
+        #if (is.null(self$options$rcor) == TRUE){
+          
+          ready <- FALSE
+        }
+        if (ready == TRUE) {
+          
         if (self$options$yaxisInv == TRUE) {
           if (self$options$enhanceFunnel == TRUE) {
             yaxisTrans <- paste(yaxis,"nv",sep="")
@@ -264,7 +322,7 @@ MetaCorrClass <- R6::R6Class(
             yaxisTrans <- paste(yaxis,"nv",sep="")
             plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxisTrans)
           }
-          
+
         } else {
           if (self$options$enhanceFunnel == TRUE) {
           plotFUN <- metafor::funnel(plotDataFUN,yaxis=yaxis,level=c(90, 95, 99), shade=c("white", "gray", "darkgray"))
@@ -273,6 +331,6 @@ MetaCorrClass <- R6::R6Class(
           }
         }
         print(plotFUN)
-        TRUE
+        TRUE}
       })
 )
