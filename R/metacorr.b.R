@@ -38,9 +38,10 @@ MetaCorrClass <- R6::R6Class(
         
         ready <- TRUE
         if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE){
-        #if (is.null(self$options$rcor) == TRUE){
         
           ready <- FALSE
+        # I really need to think of a better error message this is a place holder until I figure something out
+          jmvcore::reject("Correlations, Sample Sizes, and Study Label fields must be populated to run analysis", code='')
         }
         if (ready == TRUE) {
           
