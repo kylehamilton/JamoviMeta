@@ -54,7 +54,11 @@ MetaCorrOptions <- R6::R6Class(
                     "nominaltext"))
             private$..moderatorcor <- jmvcore::OptionVariable$new(
                 "moderatorcor",
-                moderatorcor)
+                moderatorcor,
+                suggested=list(
+                    "continuous"),
+                permitted=list(
+                    "continuous"))
             private$..includemods <- jmvcore::OptionBool$new(
                 "includemods",
                 includemods,
