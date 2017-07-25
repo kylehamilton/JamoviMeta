@@ -34,5 +34,10 @@ analyses:
     menuGroup: MetaModel
     menuTitle: Reliability Generalization
     menuSubgroup: Meta Analysis
+  - title: Proportions
+    name: metaProportion
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Proportions
 
 ...

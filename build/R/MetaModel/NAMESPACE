@@ -16,3 +16,7 @@ export(metaDichotomousModelOptions)
 export(metaAlpha)
 export(metaAlphaClass)
 export(metaAlphaOptions)
+
+export(metaProportion)
+export(metaProportionClass)
+export(metaProportionOptions)
