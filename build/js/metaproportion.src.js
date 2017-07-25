@@ -28,7 +28,7 @@ view.layout = ui.extend({
 			controls: [
 				{
 					type: DefaultControls.TargetLayoutBox,
-					label: "Correlations",
+					label: "Frequencies of the Event",
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,
@@ -40,7 +40,7 @@ view.layout = ui.extend({
 				},
 				{
 					type: DefaultControls.TargetLayoutBox,
-					label: "Sample Sizes",
+					label: "Total Sample Sizes",
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,

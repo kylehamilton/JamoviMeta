@@ -39,5 +39,6 @@ analyses:
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: Proportions
+    menuSubgroup: Meta Analysis
 
 ...
