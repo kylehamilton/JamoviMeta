@@ -5,6 +5,13 @@ This project is very early in its development so everything might not be 100% st
 
 To install this module download the file [MetaModel.jmo](https://github.com/kylehamilton/JamoviMeta/raw/master/MetaModel.jmo) and select it using the sideload feature in Jamovi.
 
+**Currently JamoviMeta allows users to meta-analyze**
+* Correlation Coefficients
+* Cronbach's Alpha
+* Dichotomous Outcomes
+* Mean Differences
+* Proportions
+
 **List of things to do and that have been done**
 - [x] Meta-analysis with correlations 
 - [x] Meta-analysis mean differences
@@ -19,4 +26,6 @@ To install this module download the file [MetaModel.jmo](https://github.com/kyle
 - [ ] Better name
 - [ ] Clean up menus
 - [ ] Allow for more than one moderator
+
+[![Everything Is AWESOME](http://i.imgur.com/vJ3B9Z7.png)](https://www.youtube.com/watch?v=7Wj9R_Qd4gs "Everything Is AWESOME")
 
