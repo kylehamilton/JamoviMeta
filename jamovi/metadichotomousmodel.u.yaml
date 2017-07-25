@@ -121,6 +121,7 @@ children:
                 name: enhanceFunnel
                 label: Contour-Enhanced
                 verticalAlignment: center
+                enable: (yaxis:sei || yaxis:vi)
   - type: CollapseBox
     label: Publication Bias
     collapsed: true

@@ -20,7 +20,7 @@ options:
       suggested: [continuous]
       permitted: [continuous]
       type: Variable
-      
+
     - name: ci
       title: Number of Incidents in Control Group
       suggested: [continuous]
@@ -32,7 +32,7 @@ options:
       suggested: [continuous]
       permitted: [continuous]
       type: Variable
-   
+
     - name: slab
       title: Study Label
       suggested: [nominaltext]
@@ -43,12 +43,12 @@ options:
       suggested: [continuous]
       permitted: [continuous]
       type: Variable
-      
+
     - name: includemods
       title: Include Moderator
       type: Bool
-      default: FALSE      
-      
+      default: FALSE
+
     - name: methodmetamdms
       title: Model Estimator
       type: List
@@ -90,38 +90,38 @@ options:
         - name: "PETO"
           title: Log Odds Ratio Peto's Method
       default: OR
-      
+
     - name: level
       type: Number
       title: Confidence Interval Level
       min: 50
       max: 99.9
       default: 95
-      
+
     - name: showModelFit
       title: Display model fit
       type: Bool
-      default: FALSE   
-      
+      default: FALSE
+
     - name: addcred
       title: Prediction interval
       type: Bool
       default: FALSE
-      
+
     - name: addfit
       title: Summary estimate
       type: Bool
       default: TRUE
 
     - name: showweights
-      title: Model fitting weights 
+      title: Model fitting weights
       type: Bool
       default: FALSE
 
     - name: xAxisTitle
       title: x-axis Title
       type: String
-      
+
     - name: forestOrder
       title: Study Order
       type: List
@@ -137,7 +137,7 @@ options:
         - name: "abs.resid"
           title: Absolute Residuals
       default: fit
-      
+
     - name: fsntype
       title: Fail-Safe N Method
       type: List
@@ -149,8 +149,7 @@ options:
         - name: "Rosenberg"
           title: Rosenberg
       default: Rosenthal
- 
-      
+
     - name: yaxis
       title: Funnel Plot y-axis Options
       type: List
@@ -166,12 +165,12 @@ options:
         - name: "lni"
           title: Log of the Sample Size
       default: sei
-      
+
     - name: yaxisInv
       title: Funnel Plot y-axis Inverse
       type: Bool
       default: false
-      
+
     - name: enhanceFunnel
       title: Contour-Enhanced
       type: Bool
