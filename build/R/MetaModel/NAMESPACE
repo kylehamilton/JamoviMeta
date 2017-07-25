@@ -5,9 +5,9 @@ export(MetaCorr)
 export(MetaCorrClass)
 export(MetaCorrOptions)
 
-export(metamdms)
-export(metamdmsClass)
-export(metamdmsOptions)
+export(metaMeanDiff)
+export(metaMeanDiffClass)
+export(metaMeanDiffOptions)
 
 export(MetaDichot)
 export(MetaDichotClass)

@@ -1,7 +1,7 @@
 ---
 title: Meta-Analysis for JAMOVI
 name: MetaModel
-version: 0.0.1
+version: 0.1.1
 jms: '1.0'
 authors:
   - W. Kyle Hamilton
@@ -17,7 +17,7 @@ analyses:
     menuTitle: Correlation Coefficients
     menuSubgroup: Meta Analysis
   - title: 'Mean Differences (n, M, SD)'
-    name: metamdms
+    name: metaMeanDiff
     ns: MetaModel
     menuGroup: MetaModel
     menuTitle: 'Mean Differences (n, M, SD)'

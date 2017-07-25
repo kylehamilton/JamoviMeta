@@ -1,7 +1,7 @@
 Package: MetaModel
 Type: Package
 Title: Meta-Analysis for JAMOVI
-Version: 0.0.1
+Version: 0.1.1
 Author: W. Kyle Hamilton
 Maintainer: W. Kyle Hamilton <kyle.hamilton@gmail.com>
 Description: An interface for Jamovi and the R package Metafor
