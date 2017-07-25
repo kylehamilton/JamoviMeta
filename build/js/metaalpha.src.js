@@ -197,7 +197,8 @@ view.layout = ui.extend({
 									type: DefaultControls.CheckBox,
 									name: "enhanceFunnel",
 									label: "Contour-Enhanced",
-									verticalAlignment: "center"
+									verticalAlignment: "center",
+									enable: "(yaxis:sei || yaxis:vi)"
 								}
 							]
 						}

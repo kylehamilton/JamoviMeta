@@ -29,7 +29,7 @@ items:
           title: CI Upper Bound
           type: number
           format: zto
-          
+
     - name:  tableTauSqaured
       title: Heterogeneity Statistics
       type: Table
@@ -65,7 +65,7 @@ items:
           title: 'p'
           type: number
           format: zto,pvalue
-          
+
     - name:  modelFitRICH
       title: Model Fit Statistics and Information Criteria
       type: Table
@@ -91,14 +91,14 @@ items:
         - name: AICc
           type: number
           format: zto
-       
+
     - name: plot
       title: Forest Plot
       type: Image
       width:  600
       height: 450
       renderFun: .plot
-      
+
     - name: pubBias
       title: Publication Bias Assessment
       type: Group
@@ -115,7 +115,7 @@ items:
             - name: p
               type: number
               format: zto,pvalue
-          
+
         - name:  rankRICH
           title: "Rank Correlation Test for Funnel Plot Asymmetry"
           type: Table
@@ -128,7 +128,7 @@ items:
             - name: p
               type: number
               format: zto,pvalue
-        
+
         - name:  regRICH
           title: "Regression Test for Funnel Plot Asymmetry"
           type: Table
@@ -140,12 +140,12 @@ items:
             - name: p
               type: number
               format: zto,pvalue
-              
+
     - name: funplot
       title: Funnel Plot
       type: Image
       width:  600
       height: 450
       renderFun: .funplot
-      
+
 ...
