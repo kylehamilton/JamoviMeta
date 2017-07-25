@@ -3,7 +3,7 @@ Meta-Analysis for JAMOVI
 
 This project is very early in its development so everything might not be 100% stable or as useful and polished as it should be. If there’s something missing please open an issue and I’ll be sure to give it a look. 
 
-To install this module download the file [MetaModel.jmo](https://github.com/kylehamilton/JamoviMeta/raw/master/MetaModel.jmo) and select it using the sideload feature in Jamovi.
+You will first need to [download Jamovi](https://www.jamovi.org/download.html). To install this module download the file [MetaModel.jmo](https://github.com/kylehamilton/JamoviMeta/raw/master/MetaModel.jmo) and select it using the sideload feature in Jamovi.
 
 **Currently JamoviMeta allows users to meta-analyze**
 * Correlation Coefficients
