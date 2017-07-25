@@ -28,5 +28,11 @@ analyses:
     menuGroup: MetaModel
     menuTitle: Dichotomous Models
     menuSubgroup: Meta Analysis
+  - title: Reliability Generalization
+    name: metaAlpha
+    ns: MetaModel
+    menuGroup: MetaModel
+    menuTitle: Reliability Generalization
+    menuSubgroup: Meta Analysis
 
 ...

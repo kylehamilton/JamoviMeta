@@ -1,0 +1,171 @@
+---
+name:  metaAlpha
+title: Reliability Generalization
+menuGroup: MetaModel
+menuSubgroup: Meta Analysis
+version: '1.0.0'
+jas: '1.1'
+
+options:
+    - name: data
+      type: Data
+
+    - name: ai
+      title: Cronbach's Alpha
+      suggested: [continuous]
+      permitted: [continuous]
+      type: Variable
+
+    - name: mi
+      title: Number of Items
+      suggested: [continuous]
+      permitted: [continuous]
+      type: Variable
+
+    - name: ni
+      title: Sample Size
+      suggested: [continuous]
+      permitted: [continuous]
+      type: Variable
+
+    - name: slab
+      title: Study Label
+      suggested: [nominaltext]
+      type: Variable
+
+    - name: moderatorcor
+      title: Moderator
+      suggested: [continuous]
+      permitted: [continuous]
+      type: Variable
+      
+    - name: includemods
+      title: Include Moderator
+      type: Bool
+      default: FALSE
+      
+    - name: methodmetacor
+      title: Model Estimator
+      type: List
+      options:
+        - name: "DL"
+          title: DerSimonian-Laird
+        - name: "HE"
+          title: Hedges
+        - name: "HS"
+          title: Hunter-Schmidt
+        - name: "SJ"
+          title: Sidik-Jonkman
+        - name: "ML"
+          title: Maximum-Likelihood
+        - name: "REML"
+          title: Restricted Maximum-Likelihood
+        - name: "EB"
+          title: Empirical Bayes
+        - name: "PM"
+          title: Paule-Mandel
+        #- name: "GENQ"
+        #  title: Generalized Q-statistic
+        - name: "FE"
+          title: Fixed-Effect
+      default: REML
+
+    - name: cormeasure
+      title: Effect Size Model Measures
+      type: List
+      options:
+        - name: "ARAW"
+          title: Raw Alpha Values
+        - name: "AHW"
+          title: Transformed Alpha Values (Hakstian & Whalen, 1976)
+        - name: "ABI"
+          title: Transformed Alpha Values (Bonett, 2002)
+        - name: "ROM"
+          title: Log Transformed Ratio of Means
+      default: ARAW
+
+    - name: level
+      type: Number
+      title: Confidence interval level
+      min: 50
+      max: 99.9
+      default: 95
+      
+    - name: showModelFit
+      title: Display model fit
+      type: Bool
+      default: FALSE   
+      
+    - name: addcred
+      title: Prediction interval
+      type: Bool
+      default: FALSE
+      
+    - name: addfit
+      title: Summary estimate
+      type: Bool
+      default: TRUE
+
+    - name: showweights
+      title: Model fitting weights 
+      type: Bool
+      default: FALSE
+
+    - name: xAxisTitle
+      title: x-axis Title
+      type: String
+      
+    - name: forestOrder
+      title: Study Order
+      type: List
+      options:
+        - name: "obs"
+          title: Observed Effect Sizes
+        - name: "fit"
+          title: Fitted Values
+        - name: "prec"
+          title: Sampling Variances
+        - name: "resid"
+          title: Residuals
+        - name: "abs.resid"
+          title: Absolute Residuals
+      default: fit
+      
+    - name: fsntype
+      title: Fail-Safe N Method
+      type: List
+      options:
+        - name: "Rosenthal"
+          title: Rosenthal
+        - name: "Orwin"
+          title: Orwin
+        - name: "Rosenberg"
+          title: Rosenberg
+      default: Rosenthal
+      
+    - name: yaxis
+      title: Funnel Plot y-axis Options
+      type: List
+      options:
+        - name: "sei"
+          title: Standard Error
+        - name: "vi"
+          title: Sampling Variance
+        - name: "ni"
+          title: Sample Size
+        - name: "sqrtni"
+          title: Square Root Sample Size
+        - name: "lni"
+          title: Log of the Sample Size
+      default: sei
+      
+    - name: yaxisInv
+      title: Funnel Plot y-axis Inverse
+      type: Bool
+      default: false
+      
+    - name: enhanceFunnel
+      title: Contour-Enhanced
+      type: Bool
+      default: false
+...

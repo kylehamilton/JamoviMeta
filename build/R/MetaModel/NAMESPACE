@@ -12,3 +12,7 @@ export(metaMeanDiffOptions)
 export(metaDichotomousModel)
 export(metaDichotomousModelClass)
 export(metaDichotomousModelOptions)
+
+export(metaAlpha)
+export(metaAlphaClass)
+export(metaAlphaOptions)
