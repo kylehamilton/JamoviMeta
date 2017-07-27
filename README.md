@@ -12,6 +12,20 @@ You will first need to [download Jamovi](https://www.jamovi.org/download.html). 
 * Mean Differences
 * Proportions
 
+[![Everything Is AWESOME](http://i.imgur.com/vJ3B9Z7.png)](https://www.youtube.com/watch?v=7Wj9R_Qd4gs "Everything Is AWESOME")
+
+### How to contribute
+
+*Imposter syndrome disclaimer*: I want your help. No really, I do.
+
+There might be a little voice inside that tells you you're not ready; that you need to do one more tutorial, or learn another framework, or write a few more blog posts before you can help me with this project.
+
+I assure you, that's not the case.
+
+You don't just have to write code. You can help out by writing documentation, tests, or even by giving feedback about this work. This project can't work without help from people like you. There is a [code of conduct] (https://github.com/kylehamilton/JamoviMeta/blob/master/CODE_OF_CONDUCT.md) to make sure everyone feels safe and welcome which is something I really belive in. 
+
+Thank you for contributing!
+
 **List of things to do and that have been done**
 - [x] Meta-analysis with correlations 
 - [x] Meta-analysis mean differences
@@ -26,6 +40,3 @@ You will first need to [download Jamovi](https://www.jamovi.org/download.html). 
 - [ ] Better name
 - [ ] Clean up menus
 - [ ] Allow for more than one moderator
-
-[![Everything Is AWESOME](http://i.imgur.com/vJ3B9Z7.png)](https://www.youtube.com/watch?v=7Wj9R_Qd4gs "Everything Is AWESOME")
-
