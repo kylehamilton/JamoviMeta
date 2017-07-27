@@ -22,7 +22,7 @@ There might be a little voice inside that tells you you're not ready; that you n
 
 I assure you, that's not the case.
 
-You don't just have to write code. You can help out by writing documentation, tests, or even by giving feedback about this work. This project can't work without help from people like you. There is a [code of conduct] (https://github.com/kylehamilton/JamoviMeta/blob/master/CODE_OF_CONDUCT.md) to make sure everyone feels safe and welcome which is something I really belive in. 
+You don't just have to write code. You can help out by writing documentation, tests, or even by giving feedback about this work. This project can't work without help from people like you. There is a [code of conduct](https://github.com/kylehamilton/JamoviMeta/blob/master/CODE_OF_CONDUCT.md) to make sure everyone feels safe and welcome which is something I really belive in. 
 
 Thank you for contributing!
 
