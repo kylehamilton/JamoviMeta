@@ -35,8 +35,7 @@ MetaCorrClass <- R6::R6Class(
         #data <- self$data
         table <- self$results$textRICH
 
-        
-        ready <- TRUE
+          ready <- TRUE
         if (is.null(self$options$rcor) || is.null(self$options$samplesize) || is.null(self$options$slab) == TRUE){
         
           ready <- FALSE
@@ -57,7 +56,7 @@ MetaCorrClass <- R6::R6Class(
           }
           
           if (self$options$includemods == TRUE) {
-            res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods=mods, data=data, slab=slab, level=level)
+            res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, mods= cbind(mods), data=data, slab=slab, level=level)
           } else {
             res <- metafor::rma(ri=ri, ni=ni, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
           }

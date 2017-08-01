@@ -20,3 +20,7 @@ export(metaAlphaOptions)
 export(metaProportion)
 export(metaProportionClass)
 export(metaProportionOptions)
+
+export(metaDV)
+export(metaDVClass)
+export(metaDVOptions)

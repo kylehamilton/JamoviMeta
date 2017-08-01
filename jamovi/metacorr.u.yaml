@@ -29,13 +29,13 @@ children:
             name: slab
             maxItemCount: 1
             isTarget: true
-      - type: TargetLayoutBox
-        label: Moderator
-        children:
-          - type: VariablesListBox
-            name: moderatorcor
-            maxItemCount: 1
-            isTarget: true
+          - type: TargetLayoutBox
+            label: Moderator
+            children:
+              - type: VariablesListBox
+                name: moderatorcor
+                maxItemCount: 1
+                isTarget: true
   - type: LayoutBox
     margin: large
     children:
@@ -106,7 +106,7 @@ children:
                 name: enhanceFunnel
                 label: Contour-Enhanced
                 verticalAlignment: center
-                enable: (yaxis:sei || yaxis:vi)
+                enable: '(yaxis:sei || yaxis:vi)'
   - type: CollapseBox
     label: Publication Bias
     collapsed: true

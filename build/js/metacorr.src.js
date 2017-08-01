@@ -59,18 +59,18 @@ view.layout = ui.extend({
 							name: "slab",
 							maxItemCount: 1,
 							isTarget: true
-						}
-					]
-				},
-				{
-					type: DefaultControls.TargetLayoutBox,
-					label: "Moderator",
-					controls: [
+						},
 						{
-							type: DefaultControls.VariablesListBox,
-							name: "moderatorcor",
-							maxItemCount: 1,
-							isTarget: true
+							type: DefaultControls.TargetLayoutBox,
+							label: "Moderator",
+							controls: [
+								{
+									type: DefaultControls.VariablesListBox,
+									name: "moderatorcor",
+									maxItemCount: 1,
+									isTarget: true
+								}
+							]
 						}
 					]
 				}
