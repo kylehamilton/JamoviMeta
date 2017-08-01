@@ -64,18 +64,6 @@ options:
           title: Fixed-Effect
       default: REML
 
-    - name: cormeasure
-      title: Correlation Model Measures
-      type: List
-      options:
-        - name: "COR"
-          title: Raw Correlation Coefficient
-        - name: "UCOR"
-          title: Raw Correlation Coefficient (Bias Corrected)
-        - name: "ZCOR"
-          title: Fisher's r-to-z Transformed Correlation Coefficient
-      default: ZCOR
-
     - name: level
       type: Number
       title: Confidence interval level

@@ -12,7 +12,6 @@ metaDVOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             moderatorcor = NULL,
             includemods = FALSE,
             methodmetacor = "REML",
-            cormeasure = "ZCOR",
             level = 95,
             showModelFit = FALSE,
             addcred = FALSE,
@@ -75,14 +74,6 @@ metaDVOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                     "PM",
                     "FE"),
                 default="REML")
-            private$..cormeasure <- jmvcore::OptionList$new(
-                "cormeasure",
-                cormeasure,
-                options=list(
-                    "COR",
-                    "UCOR",
-                    "ZCOR"),
-                default="ZCOR")
             private$..level <- jmvcore::OptionNumber$new(
                 "level",
                 level,
@@ -151,7 +142,6 @@ metaDVOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$.addOption(private$..moderatorcor)
             self$.addOption(private$..includemods)
             self$.addOption(private$..methodmetacor)
-            self$.addOption(private$..cormeasure)
             self$.addOption(private$..level)
             self$.addOption(private$..showModelFit)
             self$.addOption(private$..addcred)
@@ -171,7 +161,6 @@ metaDVOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         moderatorcor = function() private$..moderatorcor$value,
         includemods = function() private$..includemods$value,
         methodmetacor = function() private$..methodmetacor$value,
-        cormeasure = function() private$..cormeasure$value,
         level = function() private$..level$value,
         showModelFit = function() private$..showModelFit$value,
         addcred = function() private$..addcred$value,
@@ -190,7 +179,6 @@ metaDVOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         ..moderatorcor = NA,
         ..includemods = NA,
         ..methodmetacor = NA,
-        ..cormeasure = NA,
         ..level = NA,
         ..showModelFit = NA,
         ..addcred = NA,
@@ -448,7 +436,6 @@ metaDVBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param moderatorcor .
 #' @param includemods .
 #' @param methodmetacor .
-#' @param cormeasure .
 #' @param level .
 #' @param showModelFit .
 #' @param addcred .
@@ -487,7 +474,6 @@ metaDV <- function(
     moderatorcor,
     includemods = FALSE,
     methodmetacor = "REML",
-    cormeasure = "ZCOR",
     level = 95,
     showModelFit = FALSE,
     addcred = FALSE,
@@ -510,7 +496,6 @@ metaDV <- function(
         moderatorcor = moderatorcor,
         includemods = includemods,
         methodmetacor = methodmetacor,
-        cormeasure = cormeasure,
         level = level,
         showModelFit = showModelFit,
         addcred = addcred,

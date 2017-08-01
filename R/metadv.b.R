@@ -11,7 +11,7 @@ metaDVClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         mods <- self$options$moderatorcor
         fsntype <- self$options$fsntype
         method2 <- self$options$methodmetacor
-        cormeasure <- self$options$cormeasure
+        #cormeasure <- self$options$cormeasure
         slab <- self$options$slab
         includemods <- self$options$includemods
         addcred <- self$options$addcred
@@ -43,9 +43,9 @@ metaDVClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           }
           
           if (self$options$includemods == TRUE) {
-            res <- metafor::rma(yi=yi, vi=vi, method=method2, measure=cormeasure, mods= cbind(mods), data=data, slab=slab, level=level)
+            res <- metafor::rma(yi=yi, vi=vi, method=method2, mods= cbind(mods), data=data, slab=slab, level=level)
           } else {
-            res <- metafor::rma(yi=yi, vi=vi, method=method2, measure=cormeasure, data=data, slab=slab, level=level)
+            res <- metafor::rma(yi=yi, vi=vi, method=method2, data=data, slab=slab, level=level)
           }
           
           #}
