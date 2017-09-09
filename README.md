@@ -11,6 +11,7 @@ You will first need to [download Jamovi](https://www.jamovi.org/download.html). 
 * Dichotomous Outcomes
 * Mean Differences
 * Proportions
+* Effect Sizes and Sampling Variances
 
 [![Everything Is AWESOME](http://i.imgur.com/vJ3B9Z7.png)](https://www.youtube.com/watch?v=7Wj9R_Qd4gs "Everything Is AWESOME")
 
