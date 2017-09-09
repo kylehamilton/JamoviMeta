@@ -16,7 +16,7 @@ const view = View.extend({
 
 view.layout = ui.extend({
 
-    label: "Effect Sizes and Sampling Variances (d,v)",
+    label: "Effect Sizes and Sampling Variances",
     jus: "2.0",
     type: "root",
     stage: 0, //0 - release, 1 - development, 2 - proposed
@@ -28,7 +28,7 @@ view.layout = ui.extend({
 			controls: [
 				{
 					type: DefaultControls.TargetLayoutBox,
-					label: "Correlations",
+					label: "Effect Size",
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,
@@ -40,7 +40,7 @@ view.layout = ui.extend({
 				},
 				{
 					type: DefaultControls.TargetLayoutBox,
-					label: "Sample Sizes",
+					label: "Variance",
 					controls: [
 						{
 							type: DefaultControls.VariablesListBox,

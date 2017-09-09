@@ -426,7 +426,7 @@ metaDVBase <- if (requireNamespace('jmvcore')) R6::R6Class(
                 completeWhenFilled = FALSE)
         }))
 
-#' Effect Sizes and Sampling Variances (d,v)
+#' Effect Sizes and Sampling Variances
 #'
 #' 
 #' @param data .

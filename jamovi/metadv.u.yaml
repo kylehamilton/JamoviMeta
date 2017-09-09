@@ -1,4 +1,4 @@
-title: 'Effect Sizes and Sampling Variances (d,v)'
+title: 'Effect Sizes and Sampling Variances'
 name: metaDV
 jus: '2.0'
 stage: 0
@@ -9,14 +9,14 @@ children:
     stretchFactor: 1
     children:
       - type: TargetLayoutBox
-        label: Correlations
+        label: Effect Size
         children:
           - type: VariablesListBox
             name: effectSize
             maxItemCount: 1
             isTarget: true
       - type: TargetLayoutBox
-        label: Sample Sizes
+        label: Variance
         children:
           - type: VariablesListBox
             name: samplingVariances

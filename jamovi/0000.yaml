@@ -40,11 +40,11 @@ analyses:
     menuGroup: MetaModel
     menuTitle: Proportions
     menuSubgroup: Meta Analysis
-  - title: 'Effect Sizes and Sampling Variances (d,v)'
+  - title: Effect Sizes and Sampling Variances
     name: metaDV
     ns: MetaModel
     menuGroup: MetaModel
-    menuTitle: 'Effect Sizes and Sampling Variances (d,v)'
+    menuTitle: Effect Sizes and Sampling Variances
     menuSubgroup: Meta Analysis
 
 ...

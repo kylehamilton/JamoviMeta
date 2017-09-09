@@ -1,6 +1,6 @@
 ---
 name:  metaDV
-title: Effect Sizes and Sampling Variances (d,v)
+title: Effect Sizes and Sampling Variances
 menuGroup: MetaModel
 menuSubgroup: Meta Analysis
 version: '1.0.0'
