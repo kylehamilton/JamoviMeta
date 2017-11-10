@@ -11,19 +11,19 @@ options:
       type: Data
 
     - name: effectSize
-      title: Effect Sizes (d)
+      title: Effect sizes (d)
       suggested: [continuous]
       permitted: [continuous]
       type: Variable
 
     - name: samplingVariances
-      title: Sampling Variances
+      title: Sampling variances
       suggested: [continuous]
       permitted: [continuous]
       type: Variable
 
     - name: slab
-      title: Study Label
+      title: Study label
       suggested: [nominaltext]
       type: Variable
 
@@ -34,12 +34,12 @@ options:
       type: Variable
 
     - name: includemods
-      title: Include Moderator
+      title: Include moderator
       type: Bool
       default: FALSE
 
     - name: methodmetacor
-      title: Model Estimator
+      title: Model estimator
       type: List
       options:
         - name: "DL"
@@ -92,27 +92,27 @@ options:
       default: FALSE
 
     - name: xAxisTitle
-      title: x-axis Title
+      title: x-axis title
       type: String
 
     - name: forestOrder
-      title: Study Order
+      title: Study order
       type: List
       options:
         - name: "obs"
-          title: Observed Effect Sizes
+          title: Observed effect sizes
         - name: "fit"
-          title: Fitted Values
+          title: Fitted values
         - name: "prec"
-          title: Sampling Variances
+          title: Sampling variances
         - name: "resid"
           title: Residuals
         - name: "abs.resid"
-          title: Absolute Residuals
+          title: Absolute residuals
       default: fit
 
     - name: fsntype
-      title: Fail-Safe N Method
+      title: Fail-Safe N method
       type: List
       options:
         - name: "Rosenthal"
@@ -124,23 +124,23 @@ options:
       default: Rosenthal
 
     - name: yaxis
-      title: Funnel Plot y-axis Options
+      title: Funnel plot y-axis options
       type: List
       options:
         - name: "sei"
-          title: Standard Error
+          title: Standard error
         - name: "vi"
-          title: Sampling Variance
+          title: Sampling variance
         - name: "ni"
-          title: Sample Size
+          title: Sample size
         - name: "sqrtni"
-          title: Square Root Sample Size
+          title: Square root sample size
         - name: "lni"
-          title: Log of the Sample Size
+          title: Log of the sample size
       default: sei
 
     - name: yaxisInv
-      title: Funnel Plot y-axis Inverse
+      title: Funnel plot y-axis inverse
       type: Bool
       default: false
 
